@@ -1,0 +1,22 @@
+.ContainerButtons{
+    background-color: red;
+}
+
+.backgroundImage {
+  background-image: url('../../assets/womenHomeView.jpg'), url('../../assets/manHomeView.jpg');
+  opacity: 0.7;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1); /* Cambia el valor de transparencia (0.5 en este ejemplo) */
+
+}
+
+.Title {
+  opacity: 1;
+  font-size: 380%;
+}

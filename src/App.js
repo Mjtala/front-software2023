@@ -3,21 +3,13 @@ import React from "react";
 import "./App.css";
 import UsersListsFromAPI from "./components/usersListsFromAPI";
 import ButtonChangeTheme from "./components/buttonChangeTheme";
-
+import NavigationBar from "./components/navBar/navBar";
+import HomeView from "./pages/HomeView/HomeView";
 function App() {
   return (
-    <div className="App">
-      <UsersListsFromAPI />
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-
-      <ButtonChangeTheme />
+    <div>
+     <NavigationBar />
+     <HomeView />
     </div>
   );
 }
