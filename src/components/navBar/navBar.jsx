@@ -3,7 +3,7 @@ import './navBar.css';
 
 function NavigationBar() {
   return (
-    <>
+    <div className='navbarContainer'>
     <ul className='ul'>
       <div className='RightSide'>
         <li className='li'><a className="a" href="#home">TeamUp</a></li>
@@ -13,7 +13,7 @@ function NavigationBar() {
         <li className='li'><a className="a" href="#LogIn">LogIn</a></li>
       </div>
     </ul>
-    </>
+    </div>
   );
 }
 
