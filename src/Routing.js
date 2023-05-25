@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
-import NavigationBar from "./components/navBar/NavBar";
+import NavBar from './components/navBar/navBar';
 import HomeView from "./pages/HomeView/HomeView";
 function Routing(){
 
     return(
         <BrowserRouter>
-            <NavigationBar />
+            <NavBar />
             <Routes>  
                 <Route path="/" element={<HomeView />} />
             </Routes>
