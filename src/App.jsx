@@ -1,13 +1,11 @@
 import React from "react";
-
+import Routing from "./Routing";
 import "./App.css";
-import NavBar from "./components/navBar/NavBar";
-import HomeView from "./pages/HomeView/HomeView";
+
 function App() {
   return (
     <div className="mainPage">
-     <NavBar />
-     <HomeView />
+      <Routing />
     </div>
   );
 }
