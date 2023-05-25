@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
-import NavBar from './components/navBar/navBar';
+import NavBar from './components/navBar/NavBar';
 import HomeView from "./pages/HomeView/HomeView";
 function Routing(){
 
