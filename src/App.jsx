@@ -1,12 +1,12 @@
 import React from "react";
 
 import "./App.css";
-import NavigationBar from "./components/navBar/navBar";
+import NavBar from "./components/navBar/NavBar";
 import HomeView from "./pages/HomeView/HomeView";
 function App() {
   return (
     <div className="mainPage">
-     <NavigationBar />
+     <NavBar />
      <HomeView />
     </div>
   );

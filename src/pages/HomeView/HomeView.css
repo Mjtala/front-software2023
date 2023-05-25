@@ -2,41 +2,33 @@
     display: flex;
 }
 
-.backgroundImage {
-  position: relative; 
+.background {
+    position: relative; 
     height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-size: cover;
+
 }
-.backgroundImage::before {
-  content: "";
-  background-size: cover;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 0.7;
-}
-.backgroundImage .Title,
-.backgroundImage .subtitle  {
-  opacity: 1;
-  color: black;
-}
-.backgroundImage .Title {
+
+.background .Title {
   font-size: 320%;
+  font-family:monospace;
 }
 
-.backgroundImage .subtitle {
+.background .subtitle {
   font-size: 120%;
-}
+  font-family:monospace;
 
+}
 
 .Text h1, .Text h3 {
   position: relative;
   color: black;  
   line-height: 0.9;
   text-align: center;
+  font-family:monospace;
+
 }

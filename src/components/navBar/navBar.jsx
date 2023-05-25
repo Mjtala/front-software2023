@@ -1,20 +1,21 @@
 import React from 'react';
-import './navBar.css';
+import './NavBar.css';
 
-function NavigationBar() {
+function NavBar() {
   return (
-    <div className='navbarContainer'>
-    <ul className='ul'>
-      <div className='RightSide'>
-        <li className='li'><a className="a" href="#home">TeamUp</a></li>
+    <>
+    <nav>
+      <a>TeamUp</a>
+      <div>
+        <ul id="navbar">
+          <li> <a href="#login">LogIn</a></li>
+          <li> <a href="#signup">SignUp</a></li>
+        </ul>
       </div>
-      <div className='LeftSide'>
-        <li className='li'><a className="a" href="#SignUp">SignUp</a></li>
-        <li className='li'><a className="a" href="#LogIn">LogIn</a></li>
-      </div>
-    </ul>
-    </div>
+
+    </nav>
+    </>
   );
 }
 
-export default NavigationBar;
+export default NavBar;
