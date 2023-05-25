@@ -1,11 +1,12 @@
 import React from 'react';
-import ButtonsHomeView from '../../components/buttons/ButtonsHomeView';
 import './HomeView.css';
 import Button from 'react-bootstrap/Button';
+import ButtonChangePath from '../../components/buttons/ButtonChangePath';
 // https://react-bootstrap.github.io/components/buttons/ para los botones
 function HomeView() {
 return (
-  <div className='backgroundImage'>
+  <>
+  <div className='background'>
       <div className='Text'>
         <div className='Title'>
           <h1>
@@ -18,16 +19,13 @@ return (
           </h3>
         </div>
         <div className='ContainerButtons'>
-          <Button variant="primary" size="lg" >
-            Arriendo Mi Cancha
-          </Button>{' '}
-          <Button variant="secondary" size="lg">
-            Busco Cancha
-          </Button>
-          
+          <ButtonChangePath>Arriendo Mi Cancha</ButtonChangePath>
+          <ButtonChangePath>Busco Cancha</ButtonChangePath>
         </div>
       </div>
     </div>
+    <div  class="full-size-img"></div>
+    </>
   )
 }
 
