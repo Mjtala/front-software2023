@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import HoursTable from "./HoursTable";
+import HoursTable from "../HoursTable/HoursTable";
 
 function ParticularField(props) {
 
@@ -20,15 +20,15 @@ function ParticularField(props) {
     // Creamos la funcion que muestra las reservas  disponibles:
     const handleViewHours = () => {
         setViewReservation(true);
-      };
+    };
     const handleNotViewHours = () => {
         setViewReservation(false);
     };
 
-    const getHours = async(day) => {
+    const getHours = async (day) => {
         try {
-            if(haveday) {
-                const response = await axios.get(``) // Falta colocar links.
+            if (haveday) {
+                const response = await axios.get(``) // Link1234
                 setHours(response.data)
             }
         } catch (error) {
@@ -49,13 +49,13 @@ function ParticularField(props) {
         <form onSubmit={getHours(day)}>
             <label>
                 Seleccionar dia:
-                <input type="date" name="day" value={day} onChange={changeDay}/>
+                <input type="date" name="day" value={day} onChange={changeDay} />
             </label>
         </form>
     )
 
     // Creamos el useEfect base y su funcion asociada
-    const getInfo = async() => {
+    const getInfo = async () => {
         try {
             const response = await axios.get(``) // Falta colocar links.
             setName(response.data.name)
@@ -69,13 +69,13 @@ function ParticularField(props) {
     }
 
     useEffect(() => {
-        getInfo() 
+        getInfo()
     })
 
 
     // Por ultimo creamos el return:
-    return(
-        <> 
+    return (
+        <>
             <h1>{name}</h1>
             <h4>Información: {information}</h4>
             <h4>Dirección: {location}</h4>
@@ -85,16 +85,16 @@ function ParticularField(props) {
 
             {viewreservation ? (
                 Array.isArray(hours) && hours.length > 0 ? (
-                    <HoursTable field={hours}/>
+                    <HoursTable field={hours} />
                 ) : (
                     <p>No hay horarios disponibles</p>
                 )
-                ) : (
-                    <button onClick={handleViewHours}>Ver horas</button>
-                )}
-                <div>
-                    <button onClick={handleNotViewHours}>Dejar de ver horas</button>
-                </div>
+            ) : (
+                <button onClick={handleViewHours}>Ver horas</button>
+            )}
+            <div>
+                <button onClick={handleNotViewHours}>Dejar de ver horas</button>
+            </div>
         </>
     )
 }

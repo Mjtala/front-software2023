@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
-import SearchField from './components/SearchField';
+import SearchField from './components/SearchField/SearchField';
 
 function Routing(){
 
     return(
         <BrowserRouter>
             <Routes>
-                <Route path={'/search'} element={<SearchField/>}/>         
+                <Route path={'/search'} element={<SearchField/>}/>
             </Routes>
         </BrowserRouter>
     )
