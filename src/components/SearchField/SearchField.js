@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./SearchField.css"
 
 function SearchField() {
 
     // Creamos los hooks para almacenar la informacion
 
     // Primero el hook para ver cuantas canchas mostramos.
-    const [formData, setFormData] = useState({ page: 0, fields: 0 })
+    const [formData, setFormData] = useState({ page: 0, fields: 5 })
 
     // Luego el hook para mostrar errores
     const [errorhook, setError] = useState('')
@@ -27,6 +28,7 @@ function SearchField() {
 
     const sentToApi = async () => {
         if (formData.page <= -1 || formData.fields <= 0) {
+            console.log(formData.page, formData.fields)
             setError("Error: Debe poner un page mayor a 0 y un count mayor o igual a 1")
         } else {
             try {
@@ -40,41 +42,61 @@ function SearchField() {
 
     const formSend = (
         <form onSubmit={sentToApi}>
-            <label>
-                Canchas por pagina:
-                <input type="number" name="fields" value={formData.fields} onChange={handleChange} />
-            </label>
-            <label>
-                Pagina:
-                <input type="number" name="page" value={formData.page} onChange={handleChange} />
-            </label>
+            <div className="DivFormPrincipal">
+                <div className="DivFormText">
+                    <label>
+                        Canchas por pagina:
+                        <input type="number" name="fields" value={formData.fields} onChange={handleChange} />
+                    </label>
+                </div>
+                <div className="DivFormText">
+                    <label>
+                        Pagina:
+                        <input type="number" name="page" value={formData.page} onChange={handleChange} />
+                    </label>
+                </div>
+                <div className="DivFormSummit">
+                    <button type="submit">Mostrar canchas</button>
+                </div>
+            </div>
         </form>
     )
 
     // Creamos el useEffet para cargar la informacion inicial, tomando valores basicos.
 
     useEffect(() => {
-        sentToApi(5, 0) // Los valores van hardcodeados.
+        sentToApi(5, 1) // Los valores van hardcodeados.
     })
 
     // Por ultimo creamos el return:
     return (
-        <>
-            <h1>Espacios deportivos</h1>
+        <div className="DivPrincipalSearch">
+            <div className="DivTitle">
+                <h1>Espacios deportivos</h1>
+            </div>
+            <div className="ErrorDiv">
+                <h2>{errorhook}</h2>
+            </div>
+            
             {formSend}
-            {Array.isArray(fields_shown) && fields_shown.length > 0 ? (
-                fields_shown.map(r => {
-                    let link = `/fields/${r.name}`
-                    return (
-                        <div>
-                            <h3>{r.name}</h3> <a href={link}><button>Ver cancha</button></a>
-                        </div>
 
-                    )
-                })) : (
-                <p>No hay canchas que mostrar</p>
-            )}
-        </>
+            <div className="DivListFieldsPrincipal">
+                {Array.isArray(fields_shown) && fields_shown.length > 0 ? (
+                    fields_shown.map(r => {
+                        let link = `/fields/${r.name}`
+                        return (
+                            <div>
+                                <h3>{r.name}</h3> <a href={`/fields/${r.name}`}><button>Ver cancha</button></a>
+                            </div>
+
+                        )
+                    })) : (
+                    <div className="DivNoFields">
+                        <p>No hay canchas que mostrar</p>
+                    </div>
+                )}
+            </div>
+        </div>
 
     )
 }

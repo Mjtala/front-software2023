@@ -1,15 +1,9 @@
 import axios from "axios";
+import "./HoursTable.css"
 
-function HoursTable(props) {
-	
-	const horarios = Array.from({ length: 15 }, (_, index) => {
-		const startHour = 8;
-		const hour = startHour + index;
-		const formattedHour = `${hour}:00-${hour + 1}:00`;
-		return formattedHour;
-	});
+function HoursTable({ canchas }) {
 
-	const fields = props.fields; // Asigna props.fields a la constante fields
+	const horariosDisponibles = Array.from({ length: 16 }, (_, index) => index + 8); // Horarios disponibles de 8am a 11pm
 
 	const handleReservarCupo = async (canchaId, horario) => {
 		try {
@@ -21,38 +15,36 @@ function HoursTable(props) {
 	};
 
 	return (
-		<table>
-			<thead>
+		<div className="DivHours">
+			<table>
+				<thead>
 				<tr>
 					<th>Cancha</th>
-					{horarios.map((horario) => (
-						<th key={horario}>{horario}</th>
+					{horariosDisponibles.map((horario) => (
+					<th key={horario}>{horario}:00</th>
 					))}
 				</tr>
-			</thead>
-			<tbody>
-				{fields.map((field) => (
-					<tr key={field.id}>
-						<td>{field.nombre}</td>
-						{horarios.map((horario) => (
-							<td key={horario}>
-								{field.disponibilidad[horario] ? (
-									<>
-										<button
-											onClick={() => handleReservarCupo(field.id, horario)}
-										>
-											{field.cupos[horario]} cupos disponibles
-										</button>
-									</>
-								) : (
-									'No disponible'
-								)}
-							</td>
-						))}
+				</thead>
+				<tbody>
+				{canchas.map((cancha) => (
+					<tr key={cancha.id}>
+					<td>{cancha.nombre}</td>
+					{horariosDisponibles.map((horario) => (
+						<td key={horario}>
+						{cancha.horariosNoDisponibles.includes(horario) ? (
+							<button disabled>Cancha no disponible</button>
+						) : cancha.horariosJugadores[horario] === cancha.maxJugadores ? (
+							<button disabled>Cancha llena</button>
+						) : (
+							<button onClick={() => handleReservarCupo(cancha.id, horario)}>Registrarse</button>
+						)}
+						</td>
+					))}
 					</tr>
 				))}
-			</tbody>
-		</table>
-	);
+				</tbody>
+			</table>
+		</div>
+	  );
 }
 export default HoursTable;

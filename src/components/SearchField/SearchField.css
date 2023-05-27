@@ -1,0 +1,54 @@
+/* Creamos el div principal de la pagina */
+.DivPrincipalSearch {
+    position: relative;
+    width: auto; 
+    height: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+/* Creamos el div que contiene el titulo de la pagina */
+.DivTitle {
+    position: relative;
+    width: auto;
+    text-align: center;
+    margin-bottom: -1%;
+}
+
+/* Creamos el div que contiene el error, en caso de que exista uno */
+.ErrorDiv {
+    position: relative;
+    text-align: center;
+}
+
+/* Creamos los divs para trabajar con el form */
+
+/* Primero el div principal del form, que contiene a todos los demas */
+.DivFormPrincipal {
+    width: auto; 
+    display: flex;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.DivFormSummit {
+    text-align: center;
+    flex-basis: 20%;
+}
+.DivFormText {
+    text-align: justify;
+    flex-basis: 40%;
+}
+
+/* Ahora creamos el div asociado a mostrar la lista de canchas */
+
+/* Primero su div principal */
+.DivListFieldsPrincipal {
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+/* Ahora el div del parrafo que indica que no hay canchas */
+.DivNoFields {
+    text-align: center;
+}

@@ -1,0 +1,62 @@
+/* Creamos el div principal de la pagina */
+.DivPrincipalParticularField {
+    position: relative;
+    width: auto; 
+    height: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+/* Creamos el div que contiene el titulo de la pagina */
+.DivTitle {
+    position: relative;
+    width: auto;
+    text-align: center;
+    margin-bottom: -1%;
+}
+
+/* Creamos el div donde almacenamos informacion */
+.DivInformacion {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+/* Creamos el div donde almacenamos las horas disponibles de la cancha y sus respectivos botones */
+
+/* Primero el div principal */
+.DivMainHours {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+/* Luego el que se invoca cuando no hay horarios  y para mostrar botones*/
+.DivNoHours{
+    text-align: center;
+}
+
+/* Luego el que se invoca cuando mostramos el boton de ver horas*/
+.DivSeeHours{
+    text-align: center;
+}
+
+/* Luego el div que contiene los horarios y su boton*/
+.DivHoursConteiner{
+    text-align: center;
+}
+
+/* Ahora vemos el div del form*/
+.DivFormPrincipal {
+    width: auto; 
+    display: flex;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.DivFormSummit {
+    text-align: center;
+    flex-basis: 20%;
+}
+.DivFormText {
+    text-align: justify;
+    flex-basis: 40%;
+}

@@ -1,0 +1,14 @@
+/* Luego el div que contiene los horarios disponibles*/
+.DivHours{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-x: auto;
+}
+
+table {
+    margin-left: 250px;
+    min-width: calc(100% + 16px);
+}

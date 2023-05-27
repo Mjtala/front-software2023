@@ -1,21 +1,29 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import HoursTable from "../HoursTable/HoursTable";
+import "./ParticularField.css"
+import {useParams} from 'react-router-dom';
 
-function ParticularField(props) {
+function ParticularField() {
+
+    //Leemos el evento segun el param
+    const params = useParams()
+    const event_name = params.name
+
 
     // Creamos los hooks asociados a guardar informacion:
-    const [name, setName] = useState('')
+    const [name, setName] = useState(event_name)
     const [information, setInformation] = useState('')
     const [location, setLocation] = useState('')
     const [price, setPrice] = useState('')
     const [province, setProvince] = useState('')
 
     // Creamos los hooks asociados a la reserva de horas
-    const [viewreservation, setViewReservation] = useState(false)
-    const [hours, setHours] = useState([])
+    const [viewreservation, setViewReservation] = useState(false);
     const [day, setDay] = useState('')
     const [haveday, setHaveDay] = useState(false)
+
+    const [canchas, setCanchas] = useState([]);
 
     // Creamos la funcion que muestra las reservas  disponibles:
     const handleViewHours = () => {
@@ -25,12 +33,12 @@ function ParticularField(props) {
         setViewReservation(false);
     };
 
-    const getHours = async (day) => {
+    const getHours = async (e) => {
+        e.preventDefault();
+        console.log('Fecha seleccionada:', day);
         try {
-            if (haveday) {
-                const response = await axios.get(``) // Link1234
-                setHours(response.data)
-            }
+            const response = await axios.get(``) // Link1234
+            setCanchas(response.data)
         } catch (error) {
             console.log(error, "hay error");
         }
@@ -38,20 +46,20 @@ function ParticularField(props) {
 
     // Creamos el form para seleccionar el dia
 
-    const changeDay = (event) => {
-        const { value } = event.target;
-        console.log(value)
-        setHaveDay(true)
-        setDay(value);
-    };
-
     const formSend = (
-        <form onSubmit={getHours(day)}>
-            <label>
-                Seleccionar dia:
-                <input type="date" name="day" value={day} onChange={changeDay} />
-            </label>
-        </form>
+        <div className="DivFormPrincipal">
+            <form onSubmit={getHours}>
+                <div className="DivFormText">
+                    <label>
+                        Seleccionar dia:
+                        <input type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
+                    </label>
+                </div>
+                <div className="DivFormSummit">
+                    <button type="submit">Ver horas</button>
+                </div>
+            </form>
+        </div>
     )
 
     // Creamos el useEfect base y su funcion asociada
@@ -75,27 +83,32 @@ function ParticularField(props) {
 
     // Por ultimo creamos el return:
     return (
-        <>
-            <h1>{name}</h1>
-            <h4>Información: {information}</h4>
-            <h4>Dirección: {location}</h4>
-            <h4>Precio: {price}</h4>
-            <h4>Comuna: {province}</h4>
-
-
-            {viewreservation ? (
-                Array.isArray(hours) && hours.length > 0 ? (
-                    <HoursTable field={hours} />
-                ) : (
-                    <p>No hay horarios disponibles</p>
-                )
-            ) : (
-                <button onClick={handleViewHours}>Ver horas</button>
-            )}
-            <div>
-                <button onClick={handleNotViewHours}>Dejar de ver horas</button>
+        <div className="DivPrincipalParticularField">
+            <div className="DivTitle">
+                <h1>{name}</h1>
             </div>
-        </>
+            
+            <div className="DivInformacion">
+                <h4>Información: {information}</h4>
+                <h4>Dirección: {location}</h4>
+                <h4>Precio: {price}</h4>
+                <h4>Comuna: {province}</h4>
+            </div>
+            
+            <div className="DivFormPrincipal">{formSend}</div>
+            <div className="DivMainHours">
+                {viewreservation ? (
+                    <div className="DivNoHours">
+                        <HoursTable canchas={canchas} />
+                        <button onClick={handleNotViewHours}>Dejar de horas</button>
+                    </div>
+                ) : (
+                    <div className="DivSeeHours">
+                        <button onClick={handleViewHours}>Ver horas</button>
+                    </div>
+                )}
+            </div>
+        </div>
     )
 }
 export default ParticularField;
