@@ -2,8 +2,13 @@ import React from 'react';
 import './HomeView.css';
 import Button from 'react-bootstrap/Button';
 import ButtonChangePath from '../../components/buttons/ButtonChangePath';
+import { useNavigate } from 'react-router-dom';
+
 // https://react-bootstrap.github.io/components/buttons/ para los botones
 function HomeView() {
+
+  const navigate = useNavigate();
+
 return (
   <>
   <div className='background'>
@@ -19,8 +24,8 @@ return (
           </h3>
         </div>
         <div className='ContainerButtons'>
-          <ButtonChangePath>Arriendo Mi Cancha</ButtonChangePath>
-          <ButtonChangePath>Busco Cancha</ButtonChangePath>
+          <ButtonChangePath onClick={()=>navigate("/LoginEmpresa")}>Arriendo Mi Cancha</ButtonChangePath>
+          <ButtonChangePath onClick={()=>navigate("/LoginJugador")}>Busco Cancha</ButtonChangePath>
         </div>
       </div>
     </div>
