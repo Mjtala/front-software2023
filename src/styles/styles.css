@@ -5,6 +5,7 @@
     color: rgb(7, 7, 7);
     transition: 0.3s ease-in-out;
     font-family: monospace;
+    margin-right: 15%;
 }
 
 .text-link:hover {

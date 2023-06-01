@@ -10,9 +10,8 @@ function NavBar() {
       <a>TeamUp</a>
       <div>
         <ul id="navbar">
-          <li> <a href="#login">LogIn</a></li>
           <Link className='text-link' to="/ChooseUser">LogIn</Link>
-          <li> <a href="#signup">SignUp</a></li>
+          <Link className='text-link' to="/ChooseAccount">SignIn</Link>
         </ul>
       </div>
 

@@ -3,9 +3,12 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginView.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginEmpresa() {
+
+    const navigate = useNavigate();
+
     return (
         <>
         <body>
@@ -40,7 +43,7 @@ function LoginEmpresa() {
                                 
                                 <div className="d-flex align-items-center justify-content-center pb-4">
                                     <p className="mb-0 me-2">¿No tienes una cuenta?</p>
-                                    <button type="button" className="btn btn-outline-dark">Registrarse</button>
+                                    <button type="button" onClick={()=>navigate("/SignUpEmpresa")} className="btn btn-outline-dark">Registrarse</button>
                                 </div>
 
                                 </form>
