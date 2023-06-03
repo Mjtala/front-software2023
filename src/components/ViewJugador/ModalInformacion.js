@@ -1,6 +1,5 @@
 import React from 'react'
 import {useState, useEffect, useRef} from 'react';
-import axios from 'axios';
 
 const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
 

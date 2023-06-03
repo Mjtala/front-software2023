@@ -1,6 +1,4 @@
-
 import './perfiljugador.css';
-import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 import ModalInfo from './ModalInformacion';
 import ModalFav from './ModalCFavoritas';
@@ -14,13 +12,7 @@ export default function Perfil() {
 
     useEffect(()=>{
         async function getData(){
-            await axios.get('http://localhost:3000/ruta_especifica').then(
-                async (response) => {
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
         }
         getData()
     }, [])

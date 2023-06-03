@@ -1,6 +1,4 @@
-
 import './perfilempresa.css';
-import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 import ModalInfoEmpresa from './ModalInformacionEmpresa';
 import ModalMisCanchas from './ModalMisCanchas';
@@ -14,13 +12,7 @@ export default function PerfilEmpresa() {
 
     useEffect(()=>{
         async function getData(){
-            await axios.get('http://localhost:3000/ruta_especifica').then(
-                async (response) => {
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
         }
         getData()
     }, [])
