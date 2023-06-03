@@ -109,6 +109,14 @@ const ModalSubirCancha = ({ isOpen, closeModal, title, titulo, imagen }) => {
                         <input type="checkbox" className=''></input>
                         <label className='horario'>20:00 - 21:00</label>
                     </div>
+                    <div>
+                        <input type="checkbox" className=''></input>
+                        <label className='horario'>21:00 - 22:00</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" className=''></input>
+                        <label className='horario'>22:00 - 23:00</label>
+                    </div>
 
                     <div>
                         <button type="submit" className='botonsubmit' onClick={cambiaTxt}>Subir</button>

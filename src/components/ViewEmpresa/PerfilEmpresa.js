@@ -1,5 +1,5 @@
 
-import '../assets/styles/salaespera.css';
+import './perfilempresa.css';
 import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 import ModalInfoEmpresa from './ModalInformacionEmpresa';

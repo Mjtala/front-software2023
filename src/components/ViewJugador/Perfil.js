@@ -1,5 +1,5 @@
 
-import '../assets/styles/salaespera.css';
+import './perfiljugador.css';
 import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 import ModalInfo from './ModalInformacion';
