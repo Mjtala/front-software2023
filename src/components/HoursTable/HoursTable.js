@@ -32,11 +32,11 @@ function HoursTable({ canchas }) {
 					{horariosDisponibles.map((horario) => (
 						<td key={horario}>
 						{cancha.horariosNoDisponibles.includes(horario) ? (
-							<button disabled>Cancha no disponible</button>
+							<button className="botonHoursTableNo" disabled>Cancha no disponible</button>
 						) : cancha.horariosJugadores[horario] === cancha.maxJugadores ? (
-							<button disabled>Cancha llena</button>
+							<button className="botonHoursTableNo" disabled>Cancha llena</button>
 						) : (
-							<button onClick={() => handleReservarCupo(cancha.id, horario)}>Registrarse</button>
+							<button className="botonHoursTableSi" onClick={() => handleReservarCupo(cancha.id, horario)}>Registrarse</button>
 						)}
 						</td>
 					))}

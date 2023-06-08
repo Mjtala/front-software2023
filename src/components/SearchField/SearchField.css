@@ -1,10 +1,19 @@
 /* Creamos el div principal de la pagina */
 .DivPrincipalSearch {
-    position: relative;
-    width: auto; 
-    height: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    border-color: rgb(217,217,217);
+    background-color: rgb(217,217,217);
+
+    display: flex;
+    flex-direction: column;    
+    padding: 0 1rem;
+    border-radius: 25px;
+
+    margin: 100px;
+    margin-right: 200px;
+    margin-left: 200px;
+    height: auto;
+    width: auto;
+    padding-bottom: 30px;
 }
 
 /* Creamos el div que contiene el titulo de la pagina */
@@ -14,11 +23,25 @@
     text-align: center;
     margin-bottom: -1%;
 }
+.titulo{
+    margin-bottom: 50px;
+}
+
+.botonmostrarcanchas{
+    text-align: center;
+    padding: 7px;
+    font-family: Arial;
+    font-weight: bold;
+    border-radius: 20px;
+    border:rgb(86, 148, 241);
+}
 
 /* Creamos el div que contiene el error, en caso de que exista uno */
 .ErrorDiv {
     position: relative;
     text-align: center;
+    color:red;
+    margin-bottom: 15px;
 }
 
 /* Creamos los divs para trabajar con el form */

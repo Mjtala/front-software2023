@@ -1,10 +1,19 @@
 /* Creamos el div principal de la pagina */
 .DivPrincipalParticularField {
-    position: relative;
-    width: auto; 
-    height: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    border-color: rgb(217,217,217);
+    background-color: rgb(217,217,217);
+
+    display: flex;
+    flex-direction: column;    
+    padding: 0 1rem;
+    border-radius: 25px;
+
+    margin: 100px;
+    margin-right: 500px;
+    margin-left: 500px;
+    height: auto;
+    width: auto;
+
 }
 
 /* Creamos el div que contiene el titulo de la pagina */
@@ -34,11 +43,30 @@
     text-align: center;
 }
 
+.botonnohour {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    padding: 10px;
+    font-family: Arial;
+    font-weight: bold;
+    border-radius: 20px;
+    border:rgb(86, 148, 241);
+}
+.botonnohour:hover {
+    color: white;
+    background-color: rgb(163, 129, 106);
+} 
+
+
 /* Luego el que se invoca cuando mostramos el boton de ver horas*/
 .DivSeeHours{
     text-align: center;
 }
 
+.fechas{
+    margin-left: 20px;
+}
 /* Luego el div que contiene los horarios y su boton*/
 .DivHoursConteiner{
     text-align: center;
@@ -57,6 +85,7 @@
     flex-basis: 20%;
 }
 .DivFormText {
-    text-align: justify;
-    flex-basis: 40%;
+    margin-left: 9px;
+    font-weight: bold;
+    margin-bottom: 5%;
 }

@@ -51,12 +51,9 @@ function ParticularField() {
             <form onSubmit={getHours}>
                 <div className="DivFormText">
                     <label>
-                        Seleccionar dia:
-                        <input type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
+                        Seleccionar día: 
+                        <input className="fechas" type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
                     </label>
-                </div>
-                <div className="DivFormSummit">
-                    <button type="submit">Ver horas</button>
                 </div>
             </form>
         </div>
@@ -100,11 +97,11 @@ function ParticularField() {
                 {viewreservation ? (
                     <div className="DivNoHours">
                         <HoursTable canchas={canchas} />
-                        <button onClick={handleNotViewHours}>Dejar de horas</button>
+                        <button className="botonnohour" onClick={handleNotViewHours}>Cerrar horas</button>
                     </div>
                 ) : (
                     <div className="DivSeeHours">
-                        <button onClick={handleViewHours}>Ver horas</button>
+                        <button className="botonnohour" onClick={handleViewHours}>Ver horas</button>
                     </div>
                 )}
             </div>

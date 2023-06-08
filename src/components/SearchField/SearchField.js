@@ -46,17 +46,17 @@ function SearchField() {
                 <div className="DivFormText">
                     <label>
                         Canchas por pagina:
-                        <input type="number" name="fields" value={formData.fields} onChange={handleChange} />
+                        <input className="labelinput" type="number" name="fields" value={formData.fields} onChange={handleChange} />
                     </label>
                 </div>
                 <div className="DivFormText">
                     <label>
                         Pagina:
-                        <input type="number" name="page" value={formData.page} onChange={handleChange} />
+                        <input className="labelinput" type="number" name="page" value={formData.page} onChange={handleChange} />
                     </label>
                 </div>
                 <div className="DivFormSummit">
-                    <button type="submit">Mostrar canchas</button>
+                    <button className="botonmostrarcanchas" type="submit">Mostrar canchas</button>
                 </div>
             </div>
         </form>
@@ -72,7 +72,7 @@ function SearchField() {
     return (
         <div className="DivPrincipalSearch">
             <div className="DivTitle">
-                <h1>Espacios deportivos</h1>
+                <h1 className="titulo">Espacios deportivos</h1>
             </div>
             <div className="ErrorDiv">
                 <h2>{errorhook}</h2>

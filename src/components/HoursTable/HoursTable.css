@@ -12,3 +12,37 @@ table {
     margin-left: 250px;
     min-width: calc(100% + 16px);
 }
+
+.botonHoursTableNo{
+    text-align: center;
+    margin: 2px;
+    padding: 10px;
+    font-family: Arial;
+    font-weight: bold;
+    border-radius: 20px;
+    border:rgb(86, 148, 241);
+    background-color: rgb(235, 69, 95);
+}
+.labelinput{
+    margin-left: 2%;
+}
+
+.botonHoursTableNo:hover {
+    color: white;
+    background-color: rgb(163, 129, 106);
+} 
+
+.botonHoursTableSi{
+    text-align: center;
+    margin: 2px;
+    padding: 10px;
+    font-family: Arial;
+    font-weight: bold;
+    border-radius: 20px;
+    border:rgb(86, 148, 241);
+}
+
+.botonHoursTableSi:hover {
+    color: white;
+    background-color: rgb(163, 129, 106);
+} 
