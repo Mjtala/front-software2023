@@ -1,7 +1,45 @@
 import React from 'react'
+import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 
 const ModalInfoEmpresa = ({ isOpen, closeModal, title, titulo, imagen }) => {
+
+    const [info, setInfo] = useState([1])
+
+    useEffect(()=>{
+        async function getData(){
+            //obtener la información del back
+            await axios.get('http://localhost:7777/ruta').then(
+                async (response) => {
+                    let data = response.data
+                    //console.log(data)
+                    //Await
+                    setInfo(data)    
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }
+        getData()
+    }, [])
+
+    function armaInfoEmpresa(params) {
+        return (
+            <div className="">
+                <h2 class="">Información </h2>
+                <h3 class="">Correo</h3>
+                    <p class="">{params.mail}</p>
+                <h3 class="">Teléfono</h3>
+                    <p class="">{params.phone}</p>
+                <h3 class="">Contraseña</h3>
+                    <p class="">{params.password}</p>
+                <h3 class="">Empresa</h3>
+                    <p class="">{params.empresa}</p>
+                <h3 class="">Ubicación</h3>
+                    <p class="">{params.place}</p>
+            </div>
+      )}
+
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();

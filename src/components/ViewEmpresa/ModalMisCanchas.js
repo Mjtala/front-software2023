@@ -1,7 +1,44 @@
 import React from 'react'
+import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 
 const ModalMisCanchas = ({ isOpen, closeModal, title, titulo, imagen }) => {
+
+    const [miscanchas, setMisCanchas] = useState([1])
+
+    useEffect(()=>{
+        async function getData(){
+            //obtener la información del back
+            await axios.get('http://localhost:7777/ruta').then(
+                async (response) => {
+                    let data = response.data
+                    console.log(data)
+                    let lista = []
+                    for (let i = 0; i< data.miscanchas.length; i++) {
+                        lista.push(armaMisCanchasEmpresa(data.miscanchas[i]))
+                    }
+                    setMisCanchas(lista)
+                    
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }
+        getData()
+    }, [])
+
+    function armaMisCanchasEmpresa(params) {
+        return (
+            <div className="">
+                <h2 class="titulocanchas">{params.titulo_cancha}</h2>
+                    <div className="labelinfo">
+                    <p class="">{params.price}</p>
+                     </div>
+                     <div className="labelinfo">
+                    <p class="jugainscrito">{params.place}</p>
+                     </div>
+            </div>
+      )}
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();

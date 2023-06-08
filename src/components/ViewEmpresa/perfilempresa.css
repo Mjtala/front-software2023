@@ -14,9 +14,12 @@ body {
     border-radius: 25px;
 
     margin: 100px;
-    margin-top: 170px;
+    margin-top: 150px;
     margin-right: 500px;
     margin-left: 500px;
+
+    height: 525px;
+    width: 800px;
 }
 
 .agrupacion {

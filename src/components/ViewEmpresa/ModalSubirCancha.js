@@ -10,8 +10,8 @@ const ModalSubirCancha = ({ isOpen, closeModal, title, titulo, imagen }) => {
     }
     const [varTxt, setTxt] = useState("Valor Inicial");
     const [valInput, setValInput] = useState("XXXX");
-    const [formData, setFormData] = useState({name:"", location:"", province:"", max_players:0, administrator:"", 
-                                            phone:"", price:0, box8:false, box9:false, box10:false, box11:false,
+    const [formData, setFormData] = useState({name:"", location:"", province:"", max_players:"", administrator:"", 
+                                            phone:"", price:"", box8:false, box9:false, box10:false, box11:false,
                                             box12:false, box13:false, box14:false, box15:false, box16:false, 
                                             box17:false, box18:false, box19:false, box20:false, box21:false, box22:false})
     

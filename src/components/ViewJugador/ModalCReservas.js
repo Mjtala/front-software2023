@@ -1,7 +1,53 @@
 import React from 'react'
+import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 
 const ModalReservas = ({ isOpen, closeModal, title, titulo, imagen }) => {
+    const [reservas, setReservas] = useState([1])
+
+    useEffect(()=>{
+        async function getData(){
+            //obtener la información del back
+            await axios.get('http://localhost:7777/ruta').then(
+                async (response) => {
+                    let data = response.data
+                    console.log(data)
+                    let lista = []
+                    for (let i = 0; i< data.reservas.length; i++) {
+                        lista.push(armaReservasJugador(data.reservas[i]))
+                    }
+                    setReservas(lista)
+                    
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }
+        getData()
+    }, [])
+
+    function armaReservasJugador(params) {
+        return (
+            <div className="">
+                <h2 class="">Reserva {params.number}:</h2>
+                    <div className="labelinfo">
+                    <p class="">Precio: {params.price}</p>
+                     </div>
+                     <div className="labelinfo">
+                    <p class="">Lugar: {params.place}</p>
+                     </div>
+                     <div className="labelinfo">
+                    <p class="">Día: {params.date}</p>
+                     </div>
+                     <div className="labelinfo">
+                    <p class="">Hora: {params.time}</p>
+                     </div>
+                     <div className="labelinfo">
+                    <p className="jugainscrito">Jugadores Inscritos: {params.players}</p>
+                     </div>
+            </div>
+      )}
+
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
