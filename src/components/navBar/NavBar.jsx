@@ -1,5 +1,7 @@
 import React from 'react';
 import './NavBar.css';
+import { Link } from "react-router-dom";
+import '../../styles/styles.css'
 
 function NavBar() {
   return (
@@ -8,8 +10,8 @@ function NavBar() {
       <a>TeamUp</a>
       <div>
         <ul id="navbar">
-          <li> <a href="#login">LogIn</a></li>
-          <li> <a href="#signup">SignUp</a></li>
+          <Link className='text-link' to="/ChooseUser">LogIn</Link>
+          <Link className='text-link' to="/ChooseAccount">SignIn</Link>
         </ul>
       </div>
 
