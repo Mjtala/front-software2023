@@ -1,0 +1,73 @@
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fccb90;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #006330);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #58cd8b, #00b64f, #0e9c3b, #036f37);
+    }
+    
+ @media (min-width: 768px) {
+    .gradient-form {
+    height: 100vh !important;
+    }
+    }
+
+@media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+    }
+
+.size-img{
+    width: 80%;
+    margin-bottom: 10%;
+}
+
+.section-login{
+    height: 50%;
+    width: 100%;
+}
+
+.subtitle-login{
+    font-size: 3vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    margin-bottom: 10%;
+    font-weight: 500;
+}
+
+.size-button{
+    width: 100%;
+}
+
+.forgot-password-text{
+    font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 2.5vh;
+}
+
+.size-img-player{
+    margin-top: 15%;
+    margin-bottom: 7%;
+    width: 30%;
+}
+
+.size-img-cancha{
+    margin-top: 10%;
+    margin-bottom: 7%;
+    width: 30%;
+}
+
+.text-black{
+    color: black;
+    text-align: center;
+}
+
+.margin-bottom{
+    margin-bottom: 10%;
+}
+
