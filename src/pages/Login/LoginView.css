@@ -1,73 +1,148 @@
-.gradient-custom-2 {
-    /* fallback for old browsers */
-    background: #fccb90;
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #006330);
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #58cd8b, #00b64f, #0e9c3b, #036f37);
-    }
-    
- @media (min-width: 768px) {
-    .gradient-form {
-    height: 100vh !important;
-    }
-    }
+.contenedorcompleto {
+    display: flex;
+    flex-direction: row; 
+    align-items: stretch;
+    justify-content:space-between; 
+    padding: 0 1rem;
+    border-radius: 25px;
 
-@media (min-width: 769px) {
-    .gradient-custom-2 {
-    border-top-right-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-    }
-    }
-
-.size-img{
-    width: 80%;
-    margin-bottom: 10%;
+    margin: 100px;
+    margin-top: 150px;
+    margin-right: 400px;
+    margin-left: 600px;
+    height: 525px;
+    width: 800px;
 }
 
-.section-login{
-    height: 50%;
-    width: 100%;
+.imagenlogo {
+    height: 100px;
+    width: 300px;
+    margin-bottom: 25px;
 }
 
-.subtitle-login{
-    font-size: 3vh;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    margin-bottom: 10%;
-    font-weight: 500;
+.izq {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    border-color: white;
+    background-color: white;
+    justify-content: center;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
-.size-button{
-    width: 100%;
+.der {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    border-color: rgb(10, 160, 70);
+    background-color: rgb(10, 160, 70);
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.futbolista {
+    height: 100px;
+    width: 120px;
 }
 
-.forgot-password-text{
-    font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    font-weight: 400;
-    text-decoration: none;
-    font-size: 2.5vh;
+.tituloizq {
+    font-weight: 900;
+    font-size: larger;
 }
 
-.size-img-player{
-    margin-top: 15%;
-    margin-bottom: 7%;
-    width: 30%;
+.tituloder {
+    color: white;
 }
 
-.size-img-cancha{
-    margin-top: 10%;
-    margin-bottom: 7%;
-    width: 30%;
-}
-
-.text-black{
-    color: black;
+.parafder {
+    color: white;
+    font-size: small;
     text-align: center;
 }
 
-.margin-bottom{
-    margin-bottom: 10%;
+.linkcontrasena {
+    font-size: medium;
 }
 
+.formularioingreso {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+}
+
+.form-email {
+    margin-bottom: 15px;
+}
+.form-password {
+    margin-bottom: 15px;
+}
+.boton-ingresar {
+    margin-bottom: 15px;
+}
+
+.tituloderchose{
+    color: black;
+}
+
+.parafderchose{
+    color:black;
+    font-size: small;
+    text-align: center;
+}
+
+.izqchose {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    border-color: white;
+    background-color: white;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.derchose {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    border-color: rgb(10, 160, 70);
+    background-color: rgb(10, 160, 70);
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.botonchose {
+    margin-top: 10px;
+    background-color: rgb(10, 160, 70);
+    color: white;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    margin-top: 15px;
+}
+.boton-ingresar2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.error-control {
+    color: red;
+    font-size: small;
+    text-align: center;
+}
+.boton-inicio-registro {
+    background-color: rgb(10, 160, 70);
+    color: white;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
