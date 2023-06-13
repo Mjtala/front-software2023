@@ -57,15 +57,25 @@ cd teamup-frontend
 npm install
 ```
 
+7. Ahora, es necesario crear un archivo .env, dentro de la carpeta raiz del proyecto. Dicho env debe seguir el siguiente formato:
 
-7. Una vez que se hayan instalado todas las dependencias, puedes iniciar el servidor de desarrollo de React con el siguiente comando:
+```
+REACT_APP_BACKEND_LOCAL_URL=http://localhost:3000/
+REACT_APP_BACKEND_CLOUD_URL={RutaBackend}
+REACT_APP_BACKEND_ENV=cloud
+```
+
+Es importante mencioanr que para no poner en peligro el backend de la aplicación, en el mail se enviara la ruta del backend que es necesario poner en el .env.
+
+
+8. Una vez que se hayan instalado todas las dependencias, puedes iniciar el servidor de desarrollo de React con el siguiente comando:
 
 ```
 npm start
 ```
 
 
-8. Esto iniciará el servidor y te mostrará la URL donde puedes acceder a la aplicación TeamUp en tu navegador. Por lo general, será algo como `http://localhost:3000`.
+9. Esto iniciará el servidor y te mostrará la URL donde puedes acceder a la aplicación TeamUp en tu navegador. Por lo general, será algo como `http://localhost:3000`.
 
 Con estos pasos, deberías poder ejecutar el frontend de TeamUp en tu computadora. Asegúrate de cumplir con los requisitos mencionados y sigue las indicaciones específicas del proyecto si las hubiera.
 
