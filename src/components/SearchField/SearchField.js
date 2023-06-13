@@ -86,7 +86,7 @@ function SearchField() {
                         let link = `/fields/${r.name}`
                         return (
                             <div>
-                                <h3>{r.name}</h3> <a href={`/fields/${r.name}`}><button>Ver cancha</button></a>
+                                <h3>{r.name}</h3> <a href={`/canchas/${r.name}`}><button>Ver cancha</button></a>
                             </div>
 
                         )
