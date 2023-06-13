@@ -1,14 +1,24 @@
 import React from 'react'
 import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
+import config from '../../config'
+import Cookies from 'js-cookie';
 
 const ModalFav = ({ isOpen, closeModal, title, titulo, imagen }) => {
     const [favoritas, setFavoritas] = useState([1])
+    const cookie = Cookies.get()
 
     useEffect(()=>{
         async function getData(){
             //obtener la información del back
-            await axios.get('http://localhost:7777/ruta').then(
+            const configaxios = {
+                headers:{
+                  "cookie": cookie,
+                  withCredentials: true
+                }
+              };
+            const url = `${config.route}/profile/info` // Link1234
+            await axios.get(url, configaxios).then(
                 async (response) => {
                     let data = response.data
                     console.log(data)
@@ -43,11 +53,8 @@ const ModalFav = ({ isOpen, closeModal, title, titulo, imagen }) => {
         e.stopPropagation();
     }
   
-    return (
-        <div className="modalfav">
-        <div className="" onClick={closeModal}>
-            <div className="modal__dialog" onClick={handleModalDialogClick}>
-            <h1 class="titulocanchas">Canchas Favoritas </h1>
+
+    /*COMO VA EL SITIO ESTATICO: 
                 <h2 class="titulocanchas">San Carlos de Apoquindo</h2>
                     <div className="labelinfo">
                     <p class="">Precio: 20.000</p>
@@ -81,6 +88,16 @@ const ModalFav = ({ isOpen, closeModal, title, titulo, imagen }) => {
                      <div className="labelinfo">
                     <p class="jugainscrito">Lugar: Las Condes </p>
                      </div>
+    */
+
+
+
+    return (
+        <div className="modalfav">
+        <div className="" onClick={closeModal}>
+            <div className="modal__dialog" onClick={handleModalDialogClick}>
+            <h1 class="titulocanchas">Canchas Favoritas </h1>
+                {favoritas}
             </div>
         </div>
         </div>

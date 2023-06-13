@@ -1,8 +1,8 @@
 // Referencia HTML y CSS: https://mdbootstrap.com/docs/standard/extended/login/
 
 import React, {useState, useEffect} from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginView.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import config from "../../config";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';

@@ -1,9 +1,12 @@
 import React from 'react'
 import {useState, useEffect, useRef} from 'react';
 import  axios  from 'axios'
+import config from '../../config'
+import Cookies from 'js-cookie';
 
 const ModalSubirCancha = ({ isOpen, closeModal, title, titulo, imagen }) => {
     
+    const cookie = Cookies.get()
     
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
@@ -40,7 +43,14 @@ const ModalSubirCancha = ({ isOpen, closeModal, title, titulo, imagen }) => {
     const sentToApi = async () => {
         console.log(formData)
         try {
-            const response = await axios.get(``) // Link1234
+            const configaxios = {
+                headers:{
+                  "cookie": cookie,
+                  withCredentials: true
+                }
+              };
+            const url = `${config.route}/profile/info/inex` 
+            const response = await axios.get(url, configaxios) // Link1234
         } catch (error) {
             console.log(error, "hay error");
         }

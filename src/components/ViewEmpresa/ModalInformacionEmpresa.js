@@ -2,22 +2,26 @@ import React from 'react'
 import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 import config from '../../config'
+import Cookies from 'js-cookie';
+
 
 const ModalInfoEmpresa = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
     const [info, setInfo] = useState("")
+    const cookie = Cookies.get()
 
     useEffect(()=>{
-        console.log("ENTRA EN EL USEEFFECT")
         async function getData(){
             //obtener la información del back
-            /*
-            const cookie = document.cookie;
-            await axios.get(`${config.route}/profile/info`, {
-                headers: {
-                    Cookie: cookie
+            const configaxios = {
+                headers:{
+                  "cookie": cookie,
+                  withCredentials: true
                 }
-                }).then( async (response) => {
+              };
+            const url = `${config.route}/profile/info`
+            await axios.get(url, configaxios // Link1234
+            ).then( async (response) => {
                     let data = response.data
                     //console.log(data)
                     //Await
@@ -25,7 +29,7 @@ const ModalInfoEmpresa = ({ isOpen, closeModal, title, titulo, imagen }) => {
             })
             .catch(function (error) {
                 console.log(error);
-            })*/
+            })
         }
         getData()
     }, [])

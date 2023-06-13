@@ -2,21 +2,26 @@ import React from 'react'
 import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 import config from '../../config'
+import Cookies from 'js-cookie';
 
 
 const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
     const [info, setInfo] = useState("")
+    const cookie = Cookies.get()
 
     useEffect(()=>{
         async function getData(){
-
             //obtener la información del back
-            await axios.get(`${config.route}/profile/info`, 
-                { withCredentials: true,
-                }).then( async (response) => {
-                    console.log("RESPONSE ES:",response)
-                    console.log("RESPONSE DATA ES:",response.data)
+            const configaxios = {
+                headers:{
+                  "cookie": cookie,
+                  withCredentials: true
+                }
+              };
+            const url = `${config.route}/profile/info`
+            await axios.get(url, configaxios  // Link1234
+            ).then( async (response) => {
                     let data = response.data
                     //console.log(data)
                     //Await

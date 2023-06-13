@@ -1,9 +1,9 @@
 // Referencia HTML y CSS: https://mdbootstrap.com/docs/standard/extended/login/
 
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginView.css'
 import { Link, useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ChooseUser() {
 

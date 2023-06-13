@@ -1,7 +1,6 @@
 // Referencia HTML y CSS: https://mdbootstrap.com/docs/standard/extended/login/
-
-import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
 import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
 
