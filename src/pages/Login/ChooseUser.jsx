@@ -20,7 +20,7 @@ function ChooseUser() {
                         <div className="row g-0 ">
                             <div className="col-lg-6 d-flex align-items-center">
                                 <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                                    <div classNAme="text-center">
+                                    <div className="text-center">
                                         <img src={require("../../assets/player.png")} 
                                         className="size-img-player" alt="logo"></img>
                                     </div>

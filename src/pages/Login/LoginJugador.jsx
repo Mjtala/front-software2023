@@ -6,7 +6,6 @@ import './LoginView.css';
 import config from "../../config";
 import { Link,useNavigate, BrowserRouter as Redirect } from "react-router-dom";
 import axios from 'axios';
-
 function LoginJugador() {
     const [data, setData] = useState("");
     const [password, setPassword] = useState("");
