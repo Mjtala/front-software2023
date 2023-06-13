@@ -48,7 +48,7 @@ const ModalSubirCancha = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
     return (
         <div className="modalinfoempresa">
-        <div className={`modal ${isOpen && 'modal-open'}`} onClick={closeModal}>
+        <div className="" onClick={closeModal}>
             <div className="modal__dialog" onClick={handleModalDialogClick}>
 
             <h3 class="titulonuevacancha">Subir Cancha </h3>

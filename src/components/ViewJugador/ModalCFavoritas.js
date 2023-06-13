@@ -45,7 +45,7 @@ const ModalFav = ({ isOpen, closeModal, title, titulo, imagen }) => {
   
     return (
         <div className="modalfav">
-        <div className={`modal ${isOpen && 'modal-open'}`} onClick={closeModal}>
+        <div className="" onClick={closeModal}>
             <div className="modal__dialog" onClick={handleModalDialogClick}>
             <h1 class="titulocanchas">Canchas Favoritas </h1>
                 <h2 class="titulocanchas">San Carlos de Apoquindo</h2>

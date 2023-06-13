@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
 import config from '../../config'
-//import Cookies from 'js-cookie';
+
 
 const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
@@ -10,7 +10,7 @@ const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
     useEffect(()=>{
         async function getData(){
-            const cookieValue = Cookies.get('myCookie');
+
             //obtener la información del back
             await axios.get(`${config.route}/profile/info`, 
                 { withCredentials: true,
@@ -49,7 +49,7 @@ const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
   
     return (
         <div className="modalinfo">
-        <div className={`modal ${isOpen && 'modal-open'}`} onClick={closeModal}>
+        <div className="" onClick={closeModal}>
             <div className="modal__dialog" onClick={handleModalDialogClick}>
                 <div>
                     {getInfoPlayer()}

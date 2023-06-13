@@ -5,12 +5,13 @@ import config from '../../config'
 
 const ModalInfoEmpresa = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
-    const [info, setInfo] = useState()
+    const [info, setInfo] = useState("")
 
     useEffect(()=>{
         console.log("ENTRA EN EL USEEFFECT")
         async function getData(){
             //obtener la información del back
+            /*
             const cookie = document.cookie;
             await axios.get(`${config.route}/profile/info`, {
                 headers: {
@@ -24,7 +25,7 @@ const ModalInfoEmpresa = ({ isOpen, closeModal, title, titulo, imagen }) => {
             })
             .catch(function (error) {
                 console.log(error);
-            })
+            })*/
         }
         getData()
     }, [])
@@ -53,7 +54,7 @@ const ModalInfoEmpresa = ({ isOpen, closeModal, title, titulo, imagen }) => {
   
     return (
         <div className="modalinfoempresa">
-        <div className={`modal ${isOpen && 'modal-open'}`} onClick={closeModal}>
+        <div className="" onClick={closeModal}>
             <div className="modal__dialog" onClick={handleModalDialogClick}>
                 <div>
                     {getInfoCompany()}

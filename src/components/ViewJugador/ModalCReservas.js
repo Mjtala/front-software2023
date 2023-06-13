@@ -55,7 +55,7 @@ const ModalReservas = ({ isOpen, closeModal, title, titulo, imagen }) => {
   
     return (
         <div className="modalreservas">
-        <div className={`modal ${isOpen && 'modal-open'}`} onClick={closeModal}>
+        <div className="" onClick={closeModal}>
             <div className="modal__dialog" onClick={handleModalDialogClick}>
             <h1 class="">Reservas </h1>
                 <h2 class="">Reserva 1:</h2>
