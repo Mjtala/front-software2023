@@ -1,11 +1,106 @@
 // Referencia HTML y CSS: https://mdbootstrap.com/docs/standard/extended/login/
 
-import React from "react";
+import React,  {useState, useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function SignUpEmpresa() {
+
+    let route = "https://backend-software-production.up.railway.app"
+
+    const useForm = (initialData, onValidate) => {
+        const [form, setForm] = useState(initialData);
+        const [loading, setLoading] = useState(false);  
+        const [errors, setErrors] = useState({});
+        const [readyToSendRequest, setReadyToSendRequest] = useState(false);
+        const [data, setData] = useState("");
+
+        const handleChange = (event) => {
+            const {name, value} = event.target
+            setForm({ ...form, [name]: value })
+        }
+        
+        // el evento recibido es la acción de enviar
+        const handleSubmit = (event) => { 
+            event.preventDefault()  //evita que la página se recargue 
+            const err = onValidate(form)
+            setErrors(err)
+            console.log(Object.keys(err).length);
+            if (Object.keys(err).length === 0){
+                console.log("Enviando formulario...")
+                setReadyToSendRequest(true)
+                setData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`})   
+            }
+        }
+        useEffect(() => {
+            if (readyToSendRequest) {
+                console.log("aca estamos")
+                axios.post(`${route}/auth/signup`, form, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(data => {
+                    console.log(data);
+                    if (data.success === "true") {
+                    setForm(initialData);
+                    }
+                    navigate(`/perfil_jugador`);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+            }, [data, form.name, form.email, form.password, form.phone]);
+    
+        return {form, errors, loading, handleChange, handleSubmit}
+    }
+
+    const initialData = {
+        name: '',
+        email: '',
+        password: '',
+        phone: '',
+        type: 'owner'
+    }
+
+    const onValidate = (form) => {
+        // que los campos no vengan vacíos
+        let errors = {}
+        let regexname = /^[a-zA-Z0-9_-]{4,16}$/;  //letras, numeros, guion y guion bajo
+        let regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+        let regexPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;  //Minimum 8 characters, at least 1 letter, 1 number and 1 special character
+        let regexPhone = /(\+56|56|)?(2|9)([0-9]){8}/;
+
+
+        if (!form.name.trim()) {
+            errors.name = 'El campo "Nombre de usuario" no puede estar vacío'
+        } else if (!regexname.test(form.name)){
+            errors.name = 'El campo "Nombre de usuario" solo acepta letras, números, guión y guión bajo'
+        }
+        if (!form.email.trim()) {
+            errors.email = 'El campo "Email" no puede estar vacío'
+        } else if (!regexEmail.test(form.email)){
+            errors.email = 'El campo "Correo" contiene un formato no válido'
+        }
+        if (!form.password.trim()) {
+            errors.password = 'El campo "Contraseña" no puede estar vacío'
+        } else if (!regexPassword.test(form.password)){
+            errors.password = 'El campo "Contraseña" debe tener como mínimo 8 caracteres, 1 letra, 1 número y 1 caracter especial'
+        }
+        if (!form.phone.trim()) {
+            errors.phone = 'El campo "Celular" no puede estar vacío'
+        } else if (!regexPhone.test(form.phone)){
+            errors.phone = 'El campo "Celular" contiene un formato no válido'
+        }
+
+        return errors
+    }
+
+    const { form, errors, loading, handleChange, handleSubmit } = useForm(initialData, onValidate)
 
     const navigate = useNavigate();
 
@@ -26,33 +121,40 @@ function SignUpEmpresa() {
                                     className="size-img" alt="logo"></img>
                                 </div>
 
-                                <form>
-                                <p className="subtitle-login">Regístrate como Empresa</p>
+                                <form onSubmit={handleSubmit}>
+                                <p className="subtitle-login">Regístrate como Jugador</p>
 
                                 <div className="form-outline mb-4">
-                                    <input id="form2Example11" className="form-control"
-                                    placeholder="Nombre de usuario" />
+                                    <input id="form2Example11" className="form-control" value={form.name}
+                                    onChange={handleChange} placeholder="Nombre de usuario" name="name" />
+                                    {errors.name && <div className="alert alert-danger p-1">{errors.name}</div>}
                                 </div>
                                 <div className="form-outline mb-4">
-                                    <input type="email" id="form2Example11" className="form-control"
-                                    placeholder="Email" />
+                                    <input type="email" className="form-control" value={form.email}
+                                    onChange={handleChange} placeholder="Email" name="email" />
+                                    {errors.email && <div className="alert alert-danger p-1">{errors.email}</div>}
                                 </div>
                                 <div className="form-outline mb-4">
-                                    <input type="password" id="form2Example22" class="form-control" placeholder="Contraseña"/>
+                                    <input type="password" className="form-control" value={form.password}
+                                    onChange={handleChange} placeholder="Contraseña" name="password"/>
+                                    {errors.password && <div className="alert alert-danger p-1">{errors.password}</div>}
                                 </div>
                                 <div className="form-outline mb-4">
-                                    <input type="phone" id="form2Example22" class="form-control" placeholder="Celular"/>
+                                    <input type="phone" className="form-control" value={form.phone}
+                                    onChange={handleChange} placeholder="Celular" name="phone"/>
+                                    {errors.phone && <div className="alert alert-danger p-1">{errors.phone}</div>}
                                 </div>
                                 <div className="text-center pt-1 mb-5 pb-1">
-                                    <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 size-button" type="button">Crear cuenta</button>
+                                    <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 size-button">
+                                        Crear cuenta</button>
                                 </div>
                                 
+                                </form>
+
                                 <div className="d-flex align-items-center justify-content-center pb-4">
                                     <p className="mb-0 me-2">¿Ya tienes una cuenta?</p>
                                     <button type="button" onClick={()=>navigate("/LoginEmpresa")} className="btn btn-outline-dark">Iniciar Sesión</button>
                                 </div>
-
-                                </form>
 
                             </div>
                             </div>
