@@ -69,8 +69,11 @@ npm start
 
 Con estos pasos, deberías poder ejecutar el frontend de TeamUp en tu computadora. Asegúrate de cumplir con los requisitos mencionados y sigue las indicaciones específicas del proyecto si las hubiera.
 
-## Estructura del codigo.
+## Arquitectura del codigo
 
+![Arquitectura](https://github.com/Mjtala/front-software2023/tree/main/src/assets/ArquiSoftware.png)
+
+## Casos de uso
 
 
 ## Dependencias.
