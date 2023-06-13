@@ -48,7 +48,7 @@ function SignUpEmpresa() {
                     if (data.success === "true") {
                     setForm(initialData);
                     }
-                    navigate(`/perfil_jugador`);
+                    navigate(`/perfil_empresa`);
                 })
                 .catch(error => {
                     console.error('Error:', error);

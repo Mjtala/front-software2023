@@ -1,16 +1,22 @@
 import React from 'react'
 import axios from 'axios';
 import {useState, useEffect, useRef} from 'react';
+import config from '../../config'
+//import Cookies from 'js-cookie';
 
 const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
-    const [info, setInfo] = useState([1])
+    const [info, setInfo] = useState("")
 
     useEffect(()=>{
         async function getData(){
+            const cookieValue = Cookies.get('myCookie');
             //obtener la información del back
-            await axios.get('http://localhost:7777/ruta').then(
-                async (response) => {
+            await axios.get(`${config.route}/profile/info`, 
+                { withCredentials: true,
+                }).then( async (response) => {
+                    console.log("RESPONSE ES:",response)
+                    console.log("RESPONSE DATA ES:",response.data)
                     let data = response.data
                     //console.log(data)
                     //Await
@@ -23,16 +29,17 @@ const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
         getData()
     }, [])
 
-    function armaInfoJugador(params) {
+    console.log("INFO ES:", info)
+    function getInfoPlayer() {
         return (
             <div className="">
                 <h1 class="">Información </h1>
                 <h2 class="">Correo</h2>
-                    <p class="">{params.mail}</p>
+                    <p class="">{info.mail}</p>
                 <h2 class="">Teléfono</h2>
-                    <p class="">{params.phone}</p>
+                    <p class="">{info.phone}</p>
                 <h2 class="">Contraseña</h2>
-                    <p class="">{params.password}</p>
+                    <p class="">{info.password}</p>
             </div>
       )}
 
@@ -44,13 +51,9 @@ const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
         <div className="modalinfo">
         <div className={`modal ${isOpen && 'modal-open'}`} onClick={closeModal}>
             <div className="modal__dialog" onClick={handleModalDialogClick}>
-            <h1 class="">Información </h1>
-                <h2 class="">Correo</h2>
-                <p class="">XXXXXX@uc.cl</p>
-                <h2 class="">Teléfono</h2>
-                <p class="">+569 XXXXXXXX</p>
-                <h2 class="">Contraseña</h2>
-                <p class="">XXXXXXX</p>
+                <div>
+                    {getInfoPlayer()}
+                </div>
             </div>
         </div>
         </div>
