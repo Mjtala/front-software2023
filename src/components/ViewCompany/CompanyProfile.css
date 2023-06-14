@@ -1,9 +1,4 @@
-body {
-    background: rgb(160,182,114);
-    background-size: cover;
-    }
-
-.tablaperfil {
+.profileTable {
     border-color: rgb(217,217,217);
     background-color: rgb(217,217,217);
     display: flex;
@@ -17,22 +12,23 @@ body {
     margin-top: 150px;
     margin-right: 500px;
     margin-left: 500px;
+
     height: 525px;
     width: 800px;
 }
 
-.agrupacion {
+.team {
     align-items: flex-start;
     display: flex;
     flex-direction: column;   
     margin-top: 5%; 
     
 }
-.derecha {
+.rightbox {
     float: right;
 }
 
-.item_perfil {
+.item_profile {
     padding: 15px;
     background-color: rgb(217,217,217);
     text-decoration: none;
@@ -45,7 +41,7 @@ body {
     font-size: 18px;
     }
     
-.item_perfil:hover {
+.item_profile:hover {
     color: white;
     background-color: rgb(163, 129, 106);
     } 
@@ -70,7 +66,7 @@ body {
     width: 200px;
 }
 
-.modalinfoempresa {
+.companyinfomodal {
     background-color: rgb(225,225,225);
     border-style: solid;
     border-width: 3px;
@@ -86,7 +82,7 @@ body {
     overflow-y: auto;
 }
 
-.modalfav {
+.favoriteModal {
     background-color: rgb(225,225,225);
     border-style: solid;
     border-width: 3px;
@@ -102,7 +98,7 @@ body {
     overflow-y: auto;
 }
 
-.titulocanchas {
+.fieldsTitles {
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -128,11 +124,11 @@ body {
     align-items: center;
   }
 
-.jugainscrito {
+.registedplayer {
     margin-bottom: 35px;
 }
 
-.formulario{
+.form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -155,7 +151,7 @@ body {
     margin-left: 10px;
 }
 
-.titulonuevacancha{
+.newFieldTitle{
     display: flex;
     flex-direction: column;
     align-items: center;

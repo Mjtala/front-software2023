@@ -1,7 +1,7 @@
 import { cleanup, render, screen} from "@testing-library/react";
 import React from "react";
-import PerfilEmpresa from "../../components/ViewEmpresa/PerfilEmpresa";
 import axios from "axios";
+import CompanyProfile from "../../components/ViewCompany/CompanyProfile";
 
 
 afterEach(cleanup)
@@ -18,7 +18,7 @@ describe("Basic page working", function () {
     
     test('The page loads without any problems', async () => { 
         
-        const component = render(<PerfilEmpresa />)
+        const component = render(<CompanyProfile />)
 
         const myInfo = screen.getByText('Mi Información');
         const myFields = screen.getByText('Mis Canchas');

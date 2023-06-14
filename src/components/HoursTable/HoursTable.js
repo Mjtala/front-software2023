@@ -3,12 +3,12 @@ import "./HoursTable.css"
 
 function HoursTable({ fields }) {
 
-	const horariosDisponibles = Array.from({ length: 16 }, (_, index) => index + 8); // Horarios disponibles de 8am a 11pm
+	const allHours = Array.from({ length: 16 }, (_, index) => index + 8);
 
-	const handleReservarCupo = async (canchaId, horario) => {
+	const handleReservarCupo = async (fieldId, hour) => {
 		try {
-			const mensaje = { 'field': canchaId, 'horario': horario }
-			const response = await axios.post(``) // Link1234
+			const data = { 'field': fieldId, 'hour': hour }
+			const response = await axios.post(``)
 		} catch (error) {
 			console.log(error, "hay error");
 		}
@@ -19,25 +19,25 @@ function HoursTable({ fields }) {
 			{Array.isArray(fields) && fields.length > 0 ? (
 			<table>
 				<thead>
-				<tr>
-					<th>Cancha</th>
-					{horariosDisponibles.map((horario) => (
-					<th key={horario}>{horario}:00</th>
-					))}
-				</tr>
+					<tr>
+						<th>Cancha</th>
+						{allHours.map((particularhour) => (
+							<th key={particularhour}>{particularhour}:00</th>
+						))}
+					</tr>
 				</thead>
 				<tbody>
 				{fields.map((field) => (
 					<tr key={field.id}>
-					<td>{field.nombre}</td>
-					{horariosDisponibles.map((horario) => (
-						<td key={horario}>
-						{field.horariosNoDisponibles.includes(horario) ? (
+					<td>{field.name}</td>
+					{allHours.map((particularhour) => (
+						<td key={particularhour}>
+						{field.unavailablehours.includes(particularhour) ? (
 							<button className="botonHoursTableNo" disabled>Cancha no disponible</button>
-						) : field.horariosJugadores[horario] === field.maxJugadores ? (
+						) : field.playerperhour[particularhour] === field.maxplayers ? (
 							<button className="botonHoursTableNo" disabled>Cancha llena</button>
 						) : (
-							<button className="botonHoursTableSi" onClick={() => handleReservarCupo(field.id, horario)}>Registrarse</button>
+							<button className="botonHoursTableYes" onClick={() => handleReservarCupo(field.id, particularhour)}>Registrarse</button>
 						)}
 						</td>
 					))}

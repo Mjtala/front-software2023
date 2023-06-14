@@ -1,6 +1,6 @@
 import React from "react";
-import Perfil from "../../components/ViewJugador/Perfil";
 import { cleanup, render, screen} from "@testing-library/react";
+import PlayerProfile from "../../components/ViewPlayer/PlayerProfile";
 
 afterEach(cleanup);
 
@@ -14,7 +14,7 @@ describe("Basic page working", function () {
     
     test('The page loads without any problems', async () => { 
         
-        const component = render(<Perfil />)
+        const component = render(<PlayerProfile />)
 
         const myInfo = screen.getByText('Mi Información');
         const myFavoriteFields = screen.getByText('Mis Canchas Favoritas');

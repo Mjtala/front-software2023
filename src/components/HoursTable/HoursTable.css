@@ -32,7 +32,7 @@ table {
     background-color: rgb(163, 129, 106);
 } 
 
-.botonHoursTableSi{
+.botonHoursTableYes{
     text-align: center;
     margin: 2px;
     padding: 10px;
@@ -42,7 +42,7 @@ table {
     border:rgb(86, 148, 241);
 }
 
-.botonHoursTableSi:hover {
+.botonHoursTableYes:hover {
     color: white;
     background-color: rgb(163, 129, 106);
 } 

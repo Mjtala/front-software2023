@@ -24,8 +24,8 @@ return (
           </h3>
         </div>
         <div className='ContainerButtons'>
-          <ButtonChangePath onClick={()=>navigate("/LoginEmpresa")}>Arriendo Mi Cancha</ButtonChangePath>
-          <ButtonChangePath onClick={()=>navigate("/LoginJugador")}>Busco Cancha</ButtonChangePath>
+          <ButtonChangePath onClick={()=>navigate("/iniciar_sesion_empresa")}>Arriendo Mi Cancha</ButtonChangePath>
+          <ButtonChangePath onClick={()=>navigate("/iniciar_sesion_jugador")}>Busco Cancha</ButtonChangePath>
         </div>
       </div>
     </div>

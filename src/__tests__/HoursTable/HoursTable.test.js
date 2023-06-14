@@ -39,7 +39,7 @@ describe("Basic Funtions working", function () {
             { id: 1, name: 'Cancha 1', maxplayers: 10, unavailablehours: [14, 17, 20], playerperhour: { 8: 5, 10: 10 } },
         ];
 
-        const component = render(<HoursTable canchas={ fields } />);
+        const component = render(<HoursTable fields={ fields } />);
         expect(component.getByText('Cancha')).toBeInTheDocument();
     })
 

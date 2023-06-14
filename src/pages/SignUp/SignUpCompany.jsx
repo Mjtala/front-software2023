@@ -4,7 +4,7 @@ import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function SignUpEmpresa() {
+function SignUpCompany() {
 
     let route = "https://backend-software-production.up.railway.app"
 
@@ -138,7 +138,7 @@ function SignUpEmpresa() {
                                     <button className="boton-inicio-registro" type="button">Crear Cuenta</button>
                                 </div>
 
-                            <button type="button" onClick={()=>navigate("/LoginEmpresa")} className="boton-inicio-registro">Iniciar Sesión</button>
+                            <button type="button" onClick={()=>navigate("/iniciar_sesion_empresa")} className="boton-inicio-registro">Iniciar Sesión</button>
                                 
                     </form>
 
@@ -161,80 +161,4 @@ function SignUpEmpresa() {
     )
 }
 
-export default SignUpEmpresa;
-
-/*
-
-        <body>
-            <section className="section-login background" >
-                <div className="container py-5 h-100">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-xl-10">
-                        <div className="card rounded-3 text-black">
-                        <div className="row g-0">
-                            <div className="col-lg-6">
-                            <div className="card-body p-md-5 mx-md-4">
-
-                                <div classNAme="text-center">
-                                <img src={require("../../assets/teamup-logo.png")} 
-                                    className="size-img" alt="logo"></img>
-                                </div>
-
-                                <form onSubmit={handleSubmit}>
-                                <p className="subtitle-login">Regístrate como Jugador</p>
-
-                                <div className="form-outline mb-4">
-                                    <input id="form2Example11" className="form-control" value={form.name}
-                                    onChange={handleChange} placeholder="Nombre de usuario" name="name" />
-                                    {errors.name && <div className="alert alert-danger p-1">{errors.name}</div>}
-                                </div>
-                                <div className="form-outline mb-4">
-                                    <input type="email" className="form-control" value={form.email}
-                                    onChange={handleChange} placeholder="Email" name="email" />
-                                    {errors.email && <div className="alert alert-danger p-1">{errors.email}</div>}
-                                </div>
-                                <div className="form-outline mb-4">
-                                    <input type="password" className="form-control" value={form.password}
-                                    onChange={handleChange} placeholder="Contraseña" name="password"/>
-                                    {errors.password && <div className="alert alert-danger p-1">{errors.password}</div>}
-                                </div>
-                                <div className="form-outline mb-4">
-                                    <input type="phone" className="form-control" value={form.phone}
-                                    onChange={handleChange} placeholder="Celular" name="phone"/>
-                                    {errors.phone && <div className="alert alert-danger p-1">{errors.phone}</div>}
-                                </div>
-                                <div className="text-center pt-1 mb-5 pb-1">
-                                    <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 size-button">
-                                        Crear cuenta</button>
-                                </div>
-                                
-                                </form>
-
-                                <div className="d-flex align-items-center justify-content-center pb-4">
-                                    <p className="mb-0 me-2">¿Ya tienes una cuenta?</p>
-                                    <button type="button" onClick={()=>navigate("/LoginEmpresa")} className="btn btn-outline-dark">Iniciar Sesión</button>
-                                </div>
-
-                            </div>
-                            </div>
-                            <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
-                            <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                                <div classNAme="text-center">
-                                    <img src={require("../../assets/cancha-icon.png")} 
-                                    className="size-img-player" alt="logo"></img>
-                                </div>
-                                <h4 className="mb-4">¿Quieres poner en arriendo tu cancha y encontrar más clientes?</h4>
-                                <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </section>
-        </body>
-
-*/
+export default SignUpCompany;
