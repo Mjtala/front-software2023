@@ -15,26 +15,23 @@ jest.mock('axios', () => ({
 
 
 
-describe("Funcionamiento basico", function () {
+describe("Basic page working", function () {
 
-    test('La pagina carga correctamente', async () => {
+    test('The page loads without any problems', async () => {
 
         const component = render(<SearchField />)
         expect(component.getByText('Espacios deportivos')).toBeInTheDocument();
 
     });
 
-    test('Se activa el useEffect', async () => {
+    test('The useEffect has been call at render', async () => {
 
-        // Renderizar el componente
         render(<SearchField />);
-
-        // Verificar si se llamó a axios.get
         expect(axios.get).toHaveBeenCalled();
 
     });
 
-    test('Revisamos el valor inicial de page y fileds', async () => {
+    test('Checks the original value of the hooks in the page', async () => {
 
         render(<SearchField />)
         const pageInput = screen.getByLabelText('Pagina:');
@@ -46,38 +43,33 @@ describe("Funcionamiento basico", function () {
     });
 })
 
-describe("Funcionalidades basicas", function () {
+describe("Basic Funtions working", function () {
 
-    test('Cambiamos los valores de page y count', async () => {
+    test('Change the values of the hooks', async () => {
 
         render(<SearchField />);
 
-        // Obtener elementos del formulario
         const fieldsInput = screen.getByTestId('inputfields');
         const pageInput = screen.getByTestId('inputpage');
 
-        // Simular cambios en los campos de entrada
         fireEvent.change(fieldsInput, { target: { value: '10' } });
         fireEvent.change(pageInput, { target: { value: '2' } });
 
-        // Verificar si el estado formData se actualiza correctamente
         expect(fieldsInput.value).toBe('10');
         expect(pageInput.value).toBe('2');
 
     });
 
-    test('Al apretar el boton mostrar canchas, se activa la funcion sendtoApi', async () => {
+    test('the funtion that sends information to the back, its activated when the form its submited', async () => {
 
         const sentToApiMock = jest.fn();
+        
         render(<SearchField sentToApi={sentToApiMock} />);
-
-        // Obtener el elemento del botón
+        
         const button = screen.getByText('Mostrar canchas');
-
-        // Simular un clic en el botón
+        
         fireEvent.click(button);
 
-        // Verificar si la función sentToApi se ha llamado correctamente
         expect(sentToApiMock).toHaveBeenCalled;
     });
 })

@@ -10,22 +10,20 @@ jest.mock('axios', () => ({
     ),
 }));
 
-
-
-describe('funcionalidades basicas', function () {
+describe("Basic page working", function () {
     
-    test('Vemos si la pagina carga correctamente', async () => { 
+    test('The page loads without any problems', async () => { 
         
         const component = render(<Perfil />)
 
         const myInfo = screen.getByText('Mi Información');
-        const myFields = screen.getByText('Mis Canchas Favoritas');
-        const uploadField = screen.getByText('Mis Reservas');
+        const myFavoriteFields = screen.getByText('Mis Canchas Favoritas');
+        const myBookings = screen.getByText('Mis Reservas');
 
         // Realizar aserciones para verificar la presencia de los elementos
         expect(myInfo).toBeInTheDocument();
-        expect(myFields).toBeInTheDocument();
-        expect(uploadField).toBeInTheDocument();
+        expect(myFavoriteFields).toBeInTheDocument();
+        expect(myBookings).toBeInTheDocument();
 
     })
 })
