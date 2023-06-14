@@ -12,9 +12,9 @@ jest.mock('axios', () => ({
 }));
 
 
-describe("Funcionamiento basico", function () {
+describe("Basic page working", function () {
 
-    test('Se activa el useEffect', async () => {
+    test('The useEffect has been call at render', async () => {
 
         // Renderizar el componente
         render(<ParticularField />);

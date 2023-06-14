@@ -62,3 +62,4 @@ const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
 }
 
 export default ModalInfo
+

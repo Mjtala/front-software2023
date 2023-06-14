@@ -6,26 +6,18 @@ import {useParams} from 'react-router-dom';
 
 function ParticularField() {
 
-    //Leemos el evento segun el param
     const params = useParams()
     const event_name = params.name
 
-
-    // Creamos los hooks asociados a guardar informacion:
     const [name, setName] = useState(event_name)
     const [information, setInformation] = useState('')
     const [location, setLocation] = useState('')
     const [price, setPrice] = useState('')
     const [province, setProvince] = useState('')
-
-    // Creamos los hooks asociados a la reserva de horas
     const [viewreservation, setViewReservation] = useState(false);
     const [day, setDay] = useState('')
-    const [haveday, setHaveDay] = useState(false)
+    const [fields, setFields] = useState([]);
 
-    const [canchas, setCanchas] = useState([]);
-
-    // Creamos la funcion que muestra las reservas  disponibles:
     const handleViewHours = () => {
         setViewReservation(true);
     };
@@ -37,31 +29,28 @@ function ParticularField() {
         e.preventDefault();
         try {
             const response = await axios.get(``) // Link1234
-            setCanchas(response.data)
+            setFields(response.data)
         } catch (error) {
             console.log(error, "hay error");
         }
     }
 
-    // Creamos el form para seleccionar el dia
-
     const formSend = (
-        <div className="DivFormPrincipal">
+        <div className="MainDivForm">
             <form onSubmit={getHours}>
                 <div className="DivFormText">
                     <label>
                         Seleccionar día: 
-                        <input className="fechas" type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
+                        <input className="dates" type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
                     </label>
                 </div>
             </form>
         </div>
     )
 
-    // Creamos el useEfect base y su funcion asociada
     const getInfo = async () => {
         try {
-            const response = await axios.get(``) // Falta colocar links.
+            const response = await axios.get(``)
             setName(response.data.name)
             setInformation(response.data.information)
             setLocation(response.data.location)
@@ -76,26 +65,24 @@ function ParticularField() {
         getInfo()
     })
 
-
-    // Por ultimo creamos el return:
     return (
-        <div className="DivPrincipalParticularField">
+        <div className="MainDivParticularField">
             <div className="DivTitle">
                 <h1>{name}</h1>
             </div>
             
-            <div className="DivInformacion">
+            <div className="DivInformation">
                 <h4>Información: {information}</h4>
                 <h4>Dirección: {location}</h4>
                 <h4>Precio: {price}</h4>
                 <h4>Comuna: {province}</h4>
             </div>
             
-            <div className="DivFormPrincipal">{formSend}</div>
+            <div className="MainDivForm">{formSend}</div>
             <div className="DivMainHours">
                 {viewreservation ? (
                     <div className="DivNoHours">
-                        <HoursTable canchas={canchas} />
+                        <HoursTable fields={fields} />
                         <button className="botonnohour" onClick={handleNotViewHours}>Cerrar horas</button>
                     </div>
                 ) : (

@@ -1,9 +1,4 @@
-body {
-    background: rgb(160,182,114);
-    background-size: cover;
-    }
-
-.tablaperfil {
+.profiletable {
     border-color: rgb(217,217,217);
     background-color: rgb(217,217,217);
     display: flex;
@@ -17,23 +12,22 @@ body {
     margin-top: 150px;
     margin-right: 500px;
     margin-left: 500px;
-
     height: 525px;
     width: 800px;
 }
 
-.agrupacion {
+.team {
     align-items: flex-start;
     display: flex;
     flex-direction: column;   
     margin-top: 5%; 
     
 }
-.derecha {
+.rightbox {
     float: right;
 }
 
-.item_perfil {
+.itemprofile {
     padding: 15px;
     background-color: rgb(217,217,217);
     text-decoration: none;
@@ -46,7 +40,7 @@ body {
     font-size: 18px;
     }
     
-.item_perfil:hover {
+.itemprofile:hover {
     color: white;
     background-color: rgb(163, 129, 106);
     } 
@@ -103,12 +97,12 @@ body {
     overflow-y: auto;
 }
 
-.titulocanchas {
+.fieldsTitles {
     font-size: 18px;
     margin-bottom: 20px;
 }
 
-.modalreservas {
+.bookingModal {
     background-color: rgb(225,225,225);
     border-style: solid;
     border-width: 3px;
@@ -129,7 +123,7 @@ body {
     align-items: center;
   }
 
-.jugainscrito {
+.registedplayer {
     margin-bottom: 35px;
 }
 

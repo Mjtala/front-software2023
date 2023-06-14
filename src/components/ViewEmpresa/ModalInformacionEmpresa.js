@@ -66,3 +66,4 @@ const ModalInfoEmpresa = ({ isOpen, closeModal, title, titulo, imagen }) => {
 }
 
 export default ModalInfoEmpresa
+

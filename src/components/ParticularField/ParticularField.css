@@ -1,5 +1,5 @@
 /* Creamos el div principal de la pagina */
-.DivPrincipalParticularField {
+.MainDivParticularField {
     border-color: rgb(217,217,217);
     background-color: rgb(217,217,217);
 
@@ -25,7 +25,7 @@
 }
 
 /* Creamos el div donde almacenamos informacion */
-.DivInformacion {
+.DivInformation {
     margin-left: 3%;
     margin-right: 3%;
 }
@@ -64,7 +64,7 @@
     text-align: center;
 }
 
-.fechas{
+.dates{
     margin-left: 20px;
 }
 /* Luego el div que contiene los horarios y su boton*/
@@ -73,7 +73,7 @@
 }
 
 /* Ahora vemos el div del form*/
-.DivFormPrincipal {
+.MainDivForm {
     width: auto; 
     display: flex;
     margin-left: 1%;
