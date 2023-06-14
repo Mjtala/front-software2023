@@ -7,7 +7,7 @@ function NavBar() {
   return (
     <>
     <nav>
-      <a>TeamUp</a>
+      <a><Link className='text-link' to="/">TeamUp</Link></a>
       <div>
         <ul id="navbar">
           <Link className='text-link' to="/ChooseUser">LogIn</Link>

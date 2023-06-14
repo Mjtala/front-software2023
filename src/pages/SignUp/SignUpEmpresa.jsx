@@ -1,7 +1,5 @@
 // Referencia HTML y CSS: https://mdbootstrap.com/docs/standard/extended/login/
-
 import React,  {useState, useEffect} from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -48,7 +46,7 @@ function SignUpEmpresa() {
                     if (data.success === "true") {
                     setForm(initialData);
                     }
-                    navigate(`/perfil_jugador`);
+                    navigate(`/perfil_empresa`);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -106,6 +104,67 @@ function SignUpEmpresa() {
 
     return (
         <>
+        <body>
+            <div className="contenedorcompleto">
+
+                <div className="izq">
+                    <img src={require("../../assets/teamup-logo.png")} className="imagenlogo" alt="logo"></img>
+
+                    <form className="formularioingreso" onSubmit={handleSubmit}>
+                        <p className="tituloizq">Regístrate como Empresa</p>
+
+                                <div className="">
+                                    <input id="" className="form-control" value={form.name} onChange={handleChange} 
+                                    placeholder="Nombre de usuario" name="name"/>
+                                </div>
+                                {errors.name && <div className="error-control">{errors.name}</div>}
+                                <div className="">
+                                    <input type="email" className="form-control" value={form.email} onChange={handleChange} 
+                                    placeholder="Email" name="email" />
+                                </div>
+                                {errors.email && <div className="error-control">{errors.email}</div>}
+                                <div className="">
+                                    <input type="password" className="form-control" value={form.password} onChange={handleChange} 
+                                    placeholder="Contraseña" name="password"/>
+                                </div>
+                                {errors.password && <div className="error-control">{errors.password}</div>}
+                                <div className="">
+                                    <input type="phone" className="form-control" value={form.phone} onChange={handleChange} 
+                                    placeholder="Celular" name="phone"/>
+                                </div>
+                                {errors.phone && <div className="error-control">{errors.phone}</div>}
+
+                                <div className="boton-ingresar2" onClick={handleSubmit}>
+                                    <button className="boton-inicio-registro" type="button">Crear Cuenta</button>
+                                </div>
+
+                            <button type="button" onClick={()=>navigate("/LoginEmpresa")} className="boton-inicio-registro">Iniciar Sesión</button>
+                                
+                    </form>
+
+
+                </div>
+
+                <div className="der">
+
+                    <img src={require("../../assets/cancha-icon.png")} className="futbolista" alt="logo"></img>
+                    <h4 className="tituloder">¿Quieres visibilizar tus canchas?</h4>
+                    <p className="parafder">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                </div>
+            </div>
+
+        </body>
+        </>
+    )
+}
+
+export default SignUpEmpresa;
+
+/*
+
         <body>
             <section className="section-login background" >
                 <div className="container py-5 h-100">
@@ -177,8 +236,5 @@ function SignUpEmpresa() {
                 </div>
             </section>
         </body>
-        </>
-    )
-}
 
-export default SignUpEmpresa;
+*/
