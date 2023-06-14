@@ -12,24 +12,20 @@ const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
     useEffect(()=>{
         async function getData(){
-            //obtener la información del back
-            const configaxios = {
-                headers:{
-                  "cookie": cookie,
-                  withCredentials: true
-                }
-              };
-            const url = `${config.route}/profile/info`
-            await axios.get(url, configaxios  // Link1234
-            ).then( async (response) => {
-                    let data = response.data
-                    //console.log(data)
-                    //Await
-                    setInfo(data)    
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+            try {
+                //obtener la información del back
+                const configaxios = {
+                    headers:{
+                    "cookie": cookie,
+                    withCredentials: true
+                    }
+                };
+                const url = `${config.route}/profile/info`
+                const response = await axios.get(url, configaxios) // Link1234
+                setInfo(response.data)
+            } catch (error) {
+                console.log(error, "hay error");
+            }
         }
         getData()
     }, [])
