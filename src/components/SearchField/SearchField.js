@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from 'axios';
 import "./SearchField.css"
 
 function SearchField() {
@@ -23,16 +23,14 @@ function SearchField() {
             ...prevData,
             [name]: value,
         }));
-        console.log(name, value)
     };
 
     const sentToApi = async () => {
         if (formData.page <= -1 || formData.fields <= 0) {
-            console.log(formData.page, formData.fields)
             setError("Error: Debe poner un page mayor a 0 y un count mayor o igual a 1")
         } else {
             try {
-                const response = await axios.get(``) // Link1234
+                const response = await axios.get() // Link1234
                 setFields(response.data)
             } catch (error) {
                 console.log(error, "hay error");
@@ -46,13 +44,13 @@ function SearchField() {
                 <div className="DivFormText">
                     <label>
                         Canchas por pagina:
-                        <input className="labelinput" type="number" name="fields" value={formData.fields} onChange={handleChange} />
+                        <input className="labelinput" type="number" name="fields" value={formData.fields} data-testid="inputfields" onChange={handleChange} />
                     </label>
                 </div>
                 <div className="DivFormText">
                     <label>
                         Pagina:
-                        <input className="labelinput" type="number" name="page" value={formData.page} onChange={handleChange} />
+                        <input className="labelinput" type="number" name="page" value={formData.page} data-testid="inputpage" onChange={handleChange} />
                     </label>
                 </div>
                 <div className="DivFormSummit">
@@ -66,7 +64,7 @@ function SearchField() {
 
     useEffect(() => {
         sentToApi(5, 1) // Los valores van hardcodeados.
-    })
+    }, [])
 
     // Por ultimo creamos el return:
     return (
@@ -83,7 +81,6 @@ function SearchField() {
             <div className="DivListFieldsPrincipal">
                 {Array.isArray(fields_shown) && fields_shown.length > 0 ? (
                     fields_shown.map(r => {
-                        let link = `/fields/${r.name}`
                         return (
                             <div>
                                 <h3>{r.name}</h3> <a href={`/fields/${r.name}`}><button>Ver cancha</button></a>
