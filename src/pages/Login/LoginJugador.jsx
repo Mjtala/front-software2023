@@ -1,13 +1,46 @@
 // Referencia HTML y CSS: https://mdbootstrap.com/docs/standard/extended/login/
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './LoginView.css'
-import { Link, useNavigate } from "react-router-dom";
-
+import './LoginView.css';
+import config from "../../config";
+import { Link,useNavigate, BrowserRouter as Redirect } from "react-router-dom";
+import axios from 'axios';
 function LoginJugador() {
-
+    const [data, setData] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] =  useState("");
     const navigate = useNavigate();
+
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+      };
+    
+    const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    };
+
+    const handleButtonClick = () => {
+        setData({"email":`${email}`,"password":`${password}`});
+      };
+  
+    useEffect(() => {
+    if (data) {
+        console.log("aca estamos")
+        axios.post(`${config.route}/auth/login`, {
+            email: email,
+            password: password
+        })
+        .then(data => {
+            setData(data);
+            navigate(`/perfil_jugador`);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+    }, [data, email, password]);
 
     return (
         <>
@@ -31,13 +64,13 @@ function LoginJugador() {
 
                                 <div className="form-outline mb-4">
                                     <input type="email" id="form2Example11" className="form-control"
-                                    placeholder="Nombre de usuario" />
+                                    placeholder="Email" value={email} onChange={handleEmailChange}/>
                                 </div>
                                 <div className="form-outline mb-4">
-                                    <input type="password" id="form2Example22" class="form-control" placeholder="Contraseña"/>
+                                    <input type="password" id="form2Example22" class="form-control" placeholder="Contraseña" value={password} onChange={handlePasswordChange}/>
                                 </div>
                                 <div className="text-center pt-1 mb-5 pb-1">
-                                    <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 size-button" type="button">Ingresar</button>
+                                    <button onClick={handleButtonClick} className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 size-button" type="button">Ingresar</button>
                                     <Link className="text-muted forgot-password-text">¿Olvidaste tu contraseña?</Link>
                                 </div>
                                 

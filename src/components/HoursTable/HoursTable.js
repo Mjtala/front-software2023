@@ -16,6 +16,7 @@ function HoursTable({ canchas }) {
 
 	return (
 		<div className="DivHours">
+			{Array.isArray(canchas) && canchas.length > 0 ? (
 			<table>
 				<thead>
 				<tr>
@@ -43,8 +44,12 @@ function HoursTable({ canchas }) {
 					</tr>
 				))}
 				</tbody>
-			</table>
-		</div>
+			</table> ) : (
+				<div className="DivNoFields">
+					<p>No hay canchas ni horarios que mostrar</p>
+				</div>
+            )}
+		</div> 
 	  );
 }
 export default HoursTable;
