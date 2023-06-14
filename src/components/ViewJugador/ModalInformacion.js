@@ -8,17 +8,14 @@ const ModalInfo = ({ isOpen, closeModal, title, titulo, imagen }) => {
 
     useEffect(()=>{
         async function getData(){
-            //obtener la información del back
-            await axios.get('http://localhost:7777/ruta').then(
-                async (response) => {
-                    let data = response.data
-                    //console.log(data)
-                    //Await
-                    setInfo(data)    
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+
+            try {
+                const response = await axios.get('http://localhost:7777/ruta') // Link1234
+                let data = response.data
+                setInfo(data)    
+            } catch (error) {
+                console.log(error, "hay error");
+            }
         }
         getData()
     }, [])
