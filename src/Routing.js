@@ -22,8 +22,8 @@ function Routing(){
                 <Route path="/" element={<HomeView />} />
                 <Route path="/perfil_jugador" element={<Perfil />} />
                 <Route path="/perfil_empresa" element={<PerfilEmpresa />} />
-                <Route path={'/search'} element={<SearchField/>}/>
-                <Route path={"/fields/:name"} element={<ParticularField/>} />
+                <Route path={'/buscar_cancha'} element={<SearchField/>}/>
+                <Route path={"/canchas/:name"} element={<ParticularField/>} />
                 <Route path="/LoginJugador" element={<LoginJugador />}/>
                 <Route path="/LoginEmpresa" element={<LoginEmpresa />}/>
                 <Route path="/ChooseUser" element={<ChooseUser />}/>

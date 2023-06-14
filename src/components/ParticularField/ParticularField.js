@@ -35,7 +35,6 @@ function ParticularField() {
 
     const getHours = async (e) => {
         e.preventDefault();
-        console.log('Fecha seleccionada:', day);
         try {
             const response = await axios.get(``) // Link1234
             setCanchas(response.data)
