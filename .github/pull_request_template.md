@@ -1,7 +1,5 @@
 ## This is a pull request template 
 
-
-
 ### Files modified/created
 [insert]
 
