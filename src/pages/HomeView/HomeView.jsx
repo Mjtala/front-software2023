@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonChangePath from '../../components/buttons/ButtonChangePath';
 import { useNavigate } from 'react-router-dom';
 
-// https://react-bootstrap.github.io/components/buttons/ para los botones!
+// https://react-bootstrap.github.io/components/buttons/ para los botones!!
 function HomeView() {
 
   const navigate = useNavigate();
