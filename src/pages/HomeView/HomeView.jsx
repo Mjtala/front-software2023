@@ -10,7 +10,7 @@ function HomeView() {
 
   return (
     <>
-      <div className='background'>
+      <div   className='background'>
         <div className='Text'>
           <div className='Title'>
             <h1>
