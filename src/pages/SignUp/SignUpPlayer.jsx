@@ -3,10 +3,13 @@ import React,  {useState, useEffect} from "react";
 import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useLocalStorage } from 'usehooks-ts'
 
 function SignUpPlayer() {
     
     let route = "https://backend-software-production.up.railway.app"
+    const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
+    const [connected, setConnected] = useLocalStorage("Connected", false)
 
     const useForm = (initialData, onValidate) => {
         const [form, setForm] = useState(initialData);
@@ -30,6 +33,8 @@ function SignUpPlayer() {
                 console.log("Enviando formulario...")
                 setReadyToSendRequest(true)
                 setData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`})   
+                setUserConnectedData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`, "type":`player`})
+                setConnected(true)
             }
         }
         useEffect(() => {
@@ -45,6 +50,7 @@ function SignUpPlayer() {
                     console.log(data);
                     if (data.success === "true") {
                     setForm(initialData);
+                    
                     }
                     console.log("aca estamos AAAAA")
                     navigate(`/perfil_jugador`);

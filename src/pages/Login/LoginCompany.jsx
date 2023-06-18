@@ -5,8 +5,12 @@ import './LoginView.css';
 import config from "../../config";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useLocalStorage } from 'usehooks-ts'
 
 function LoginCompany() {
+
+    const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
+    const [connected, setConnected] = useLocalStorage("Connected", false)
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
@@ -22,6 +26,8 @@ function LoginCompany() {
       };
     const handleButtonClick = () => {
         setData({"email":`${email}`,"password":`${password}`});
+        setUserConnectedData({"email":`${email}`,"password":`${password}`, "type":`company`})
+        setConnected(true) 
       };
     useEffect(() => {
     if (data) {
