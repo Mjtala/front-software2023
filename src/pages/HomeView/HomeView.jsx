@@ -1,6 +1,5 @@
 import React from 'react';
 import './HomeView.css';
-import Button from 'react-bootstrap/Button';
 import ButtonChangePath from '../../components/buttons/ButtonChangePath';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +10,7 @@ function HomeView() {
  
 return (
   <>
-  <div className='background'>
+  <div  className='background'>
       <div className='Text'>
         <div className='Title'>
           <h1>
@@ -29,7 +28,7 @@ return (
         </div>
       </div>
     </div>
-    <div  class="full-size-img"></div>
+    <div  className="full-size-img"></div>
     </>
   )
 }
