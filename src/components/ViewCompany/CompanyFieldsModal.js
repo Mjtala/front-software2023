@@ -3,8 +3,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import Cookies from 'js-cookie';
+import PropTypes from 'prop-types';
 
-const CompanyFieldsModal = ({ isOpen, closeModal, title, titulo, imagen }) => {
+const CompanyFieldsModal = ({ closeModal }) => {
 
     const [myFields, setMyFields] = useState([1])
     const cookie = Cookies.get()
@@ -37,12 +38,12 @@ const CompanyFieldsModal = ({ isOpen, closeModal, title, titulo, imagen }) => {
     function CreateMyFields(params) {
         return (
             <div className="">
-                <h2 class="fieldsTitles">{params.field_title}</h2>
+                <h2 className="fieldsTitles">{params.field_title}</h2>
                 <div className="labelinfo">
-                    <p class="">{params.price}</p>
+                    <p className="">{params.price}</p>
                 </div>
                 <div className="labelinfo">
-                    <p class="registedplayer">{params.place}</p>
+                    <p className="registedplayer">{params.place}</p>
                 </div>
             </div>
         )
@@ -56,12 +57,16 @@ const CompanyFieldsModal = ({ isOpen, closeModal, title, titulo, imagen }) => {
         <div className="favoriteModal">
             <div className="" onClick={closeModal}>
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
-                    <h1 class="fieldsTitles">Mis Canchas </h1>
+                    <h1 className="fieldsTitles">Mis Canchas </h1>
                     {myFields}
                 </div>
             </div>
         </div>
     )
 }
+
+CompanyFieldsModal.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+};
 
 export default CompanyFieldsModal

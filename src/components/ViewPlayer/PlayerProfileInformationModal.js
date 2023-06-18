@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import Cookies from 'js-cookie';
+import PropTypes from 'prop-types';
 
-
-const PlayerProfileInformationModal = ({ isOpen, closeModal, title, titulo, imagen }) => {
+const PlayerProfileInformationModal = ({ closeModal }) => {
 
     const [info, setInfo] = useState("")
     const cookie = Cookies.get()
@@ -33,13 +33,13 @@ const PlayerProfileInformationModal = ({ isOpen, closeModal, title, titulo, imag
     function getInfoPlayer() {
         return (
             <div className="">
-                <h1 class="">Información </h1>
-                <h2 class="">Correo</h2>
-                <p class="">{info.mail}</p>
-                <h2 class="">Teléfono</h2>
-                <p class="">{info.phone}</p>
-                <h2 class="">Contraseña</h2>
-                <p class="">{info.password}</p>
+                <h1 className="">Información </h1>
+                <h2 className="">Correo</h2>
+                <p className="">{info.mail}</p>
+                <h2 className="">Teléfono</h2>
+                <p className="">{info.phone}</p>
+                <h2 className="">Contraseña</h2>
+                <p className="">{info.password}</p>
             </div>
         )
     }
@@ -60,5 +60,9 @@ const PlayerProfileInformationModal = ({ isOpen, closeModal, title, titulo, imag
         </div>
     )
 }
+
+PlayerProfileInformationModal.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+};
 
 export default PlayerProfileInformationModal
