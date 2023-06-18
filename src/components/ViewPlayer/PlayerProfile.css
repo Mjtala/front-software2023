@@ -1,0 +1,157 @@
+.profiletable {
+    border-color: rgb(217,217,217);
+    background-color: rgb(217,217,217);
+    display: flex;
+    align-items: stretch;
+    justify-content:space-between; 
+    padding: 0 1rem;
+    gap: 2rem;
+    border-radius: 25px;
+
+    margin: 100px;
+    margin-top: 150px;
+    margin-right: 500px;
+    margin-left: 500px;
+    height: 525px;
+    width: 800px;
+}
+
+.team {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;   
+    margin-top: 5%; 
+    
+}
+.rightbox {
+    float: right;
+}
+
+.itemprofile {
+    padding: 15px;
+    background-color: rgb(217,217,217);
+    text-decoration: none;
+    font-family: Arial;
+    font-weight: bold;
+    border-radius: 20px;
+    border:rgb(86, 148, 241);
+    margin-right: 10px;
+    margin-left:  10px;
+    font-size: 18px;
+    }
+    
+.itemprofile:hover {
+    color: white;
+    background-color: rgb(163, 129, 106);
+    } 
+    
+.informacionmodal {
+    display: flex;
+    flex-direction: row;
+}
+
+.modalinfo {
+    background-color: rgb(225,225,225);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(225,225,225);
+
+    border-radius: 50px;
+    padding: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin: 40px;
+    height: 400px;
+    width: 200px;
+}
+
+.modalinfoempresa {
+    background-color: rgb(225,225,225);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(225,225,225);
+
+    border-radius: 50px;
+    padding: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin: 40px;
+    height: 400px;
+    width: 200px;
+    overflow-y: auto;
+}
+
+.modalfav {
+    background-color: rgb(225,225,225);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(225,225,225);
+
+    border-radius: 50px;
+    padding: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin: 40px;
+    height: 400px;
+    width: 200px;
+    overflow-y: auto;
+}
+
+.fieldsTitles {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.bookingModal {
+    background-color: rgb(225,225,225);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(225,225,225);
+
+    border-radius: 50px;
+    padding: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin: 40px;
+    height: 400px;
+    width: 200px;
+    overflow-y: auto;
+}
+  
+.validate-val:invalid + .error {
+    display: block;
+    align-items: center;
+  }
+
+.registedplayer {
+    margin-bottom: 35px;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 400px;
+    width: 200px;
+}
+
+.botonsubmit{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.horario{
+    font-size: small;
+    margin-left: 10px;
+}
+
+.titulonuevacancha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

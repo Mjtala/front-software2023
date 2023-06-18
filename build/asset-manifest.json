@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b184aa76.css",
+    "main.js": "/static/js/main.074eeb7a.js",
+    "static/js/496.e4b9b937.chunk.js": "/static/js/496.e4b9b937.chunk.js",
+    "static/media/cancha2.jpg": "/static/media/cancha2.5146c71e01dd9eb36326.jpg",
+    "index.html": "/index.html",
+    "main.b184aa76.css.map": "/static/css/main.b184aa76.css.map",
+    "main.074eeb7a.js.map": "/static/js/main.074eeb7a.js.map",
+    "496.e4b9b937.chunk.js.map": "/static/js/496.e4b9b937.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b184aa76.css",
+    "static/js/main.074eeb7a.js"
+  ]
+}

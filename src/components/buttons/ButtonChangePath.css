@@ -1,0 +1,16 @@
+.ButtonChangePath {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border-radius:10rem;
+    padding: 3%;
+    width: 10rem;
+    justify-content: center;
+    margin-right: 2rem;
+    background-color: rgba(180, 170, 100, 0.5);
+}
