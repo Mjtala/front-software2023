@@ -15,5 +15,6 @@
         "react"
     ],
     "rules": {
+        "indent": ["error", 2] // Configuración de la regla "indent"
     }
 }
