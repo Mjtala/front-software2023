@@ -13,7 +13,7 @@ function SignUpPlayer() {
 
     const useForm = (initialData, onValidate) => {
         const [form, setForm] = useState(initialData);
-        const [loading, setLoading] = useState(false);  
+        // const [loading, setLoading] = useState(false);  
         const [errors, setErrors] = useState({});
         const [readyToSendRequest, setReadyToSendRequest] = useState(false);
         const [data, setData] = useState("");
@@ -22,6 +22,9 @@ function SignUpPlayer() {
             const {name, value} = event.target
             setForm({ ...form, [name]: value })
         }
+        
+        console.log("Borrar", userConnectedData),
+        console.log("Borrar", connected)
         
         // el evento recibido es la acción de enviar
         const handleSubmit = (event) => { 

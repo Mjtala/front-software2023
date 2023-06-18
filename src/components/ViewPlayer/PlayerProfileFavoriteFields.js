@@ -1,10 +1,11 @@
 import React from 'react'
 import axios from 'axios';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import config from '../../config'
 import Cookies from 'js-cookie';
+import PropTypes from 'prop-types';
 
-const PlayerProfileFavoriteFields = ({ isOpen, closeModal, title, titulo, imagen }) => {
+const PlayerProfileFavoriteFields = ({ closeModal }) => {
     const [favorites, setFavorites] = useState([1])
     const cookie = Cookies.get()
 
@@ -36,12 +37,12 @@ const PlayerProfileFavoriteFields = ({ isOpen, closeModal, title, titulo, imagen
     function CreateMyFavorites(params) {
         return (
             <div className="">
-                <h2 class="fieldsTitles">{params.field_title}</h2>
+                <h2 className="fieldsTitles">{params.field_title}</h2>
                 <div className="labelinfo">
-                    <p class="">Precio: {params.price}</p>
+                    <p className="">Precio: {params.price}</p>
                 </div>
                 <div className="labelinfo">
-                    <p class="registedplayer">Lugar: {params.place}</p>
+                    <p className="registedplayer">Lugar: {params.place}</p>
                 </div>
             </div>
         )
@@ -55,12 +56,16 @@ const PlayerProfileFavoriteFields = ({ isOpen, closeModal, title, titulo, imagen
         <div className="modalfav">
             <div className="" onClick={closeModal}>
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
-                    <h1 class="fieldsTitles">Canchas Favoritas </h1>
+                    <h1 className="fieldsTitles">Canchas Favoritas </h1>
                     {favorites}
                 </div>
             </div>
         </div>
     )
 }
+
+PlayerProfileFavoriteFields.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+};
 
 export default PlayerProfileFavoriteFields

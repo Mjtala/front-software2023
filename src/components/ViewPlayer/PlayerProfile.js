@@ -1,5 +1,5 @@
 import './PlayerProfile.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PlayerProfileInformationModal from './PlayerProfileInformationModal'
 import PlayerProfileFavoriteFields from './PlayerProfileFavoriteFields'
 import PlayerProfileMyBookings from './PlayerProfileMyBookings'
@@ -34,7 +34,7 @@ export default function PlayerProfile() {
     }
 
     return <div>
-        <div class="profiletable">
+        <div className="profiletable">
             <div className="team">
                 <button className='itemprofile' onClick={openPlayerInformationModal}>Mi Información</button>
                 <button className='itemprofile' onClick={openPlayerFavoriteFieldsModal}>Mis Canchas Favoritas</button>

@@ -3,8 +3,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import Cookies from 'js-cookie';
+import PropTypes from 'prop-types';
 
-const PlayerProfileMyBookings = ({ isOpen, closeModal, title, titulo, imagen }) => {
+const PlayerProfileMyBookings = ({ closeModal }) => {
     const [bookings, setBookings] = useState([1])
     const cookie = Cookies.get()
 
@@ -36,18 +37,18 @@ const PlayerProfileMyBookings = ({ isOpen, closeModal, title, titulo, imagen }) 
     function CreateMyBookings(params) {
         return (
             <div className="">
-                <h2 class="">Reserva {params.number}:</h2>
+                <h2 className="">Reserva {params.number}:</h2>
                 <div className="labelinfo">
-                    <p class="">Precio: {params.price}</p>
+                    <p className="">Precio: {params.price}</p>
                 </div>
                 <div className="labelinfo">
-                    <p class="">Lugar: {params.place}</p>
+                    <p className="">Lugar: {params.place}</p>
                 </div>
                 <div className="labelinfo">
-                    <p class="">Día: {params.date}</p>
+                    <p className="">Día: {params.date}</p>
                 </div>
                 <div className="labelinfo">
-                    <p class="">Hora: {params.time}</p>
+                    <p className="">Hora: {params.time}</p>
                 </div>
                 <div className="labelinfo">
                     <p className="registedplayer">Jugadores Inscritos: {params.players}</p>
@@ -65,7 +66,7 @@ const PlayerProfileMyBookings = ({ isOpen, closeModal, title, titulo, imagen }) 
         <div className="bookingModal">
             <div className="" onClick={closeModal}>
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
-                    <h1 class="">Reservas </h1>
+                    <h1 className="">Reservas </h1>
                     <div>
                         {bookings}
                     </div>
@@ -74,5 +75,9 @@ const PlayerProfileMyBookings = ({ isOpen, closeModal, title, titulo, imagen }) 
         </div>
     )
 }
+
+PlayerProfileMyBookings.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+};
 
 export default PlayerProfileMyBookings

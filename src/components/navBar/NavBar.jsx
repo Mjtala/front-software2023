@@ -12,6 +12,7 @@ function NavBar() {
   const handleLogout = async () => {
     setUserConnectedData(null)
     setConnected(false)
+    console.log(userConnectedData)
   }
 
   return (

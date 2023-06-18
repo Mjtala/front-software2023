@@ -1,11 +1,11 @@
-import React from 'react'
 import axios from 'axios';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import config from '../../config'
 import Cookies from 'js-cookie';
 
 
-const CompanyInformationModal = ({ isOpen, closeModal, title, titulo, picture }) => {
+const CompanyInformationModal = ({ closeModal }) => {
 
     const [info, setInfo] = useState("")
     const cookie = Cookies.get()
@@ -23,7 +23,7 @@ const CompanyInformationModal = ({ isOpen, closeModal, title, titulo, picture })
             setInfo(response.data)
         } catch (error) {
             console.log(error, "hay error");
-        } 
+        }
     }
 
     useEffect(() => {
@@ -33,17 +33,17 @@ const CompanyInformationModal = ({ isOpen, closeModal, title, titulo, picture })
     function getInfoCompany() {
         return (
             <div className="">
-                <h2 class="">Información </h2>
-                <h3 class="">Correo</h3>
-                <p class="">{info.mail}</p>
-                <h3 class="">Teléfono</h3>
-                <p class="">{info.phone}</p>
-                <h3 class="">Contraseña</h3>
-                <p class="">{info.password}</p>
-                <h3 class="">Empresa</h3>
-                <p class="">{info.company}</p>
-                <h3 class="">Ubicación</h3>
-                <p class="">{info.place}</p>
+                <h2 className="">Información </h2>
+                <h3 className="">Correo</h3>
+                <p className="">{info.mail}</p>
+                <h3 className="">Teléfono</h3>
+                <p className="">{info.phone}</p>
+                <h3 className="">Contraseña</h3>
+                <p className="">{info.password}</p>
+                <h3 className="">Empresa</h3>
+                <p className="">{info.company}</p>
+                <h3 className="">Ubicación</h3>
+                <p className="">{info.place}</p>
             </div>
         )
     }
@@ -65,5 +65,9 @@ const CompanyInformationModal = ({ isOpen, closeModal, title, titulo, picture })
         </div>
     )
 }
+
+CompanyInformationModal.propTypes = {
+    closeModal: PropTypes.func.isRequired
+};
 
 export default CompanyInformationModal

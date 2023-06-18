@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 
 
-const ModalInfo = ({ closeModal }) => {
+const ModalCompanyInfo = ({ closeModal }) => {
 
     const [info, setInfo] = useState("")
     const cookie = Cookies.get()
@@ -31,31 +31,35 @@ const ModalInfo = ({ closeModal }) => {
         getData()
     }, [])
 
-    console.log("INFO ES:", info)
-    function getInfoPlayer() {
+    function getInfoCompany() {
         return (
             <div className="">
-                <h1 className="">Información </h1>
-                <h2 className="">Correo</h2>
+                <h2 className="">Información </h2>
+                <h3 className="">Correo</h3>
                 <p className="">{info.mail}</p>
-                <h2 className="">Teléfono</h2>
+                <h3 className="">Teléfono</h3>
                 <p className="">{info.phone}</p>
-                <h2 className="">Contraseña</h2>
+                <h3 className="">Contraseña</h3>
                 <p className="">{info.password}</p>
+                <h3 className="">Empresa</h3>
+                <p className="">{info.empresa}</p>
+                <h3 className="">Ubicación</h3>
+                <p className="">{info.place}</p>
             </div>
         )
     }
+
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
     }
 
     return (
-        <div className="modalinfo">
+        <div className="modalinfoempresa">
             <div className="" onClick={closeModal}>
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <div>
-                        {getInfoPlayer()}
+                        {getInfoCompany()}
                     </div>
                 </div>
             </div>
@@ -63,9 +67,9 @@ const ModalInfo = ({ closeModal }) => {
     )
 }
 
-ModalInfo.propTypes = {
-    closeModal: PropTypes.func.isRequired
-};
-
-export default ModalInfo
+ModalCompanyInfo.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+  };
+  
+export default ModalCompanyInfo
 

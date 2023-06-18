@@ -1,11 +1,11 @@
 import React from "react";
 import "./ButtonChangePath.css";
+import PropTypes from 'prop-types';
 
-const ButtonChangePath = ({variant, id, onClick, children}) => {
+const ButtonChangePath = ({ id, onClick, children }) => {
   return (
-    <button className='ButtonChangePath' 
+    <button className='ButtonChangePath'
       type="button"
-      variant={variant}
       id={id}
       onClick={onClick}
     >
@@ -13,5 +13,11 @@ const ButtonChangePath = ({variant, id, onClick, children}) => {
     </button>
   );
 }
+
+ButtonChangePath.propTypes = {
+  id: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired
+};
 
 export default ButtonChangePath;

@@ -12,44 +12,46 @@ nav {
   justify-content: center;
 }
 
-#navbar li{
+#navbar li {
   list-style: none;
   padding: 0 30px;
   position: relative;
 }
+
 a {
   color: rgb(0, 0, 0);
   font-weight: 800;
-  font-family:monospace;
+  font-family: monospace;
 
 }
-#navbar li a{
+
+#navbar li a {
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 700;
   color: rgb(7, 7, 7);
   transition: 0.3s ease-in-out;
-  font-family:monospace;
+  font-family: monospace;
 
 }
 
-#navbar li a:hover{
+#navbar li a:hover {
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 800;
-  color:rgb(255, 255, 255);
-  font-family:monospace;
-  
+  color: rgb(255, 255, 255);
+  font-family: monospace;
+
 }
 
-#navbar li a:hover::after{
+#navbar li a:hover::after {
   content: "";
   width: 30%;
   height: 2px;
-  background:rgb(248, 248, 248);  
-  position:absolute;
+  background: rgb(248, 248, 248);
+  position: absolute;
   bottom: -4px;
   left: 20px;
-  font-family:monospace;
+  font-family: monospace;
 
 }

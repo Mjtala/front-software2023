@@ -8,7 +8,7 @@ afterEach(cleanup);
 import SearchField from "../../components/SearchField/SearchField";
 
 jest.mock('axios', () => ({
-    get: jest.fn(() => 
+    get: jest.fn(() =>
         Promise.resolve({ data: { "cancha1": { 'name': 'Cancha Pepito' }, "cancha2": { 'name': 'Cancha Pepito2' } } }),
     ),
 }));
@@ -63,11 +63,11 @@ describe("Basic Funtions working", function () {
     test('the funtion that sends information to the back, its activated when the form its submited', async () => {
 
         const sentToApiMock = jest.fn();
-        
+
         render(<SearchField sentToApi={sentToApiMock} />);
-        
+
         const button = screen.getByText('Mostrar canchas');
-        
+
         fireEvent.click(button);
 
         expect(sentToApiMock).toHaveBeenCalled;

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
 import HoursTable from "../HoursTable/HoursTable";
 import "./ParticularField.css"
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function ParticularField() {
 
@@ -40,7 +40,7 @@ function ParticularField() {
             <form onSubmit={getHours}>
                 <div className="DivFormText">
                     <label>
-                        Seleccionar día: 
+                        Seleccionar día:
                         <input className="dates" type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
                     </label>
                 </div>
@@ -70,14 +70,14 @@ function ParticularField() {
             <div className="DivTitle">
                 <h1>{name}</h1>
             </div>
-            
+
             <div className="DivInformation">
                 <h4>Información: {information}</h4>
                 <h4>Dirección: {location}</h4>
                 <h4>Precio: {price}</h4>
                 <h4>Comuna: {province}</h4>
             </div>
-            
+
             <div className="MainDivForm">{formSend}</div>
             <div className="DivMainHours">
                 {viewreservation ? (
