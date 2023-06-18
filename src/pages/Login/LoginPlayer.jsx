@@ -5,7 +5,14 @@ import './LoginView.css';
 import config from "../../config";
 import { Link,useNavigate, BrowserRouter as Redirect } from "react-router-dom";
 import axios from 'axios';
+import { useLocalStorage } from 'usehooks-ts'
+
+
 function LoginPlayer() {
+
+    const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
+    const [connected, setConnected] = useLocalStorage("Connected", false)
+    
     const [data, setData] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] =  useState("");
@@ -22,6 +29,8 @@ function LoginPlayer() {
 
     const handleButtonClick = () => {
         setData({"email":`${email}`,"password":`${password}`});
+        setUserConnectedData({"email":`${email}`,"password":`${password}`, "type":`player`})
+        setConnected(true)
       };
   
     useEffect(() => {

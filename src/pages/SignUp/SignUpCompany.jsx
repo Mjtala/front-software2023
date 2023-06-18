@@ -3,10 +3,14 @@ import React,  {useState, useEffect} from "react";
 import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useLocalStorage } from 'usehooks-ts'
 
 function SignUpCompany() {
 
     let route = "https://backend-software-production.up.railway.app"
+
+    const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
+    const [connected, setConnected] = useLocalStorage("Connected", false)
 
     const useForm = (initialData, onValidate) => {
         const [form, setForm] = useState(initialData);
@@ -29,7 +33,9 @@ function SignUpCompany() {
             if (Object.keys(err).length === 0){
                 console.log("Enviando formulario...")
                 setReadyToSendRequest(true)
-                setData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`})   
+                setData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`})
+                setUserConnectedData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`, "type":`company`})
+                setConnected(true) 
             }
         }
         useEffect(() => {
