@@ -1,18 +1,19 @@
-import React from 'react'
-import { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import config from '../../config'
 import Cookies from 'js-cookie';
+import PropTypes from 'prop-types';
 
-const CompanyUploadFieldModal = ({ isOpen, closeModal, title, titulo, imagen }) => {
+const CompanyUploadFieldModal = ({ closeModal }) => {
 
     const cookie = Cookies.get()
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
     }
-    const [varTxt, setTxt] = useState("Valor Inicial");
-    const [valInput, setValInput] = useState("XXXX");
+
+    // const [varTxt, setTxt] = useState("Valor Inicial");
+    // const [valInput, setValInput] = useState("XXXX");
     const [formData, setFormData] = useState({
         name: "", location: "", province: "", max_players: "", administrator: "",
         phone: "", price: "", box8: false, box9: false, box10: false, box11: false,
@@ -48,6 +49,7 @@ const CompanyUploadFieldModal = ({ isOpen, closeModal, title, titulo, imagen }) 
             };
             const url = `${config.route}/profile/info/inex`
             const response = await axios.get(url, configaxios) // Link1234
+            console.log(response.data, "response.data")
         } catch (error) {
             console.log(error, "hay error");
         }
@@ -58,37 +60,37 @@ const CompanyUploadFieldModal = ({ isOpen, closeModal, title, titulo, imagen }) 
             <div className="" onClick={closeModal}>
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
 
-                    <h3 class="newFieldTitle">Subir Cancha </h3>
-                    <form class="form" onSubmit={sentToApi}>
-                        <div class="">
+                    <h3 className="newFieldTitle">Subir Cancha </h3>
+                    <form className="form" onSubmit={sentToApi}>
+                        <div className="">
                             <input type="text" name="name" placeholder="Nombre Lugar" value={formData.name} onChange={handleChange}></input>
                         </div>
 
-                        <div class="">
+                        <div className="">
                             <input type="text" name="location" placeholder="Dirección" value={formData.location} onChange={handleChange}></input>
                         </div>
 
-                        <div class="">
+                        <div className="">
                             <input type="text" name="province" placeholder="Comuna" value={formData.province} onChange={handleChange}></input>
                         </div>
 
-                        <div class="">
+                        <div className="">
                             <input type="text" name="max_players" placeholder="Cantidad de Jugadores" value={formData.max_players} onChange={handleChange}></input>
                         </div>
 
-                        <div class="">
+                        <div className="">
                             <input type="text" name="administrator" placeholder="Encargado/a" value={formData.administrator} onChange={handleChange}></input>
                         </div>
 
-                        <div class="">
+                        <div className="">
                             <input type="text" name="phone" placeholder="Télefono Contacto" value={formData.phone} onChange={handleChange}></input>
                         </div>
 
-                        <div class="">
+                        <div className="">
                             <input type="text" name="price" placeholder="Precio" value={formData.price} onChange={handleChange}></input>
                         </div>
 
-                        <div class="">
+                        <div className="">
                             <label>Horarios Disponibles</label>
                         </div>
 
@@ -164,5 +166,9 @@ const CompanyUploadFieldModal = ({ isOpen, closeModal, title, titulo, imagen }) 
         </div>
     )
 }
+
+CompanyUploadFieldModal.propTypes = {
+    closeModal: PropTypes.func.isRequired
+};
 
 export default CompanyUploadFieldModal

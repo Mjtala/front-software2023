@@ -1,5 +1,5 @@
 import './CompanyProfile.css';
-import {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import CompanyInformationModal from './CompanyInformationModal';
 import CompanyFieldsModal from './CompanyFieldsModal';
 import CompanyUploadFieldModal from './CompanyUploadFieldModal';
@@ -11,10 +11,10 @@ export default function CompanyProfile() {
     const [isOpenModalUploadField, setIsOpenModalUploadField] = useState(false);
 
     const getData = async () => {
-        
+
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getData()
     }, [])
 
@@ -35,22 +35,22 @@ export default function CompanyProfile() {
     }
 
     return <div>
-        <div class="profileTable">  
+        <div className="profileTable">
             <div className="team">
                 <button className='item_profile' onClick={openModalcompanyinfo}>Mi Información</button>
                 <button className='item_profile' onClick={openModalMyFields}>Mis Canchas</button>
                 <button className='item_profile' onClick={openModalUploadField}>Subir Cancha</button>
             </div>
             <div className="rightbox">
-            {isOpenModalCompanyInformation && <CompanyInformationModal isOpen={isOpenModalCompanyInformation}/>}
-            {isOpenModalMyFields && <CompanyFieldsModal isOpen={isOpenModalMyFields}/>}
-            {isOpenModalUploadField && <CompanyUploadFieldModal isOpen={isOpenModalUploadField}/>}
+                {isOpenModalCompanyInformation && <CompanyInformationModal isOpen={isOpenModalCompanyInformation} />}
+                {isOpenModalMyFields && <CompanyFieldsModal isOpen={isOpenModalMyFields} />}
+                {isOpenModalUploadField && <CompanyUploadFieldModal isOpen={isOpenModalUploadField} />}
 
             </div>
-            
-        </div>   
+
+        </div>
     </div>
-  }
+}
 
 
-  
+

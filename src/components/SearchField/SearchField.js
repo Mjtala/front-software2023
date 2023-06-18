@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from 'axios';
 import "./SearchField.css"
 
@@ -53,7 +53,7 @@ function SearchField() {
 
 
     useEffect(() => {
-        sentToApi(5, 1) 
+        sentToApi(5, 1)
     }, [])
 
     return (
@@ -64,14 +64,14 @@ function SearchField() {
             <div className="ErrorDiv">
                 <h2>{errorhook}</h2>
             </div>
-            
+
             {formSend}
 
             <div className="MainDivListFields">
                 {Array.isArray(fields_shown) && fields_shown.length > 0 ? (
                     fields_shown.map(r => {
                         return (
-                            <div>
+                            <div key={r.id}>
                                 <h3>{r.name}</h3> <a href={`/canchas/${r.name}`}><button>Ver cancha</button></a>
                             </div>
 
