@@ -1,8 +1,9 @@
+import React from 'react'
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import config from '../../config'
 import Cookies from 'js-cookie';
+import PropTypes from 'prop-types';
 
 
 const CompanyInformationModal = ({ closeModal }) => {
@@ -10,23 +11,23 @@ const CompanyInformationModal = ({ closeModal }) => {
     const [info, setInfo] = useState("")
     const cookie = Cookies.get()
 
-    const getData = async () => {
-        try {
-            const axiosConfiguration = {
-                headers: {
-                    "cookie": cookie,
-                    withCredentials: true
-                }
-            };
-            const url = `${config.route}/profile/info`
-            const response = await axios.get(url, axiosConfiguration)
-            setInfo(response.data)
-        } catch (error) {
-            console.log(error, "hay error");
-        }
-    }
-
     useEffect(() => {
+        async function getData() {
+            try {
+                //obtener la información del back
+                const axiosConfiguration = {
+                    headers: {
+                        "cookie": cookie,
+                        withCredentials: true
+                    }
+                };
+                const url = `${config.route}/profile/info`
+                const response = await axios.get(url, axiosConfiguration) // Link1234
+                setInfo(response.data)
+            } catch (error) {
+                console.log(error, "hay error");
+            }
+        }
         getData()
     }, [])
 
@@ -41,7 +42,7 @@ const CompanyInformationModal = ({ closeModal }) => {
                 <h3 className="">Contraseña</h3>
                 <p className="">{info.password}</p>
                 <h3 className="">Empresa</h3>
-                <p className="">{info.company}</p>
+                <p className="">{info.empresa}</p>
                 <h3 className="">Ubicación</h3>
                 <p className="">{info.place}</p>
             </div>
@@ -54,7 +55,7 @@ const CompanyInformationModal = ({ closeModal }) => {
     }
 
     return (
-        <div className="companyinfomodal">
+        <div className="modalinfoempresa">
             <div className="" onClick={closeModal}>
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <div>
@@ -67,7 +68,8 @@ const CompanyInformationModal = ({ closeModal }) => {
 }
 
 CompanyInformationModal.propTypes = {
-    closeModal: PropTypes.func.isRequired
-};
-
+    closeModal: PropTypes.func.isRequired,
+  };
+  
 export default CompanyInformationModal
+

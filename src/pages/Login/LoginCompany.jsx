@@ -13,7 +13,7 @@ function LoginCompany() {
     const [connected, setConnected] = useLocalStorage("Connected", false)
 
     console.log("Borrar", userConnectedData),
-    console.log("Borrar", connected)
+    console.log("BorrarLoginCOmpany", connected)
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
@@ -39,13 +39,14 @@ function LoginCompany() {
                 email: email,
                 password: password
             })
-                .then(data => {
-                    setData(data);
-                    navigate(`/perfil_empresa`);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+            .then(data => {
+                setData(data);
+                console.log("ESTAMOS ACA")
+                navigate(`/perfil_empresa`);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
     }, [data, email, password]);
 

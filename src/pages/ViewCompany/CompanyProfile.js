@@ -1,8 +1,8 @@
 import './CompanyProfile.css';
 import React, { useState, useEffect } from 'react';
-import CompanyInformationModal from './CompanyInformationModal';
-import CompanyFieldsModal from './CompanyFieldsModal';
-import CompanyUploadFieldModal from './CompanyUploadFieldModal';
+import CompanyInformationModal from '../../components/ViewCompany/CompanyInformationModal';
+import CompanyFieldsModal from '../../components/ViewCompany/CompanyFieldsModal';
+import CompanyUploadFieldModal from '../../components/ViewCompany/CompanyUploadFieldModal';
 
 
 export default function CompanyProfile() {

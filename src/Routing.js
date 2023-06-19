@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NavBar from './components/navBar/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import HomeView from "./pages/HomeView/HomeView";
 import PlayerProfile from "./components/ViewPlayer/PlayerProfile"
-import CompanyProfile from "./components/ViewCompany/CompanyProfile"
+import CompanyProfile from "../src/pages/ViewCompany/CompanyProfile"
 import LoginPlayer from './pages/Login/LoginPlayer';
 import LoginCompany from './pages/Login/LoginCompany';
 import ChooseUser from './pages/Login/ChooseUser';
@@ -11,6 +11,8 @@ import SignUpPlayer from './pages/SignUp/SignUpPlayer';
 import SignUpCompany from './pages/SignUp/SignUpCompany';
 import SearchField from './components/SearchField/SearchField';
 import ParticularField from './components/ParticularField/ParticularField';
+import AdminHomePage from './pages/AdminViews/AdminHomePage';
+
 import React from 'react';
 
 
@@ -30,6 +32,7 @@ function Routing() {
                 <Route path="/elegir_cuenta" element={<ChooseAccount />} />
                 <Route path="/registrar_jugador" element={<SignUpPlayer />} />
                 <Route path="/registrar_empresa" element={<SignUpCompany />} />
+                <Route path="/perfil_admin" element={<AdminHomePage />} />
             </Routes>
         </BrowserRouter>
     )

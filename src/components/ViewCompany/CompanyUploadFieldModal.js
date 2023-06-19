@@ -3,6 +3,7 @@ import axios from 'axios'
 import config from '../../config'
 import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
+import InputField from '../InputField/InputField';
 
 const CompanyUploadFieldModal = ({ closeModal }) => {
 
@@ -11,7 +12,6 @@ const CompanyUploadFieldModal = ({ closeModal }) => {
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
     }
-
     // const [varTxt, setTxt] = useState("Valor Inicial");
     // const [valInput, setValInput] = useState("XXXX");
     const [formData, setFormData] = useState({
@@ -62,10 +62,7 @@ const CompanyUploadFieldModal = ({ closeModal }) => {
 
                     <h3 className="newFieldTitle">Subir Cancha </h3>
                     <form className="form" onSubmit={sentToApi}>
-                        <div className="">
-                            <input type="text" name="name" placeholder="Nombre Lugar" value={formData.name} onChange={handleChange}></input>
-                        </div>
-
+                        <InputField name="name" placeholder="Nombre Lugar" value={formData.name} onChange={handleChange} />
                         <div className="">
                             <input type="text" name="location" placeholder="Dirección" value={formData.location} onChange={handleChange}></input>
                         </div>
