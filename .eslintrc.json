@@ -19,5 +19,8 @@
     "rules": {
         "import/no-extraneous-dependencies": "error",
         "import/prefer-default-export": "error"
-    }
+    },
+    "globals": {
+        "process": true
+      }
 }

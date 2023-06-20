@@ -36,7 +36,7 @@ function SignUpPlayer() {
                 console.log("Enviando formulario...")
                 setReadyToSendRequest(true)
                 setData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`})   
-                setUserConnectedData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`, "type":`player`, "id":1})
+                setUserConnectedData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`, "type":`player`, "id":32})
                 setConnected(true)
             }
         }

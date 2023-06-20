@@ -18,7 +18,7 @@ function NavBar() {
   return (
     <>
       <nav>
-        <a><Link className='text-link' to="/">TeamUp</Link></a>
+        <Link className='text-link' to="/">TeamUp</Link>
         <div>
           <ul id="navbar">
             {!connected && <Link className='text-link' to="/elegir_usuario">LogIn</Link>}

@@ -16,6 +16,7 @@ const PlayerProfileInformationModal = () => {
                     withCredentials: true
                 }
             };
+            console.log( "userConnectedData",userConnectedData);
             const url = `${config.route}/profile/info`
             const response = await axios.get(url, axiosConfiguration)
             setInfo(response.data)

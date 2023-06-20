@@ -19,7 +19,7 @@ function LoginPlayer() {
     const navigate = useNavigate();
 
     console.log("Borrar", userConnectedData),
-    console.log("Borrar", connected)
+        console.log("Borrar", connected)
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -32,24 +32,33 @@ function LoginPlayer() {
     const handleButtonClick = () => {
         setData({ "email": `${email}`, "password": `${password}` });
         // TODO: Cambiar el id por el que devuelve el backend
-        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `player`, "id": 2})
+        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `player`, "userid": 32 })
         setConnected(true)
     };
 
     useEffect(() => {
         if (data) {
             console.log("aca estamos")
-            axios.post(`${config.route}/auth/login`, {
-                email: email,
-                password: password
-            })
-                .then(data => {
-                    setData(data);
-                    navigate(`/perfil_jugador`);
-                })
-                .catch(error => {
+            const fetchData = async () => {
+                try {
+                    const response = await axios.post(`${config.route}/auth/login`, {
+                        email: email,
+                        password: password
+                    }, { withCredentials: false });
+                    if (response !== null && response !== undefined) {
+                        setData(response.data.data);
+                        console.log("response", response);
+                        const cookieValue = response.headers['set-cookie'][0];
+                        console.log("cookieValue", cookieValue);
+                        navigate(`/perfil_jugador`);
+                        console.log("data", data);
+                    }
+                } catch (error) {
                     console.error('Error:', error);
-                });
+                }
+            };
+
+            fetchData();
         }
     }, [data, email, password]);
 
