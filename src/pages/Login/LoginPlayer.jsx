@@ -31,7 +31,8 @@ function LoginPlayer() {
 
     const handleButtonClick = () => {
         setData({ "email": `${email}`, "password": `${password}` });
-        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `player` })
+        // TODO: Cambiar el id por el que devuelve el backend
+        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `player`, "id": 2})
         setConnected(true)
     };
 

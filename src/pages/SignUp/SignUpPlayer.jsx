@@ -4,16 +4,16 @@ import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocalStorage } from 'usehooks-ts'
+import config from '../../config'
 
 function SignUpPlayer() {
     
-    let route = "https://backend-software-production.up.railway.app"
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
 
     const useForm = (initialData, onValidate) => {
         const [form, setForm] = useState(initialData);
-        // const [loading, setLoading] = useState(false);  
+        //const [loading, setLoading] = useState(false);  
         const [errors, setErrors] = useState({});
         const [readyToSendRequest, setReadyToSendRequest] = useState(false);
         const [data, setData] = useState("");
@@ -23,8 +23,8 @@ function SignUpPlayer() {
             setForm({ ...form, [name]: value })
         }
         
-        console.log("Borrar", userConnectedData),
-        console.log("Borrar", connected)
+        console.log("BorrarEsteConsoloLog//userConnectedData", userConnectedData),
+        console.log("BorrarEsteConsoloLog//Connected?", connected)
         
         // el evento recibido es la acción de enviar
         const handleSubmit = (event) => { 
@@ -36,14 +36,14 @@ function SignUpPlayer() {
                 console.log("Enviando formulario...")
                 setReadyToSendRequest(true)
                 setData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`})   
-                setUserConnectedData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`, "type":`player`})
+                setUserConnectedData({"name":`${form.name}`,"email":`${form.email}`, "password":`${form.password}`, "phone":`${form.phone}`, "type":`player`, "id":1})
                 setConnected(true)
             }
         }
         useEffect(() => {
             if (readyToSendRequest) {
-                console.log("aca estamos")
-                axios.post(`${route}/auth/signup`, form, {
+                console.log("aca estamos en el signup")
+                axios.post(`${config.route}/auth/signup`, form, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
@@ -64,7 +64,7 @@ function SignUpPlayer() {
             }
             }, [data, form.name, form.email, form.password, form.phone]);
     
-        return {form, errors, loading, handleChange, handleSubmit}
+        return {form, errors, handleChange, handleSubmit}
     }
 
     const initialData = {
@@ -108,7 +108,7 @@ function SignUpPlayer() {
         return errors
     }
 
-    const { form, errors, loading, handleChange, handleSubmit } = useForm(initialData, onValidate)
+    const { form, errors, handleChange, handleSubmit } = useForm(initialData, onValidate)
 
     const navigate = useNavigate();
 

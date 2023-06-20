@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import config from '../../config'
-import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 import InputField from '../InputField/InputField';
+import { useLocalStorage } from 'usehooks-ts';
 
-const CompanyUploadFieldModal = ({ closeModal }) => {
+const CompanyUploadFieldModal = (closeModal) => {
 
-    const cookie = Cookies.get()
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
@@ -43,7 +43,7 @@ const CompanyUploadFieldModal = ({ closeModal }) => {
         try {
             const configaxios = {
                 headers: {
-                    "cookie": cookie,
+                    "cookie": userConnectedData,
                     withCredentials: true
                 }
             };

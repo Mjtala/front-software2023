@@ -41,7 +41,7 @@ export default function PlayerProfile() {
                 <button className='itemprofile' onClick={openPlayerBookings}>Mis Reservas</button>
             </div>
             <div className="rightbox">
-                {isOpenPlayerInformationModal && <PlayerProfileInformationModal isOpen={isOpenPlayerInformationModal} />}
+                {isOpenPlayerInformationModal && <PlayerProfileInformationModal/>}
                 {isOpenPlayerFavoriteFields && <PlayerProfileFavoriteFields isOpen={isOpenPlayerFavoriteFields} />}
                 {isOpenPlayerBookings && <PlayerProfileMyBookings isOpen={isOpenPlayerBookings} />}
 

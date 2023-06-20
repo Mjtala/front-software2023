@@ -33,7 +33,6 @@ export default function CompanyProfile() {
         setIsOpenModalMyFields(false);
         setIsOpenModalUploadField(true);
     }
-
     return <div>
         <div className="profileTable">
             <div className="team">

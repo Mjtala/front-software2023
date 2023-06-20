@@ -2,23 +2,23 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
-import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
+import { useLocalStorage } from 'usehooks-ts';
 
-const CompanyFieldsModal = ({ closeModal }) => {
-
+const CompanyFieldsModal = (closeModal) => {
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
     const [myFields, setMyFields] = useState([1])
-    const cookie = Cookies.get()
 
     const getData = async () => {
         try {
             const axiosConfiguration = {
                 headers: {
-                    "cookie": cookie,
+                    "cookie": userConnectedData,
                     withCredentials: true
                 }
             };
-            const url = `${config.route}/profile/info`
+            // TODO: Change the url to the correct one todos los fields de solo una empresa
+            const url = `${config.route}/fields`
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             let list = []

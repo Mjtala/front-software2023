@@ -2,18 +2,18 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
-import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
+import { useLocalStorage } from 'usehooks-ts';
 
-const PlayerProfileFavoriteFields = ({ closeModal }) => {
+const PlayerProfileFavoriteFields = (closeModal) => {
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
     const [favorites, setFavorites] = useState([1])
-    const cookie = Cookies.get()
 
     const getData = async () => {
         try {
             const axiosConfiguration = {
                 headers: {
-                    "cookie": cookie,
+                    "cookie": userConnectedData,
                     withCredentials: true
                 }
             };

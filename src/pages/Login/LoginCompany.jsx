@@ -29,7 +29,8 @@ function LoginCompany() {
     };
     const handleButtonClick = () => {
         setData({ "email": `${email}`, "password": `${password}` });
-        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `company` })
+        //TODO: Cambiar el id por el que devuelve el backend
+        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `company`, "id": 3 })
         setConnected(true)
     };
     useEffect(() => {

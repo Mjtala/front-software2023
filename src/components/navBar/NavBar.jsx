@@ -1,7 +1,6 @@
 import React from 'react';
 import './NavBar.css';
 import { Link, useNavigate } from "react-router-dom";
-import '../../styles/styles.css'
 import { useLocalStorage } from 'usehooks-ts'
 
 function NavBar() {

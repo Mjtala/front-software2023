@@ -2,27 +2,25 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
-import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
+import { useLocalStorage } from 'usehooks-ts';
 
 
-const CompanyInformationModal = ({ closeModal }) => {
-
+const CompanyInformationModal = (closeModal) => {
     const [info, setInfo] = useState("")
-    const cookie = Cookies.get()
-
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
     useEffect(() => {
         async function getData() {
             try {
                 //obtener la información del back
                 const axiosConfiguration = {
                     headers: {
-                        "cookie": cookie,
+                        "cookie": userConnectedData,
                         withCredentials: true
                     }
                 };
-                const url = `${config.route}/profile/info`
-                const response = await axios.get(url, axiosConfiguration) // Link1234
+                const url = `${config.route}/enclousures/${userConnectedData.id}`
+                const response = await axios.get(url, axiosConfiguration) 
                 setInfo(response.data)
             } catch (error) {
                 console.log(error, "hay error");
@@ -48,7 +46,6 @@ const CompanyInformationModal = ({ closeModal }) => {
             </div>
         )
     }
-
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();

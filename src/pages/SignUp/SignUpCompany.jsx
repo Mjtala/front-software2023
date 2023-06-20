@@ -37,7 +37,8 @@ function SignUpCompany() {
                 console.log("Enviando formulario...")
                 setReadyToSendRequest(true)
                 setData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}` })
-                setUserConnectedData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}`, "type": `company` })
+                //TODO: Falta cambiar id (id estatico)
+                setUserConnectedData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}`, "type": `company`, "id": 3})
                 setConnected(true)
             }
         }
