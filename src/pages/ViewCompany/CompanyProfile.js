@@ -49,14 +49,14 @@ export default function CompanyProfile() {
     return <div>
         <div className="profileTable">
             <div className="team">
-                <button className='item_profile' onClick={openModalcompanyinfo}>Mi Información</button>
-                <button className='item_profile' onClick={openModalMyFields}>Mis Canchas</button>
-                <button className='item_profile' onClick={openModalUploadField}>Subir Cancha</button>
+                <button className='item_profile' onClick={() => openModalcompanyinfo()}>Mi Información</button>
+                <button className='item_profile' onClick={() => openModalMyFields()}>Mis Canchas</button>
+                <button className='item_profile' onClick={() => openModalUploadField()}>Subir Cancha</button>
             </div>
             <div className="rightbox">
-                {isOpenModalCompanyInformation && <CompanyInformationModal isOpen={isOpenModalCompanyInformation} />}
-                {isOpenModalMyFields && <CompanyFieldsModal isOpen={isOpenModalMyFields} />}
-                {isOpenModalUploadField && <CompanyUploadFieldModal isOpen={isOpenModalUploadField} />}
+                {isOpenModalCompanyInformation && <CompanyInformationModal />}
+                {isOpenModalMyFields && <CompanyFieldsModal  />}
+                {isOpenModalUploadField && <CompanyUploadFieldModal />}
 
             </div>
 

@@ -34,7 +34,6 @@ function LoginPlayer() {
         // TODO: Cambiar el id por el que devuelve el backend
         setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `player`, "userid": 32 })
         setConnected(true)
-        // comentario3
     };
 
     useEffect(() => {

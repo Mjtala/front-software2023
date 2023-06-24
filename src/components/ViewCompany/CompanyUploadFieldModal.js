@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import config from '../../config'
-import PropTypes from 'prop-types';
 import InputField from '../InputField/InputField';
 import { useLocalStorage } from 'usehooks-ts';
 
-const CompanyUploadFieldModal = (closeModal) => {
+const CompanyUploadFieldModal = () => {
 
     const [userConnectedData] = useLocalStorage("UserInfo", null)
 
@@ -57,12 +56,12 @@ const CompanyUploadFieldModal = (closeModal) => {
 
     return (
         <div className="companyinfomodal">
-            <div className="" onClick={closeModal}>
+            <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
 
                     <h3 className="newFieldTitle">Subir Cancha </h3>
                     <form className="form" onSubmit={sentToApi}>
-                        <InputField name="name" placeholder="Nombre Lugar" value={formData.name} onChange={handleChange} />
+                        <InputField name={"name"} placeholder={"Nombre Lugar"} value={formData.name} onChange={handleChange} />
                         <div className="">
                             <input type="text" name="location" placeholder="Dirección" value={formData.location} onChange={handleChange}></input>
                         </div>
@@ -164,8 +163,5 @@ const CompanyUploadFieldModal = (closeModal) => {
     )
 }
 
-CompanyUploadFieldModal.propTypes = {
-    closeModal: PropTypes.func.isRequired
-};
 
 export default CompanyUploadFieldModal

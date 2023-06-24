@@ -57,8 +57,9 @@ function SignUpCompany() {
                         const data = response.data
                         if (data.success === "true") {
                             setForm(initialData);
-                            navigate(`/perfil_empresa`);
+                            
                         }
+                        navigate(`/perfil_empresa`);
                     }
                 } catch (error) {
                     console.log(error, "hay error");

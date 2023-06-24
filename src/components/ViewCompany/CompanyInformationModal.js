@@ -2,11 +2,10 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
-import PropTypes from 'prop-types';
 import { useLocalStorage } from 'usehooks-ts';
 
 
-const CompanyInformationModal = (closeModal) => {
+const CompanyInformationModal = () => {
     const [info, setInfo] = useState("")
     const [userConnectedData] = useLocalStorage("UserInfo", null)
     useEffect(() => {
@@ -53,7 +52,7 @@ const CompanyInformationModal = (closeModal) => {
 
     return (
         <div className="modalinfoempresa">
-            <div className="" onClick={closeModal}>
+            <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <div>
                         {getInfoCompany()}
@@ -64,9 +63,6 @@ const CompanyInformationModal = (closeModal) => {
     )
 }
 
-CompanyInformationModal.propTypes = {
-    closeModal: PropTypes.func.isRequired,
-  };
   
 export default CompanyInformationModal
 
