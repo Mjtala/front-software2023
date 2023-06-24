@@ -64,7 +64,7 @@ function LoginPlayer() {
 
     return (
         <>
-            <body>
+            <div>
                 <div className="contenedorcompleto">
 
                     <div className="izq">
@@ -106,7 +106,7 @@ function LoginPlayer() {
                     </div>
                 </div>
 
-            </body>
+            </div>
         </>
     )
 }

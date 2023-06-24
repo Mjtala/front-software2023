@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomeView.css';
-import ButtonChangePath from '../../components/Buttons/ButtonChangePath';
+import ButtonChangePath from '../../components/buttons/ButtonChangePath'
 import { useNavigate } from 'react-router-dom';
 
 // https://react-bootstrap.github.io/components/buttons/ para los botones!!!

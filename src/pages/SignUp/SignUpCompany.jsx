@@ -116,7 +116,7 @@ function SignUpCompany() {
 
     return (
         <>
-            <body>
+            <div>
                 <div className="contenedorcompleto">
 
                     <div className="izq">
@@ -168,7 +168,7 @@ function SignUpCompany() {
                     </div>
                 </div>
 
-            </body>
+            </div>
         </>
     )
 }

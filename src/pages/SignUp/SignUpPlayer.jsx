@@ -114,7 +114,7 @@ function SignUpPlayer() {
 
     return (
         <>
-        <body>
+        <div>
             <div className="contenedorcompleto">
 
                 <div className="izq">
@@ -166,7 +166,7 @@ function SignUpPlayer() {
                 </div>
             </div>
 
-        </body>
+        </div>
         </>
     )
 }

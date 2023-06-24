@@ -53,7 +53,7 @@ function LoginCompany() {
 
     return (
         <>
-            <body>
+            <div>
                 <div className="contenedorcompleto">
 
                     <div className="izq">
@@ -95,7 +95,7 @@ function LoginCompany() {
                     </div>
                 </div>
 
-            </body>
+            </div>
         </>
     )
 }

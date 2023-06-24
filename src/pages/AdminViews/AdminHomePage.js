@@ -1,6 +1,6 @@
 import React from 'react';
 import './AdminHomePage.css';
-import ButtonChangePath from '../../components/Buttons/ButtonChangePath';
+import ButtonChangePath from '../../components/buttons/ButtonChangePath';
 import { useNavigate } from 'react-router-dom';
 
 export default function AdminHomePage() {

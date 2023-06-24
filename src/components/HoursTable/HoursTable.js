@@ -30,7 +30,7 @@ function HoursTable({ fields }) {
 							))}
 						</tr>
 					</thead>
-					<tbody>
+					<tdiv>
 						{fields.map((field) => (
 							<tr key={field.id}>
 								<td>{field.name}</td>
@@ -47,7 +47,7 @@ function HoursTable({ fields }) {
 								))}
 							</tr>
 						))}
-					</tbody>
+					</tdiv>
 				</table>) : (
 				<div className="DivNoFields">
 					<p>No hay canchas ni horarios que mostrar</p>

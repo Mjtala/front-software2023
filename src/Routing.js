@@ -1,5 +1,7 @@
+import React from 'react';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar'
 import HomeView from "./pages/HomeView/HomeView";
 import PlayerProfile from "./components/ViewPlayer/PlayerProfile"
 import CompanyProfile from "../src/pages/ViewCompany/CompanyProfile"
@@ -14,7 +16,7 @@ import ParticularField from './components/ParticularField/ParticularField';
 import AdminHomePage from './pages/AdminViews/AdminHomePage';
 import SearchPlayer from './pages/AdminViews/SearchPlayer';
 
-import React from 'react';
+
 
 
 function Routing() {
