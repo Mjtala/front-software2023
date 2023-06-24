@@ -2,10 +2,9 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
-import PropTypes from 'prop-types';
 import { useLocalStorage } from 'usehooks-ts';
 
-const PlayerProfileMyBookings = (closeModal) => {
+const PlayerProfileMyBookings = () => {
     const [userConnectedData] = useLocalStorage("UserInfo", null)
     const [bookings, setBookings] = useState([1])
 
@@ -21,9 +20,13 @@ const PlayerProfileMyBookings = (closeModal) => {
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             let list = []
-            for (let i = 0; i < data.bookings.length; i++) {
-                list.push(CreateMyBookings(data.bookings[i]))
+            const bookingsfromback = data.bookings
+            if (Array.isArray(bookingsfromback) && bookingsfromback.length > 0) {
+                for (let i = 0; i < bookingsfromback.length; i++) {
+                    list.push(CreateMyBookings(bookingsfromback[i]))
+                }
             }
+
             setBookings(list)
         } catch (error) {
             console.log(error, "hay error");
@@ -64,7 +67,7 @@ const PlayerProfileMyBookings = (closeModal) => {
 
     return (
         <div className="bookingModal">
-            <div className="" onClick={closeModal}>
+            <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <h1 className="">Reservas </h1>
                     <div>
@@ -75,9 +78,5 @@ const PlayerProfileMyBookings = (closeModal) => {
         </div>
     )
 }
-
-PlayerProfileMyBookings.propTypes = {
-    closeModal: PropTypes.func.isRequired,
-};
 
 export default PlayerProfileMyBookings

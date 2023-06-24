@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import CompanyInformationModal from '../../components/ViewCompany/CompanyInformationModal';
 import CompanyFieldsModal from '../../components/ViewCompany/CompanyFieldsModal';
 import CompanyUploadFieldModal from '../../components/ViewCompany/CompanyUploadFieldModal';
+import { useLocalStorage } from 'usehooks-ts'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function CompanyProfile() {
@@ -10,11 +12,22 @@ export default function CompanyProfile() {
     const [isOpenModalMyFields, setIsOpenModalMyFields] = useState(false);
     const [isOpenModalUploadField, setIsOpenModalUploadField] = useState(false);
 
+    const [connected] = useLocalStorage("Connected", false)
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
+    const navigate = useNavigate();
+
     const getData = async () => {
 
     }
 
     useEffect(() => {
+        if (connected) {
+            if (userConnectedData.type === 'player') {
+              navigate("/perfil_jugador")
+            } 
+        } else {
+            navigate("/")
+        }
         getData()
     }, [])
 

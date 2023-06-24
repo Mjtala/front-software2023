@@ -43,7 +43,7 @@ function SignUpPlayer() {
         useEffect(() => {
             if (readyToSendRequest) {
                 console.log("aca estamos en el signup")
-                axios.post(`${config.route}/auth/signup`, form, {
+                axios.post(`${config.route}auth/signup`, form, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
@@ -51,6 +51,7 @@ function SignUpPlayer() {
                 })
                 .then(data => {
                     console.log(data);
+                    console.log(data.body);
                     if (data.success === "true") {
                     setForm(initialData);
                     

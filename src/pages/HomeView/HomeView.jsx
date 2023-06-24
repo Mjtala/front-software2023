@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './HomeView.css';
 import ButtonChangePath from '../../components/buttons/ButtonChangePath'
 import { useNavigate } from 'react-router-dom';
+import { useLocalStorage } from 'usehooks-ts'
+
 
 // https://react-bootstrap.github.io/components/buttons/ para los botones!!!
 function HomeView() {
 
   const navigate = useNavigate();
+  const [connected] = useLocalStorage("Connected", false)
+  const [userConnectedData] = useLocalStorage("UserInfo", null)
+
+  useEffect(() => {
+    if (connected) {
+      if (userConnectedData.type === 'player') {
+        navigate("/perfil_jugador")
+      }
+      if (userConnectedData.type === 'company') {
+        navigate("/perfil_empresa")
+      } 
+    }
+  }, [])
+
 
   return (
     <>

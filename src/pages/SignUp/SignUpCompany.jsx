@@ -25,7 +25,7 @@ function SignUpCompany() {
         }
 
         console.log("Borrar", userConnectedData),
-        console.log("Borrar", connected)
+            console.log("Borrar", connected)
 
         // el evento recibido es la acción de enviar
         const handleSubmit = (event) => {
@@ -38,29 +38,31 @@ function SignUpCompany() {
                 setReadyToSendRequest(true)
                 setData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}` })
                 //TODO: Falta cambiar id (id estatico)
-                setUserConnectedData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}`, "type": `company`, "id": 3})
+                setUserConnectedData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}`, "type": `company`, "id": 3 })
                 setConnected(true)
             }
         }
         useEffect(() => {
             if (readyToSendRequest) {
-                console.log("aca estamos")
-                axios.post(`${route}/auth/signup`, form, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
-                })
-                    .then(data => {
-                        console.log(data);
+                try {
+
+                    console.log("aca estamos")
+                    const response = axios.post(`${route}/auth/signup`, form, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    if (typeof response !== 'undefined') {
+                        const data = response.data
                         if (data.success === "true") {
                             setForm(initialData);
+                            navigate(`/perfil_empresa`);
                         }
-                        navigate(`/perfil_empresa`);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                    }
+                } catch (error) {
+                    console.log(error, "hay error");
+                }
             }
         }, [data, form.name, form.email, form.password, form.phone]);
 
