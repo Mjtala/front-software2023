@@ -43,6 +43,13 @@ function SignUpCompany() {
             }
         }
         useEffect(() => {
+            if (connected) {
+                if (userConnectedData.type === 'company') {
+                    navigate("/perfil_empresa")
+                } if (userConnectedData.type === 'player') {
+                    navigate("/perfil_jugador")
+                }
+            }
             if (readyToSendRequest) {
                 try {
 

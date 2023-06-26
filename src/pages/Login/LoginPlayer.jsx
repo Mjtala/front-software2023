@@ -37,6 +37,13 @@ function LoginPlayer() {
     };
 
     useEffect(() => {
+        if (connected) {
+            if (userConnectedData.type === 'company') {
+                navigate("/perfil_empresa")
+            } if (userConnectedData.type === 'player') {
+                navigate("/perfil_jugador")
+            }
+        }
         if (data) {
             console.log("aca estamos")
             const fetchData = async () => {

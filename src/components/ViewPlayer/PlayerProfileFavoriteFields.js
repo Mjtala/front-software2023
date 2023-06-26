@@ -16,7 +16,8 @@ const PlayerProfileFavoriteFields = () => {
                     withCredentials: true
                 }
             };
-            const url = `${config.route}/profile/info`
+            const url = `${config.route}profile/info`
+            console.log(url)
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             let list = []

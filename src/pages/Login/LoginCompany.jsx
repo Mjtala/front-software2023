@@ -13,7 +13,7 @@ function LoginCompany() {
     const [connected, setConnected] = useLocalStorage("Connected", false)
 
     console.log("Borrar", userConnectedData),
-    console.log("BorrarLoginCOmpany", connected)
+        console.log("BorrarLoginCOmpany", connected)
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
@@ -34,20 +34,27 @@ function LoginCompany() {
         setConnected(true)
     };
     useEffect(() => {
+        if (connected) {
+            if (userConnectedData.type === 'company') {
+                navigate("/perfil_empresa")
+            } if (userConnectedData.type === 'player') {
+                navigate("/perfil_jugador")
+            }
+        }
         if (data) {
             console.log("aca estamos")
             axios.post(`${config.route}/auth/login`, {
                 email: email,
                 password: password
             })
-            .then(data => {
-                setData(data);
-                console.log("ESTAMOS ACA")
-                navigate(`/perfil_empresa`);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                .then(data => {
+                    setData(data);
+                    console.log("ESTAMOS ACA")
+                    navigate(`/perfil_empresa`);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
     }, [data, email, password]);
 
