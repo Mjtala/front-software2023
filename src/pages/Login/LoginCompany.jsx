@@ -13,7 +13,7 @@ function LoginCompany() {
     const [connected, setConnected] = useLocalStorage("Connected", false)
 
     console.log("Borrar", userConnectedData),
-    console.log("Borrar", connected)
+        console.log("BorrarLoginCOmpany", connected)
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
@@ -29,18 +29,28 @@ function LoginCompany() {
     };
     const handleButtonClick = () => {
         setData({ "email": `${email}`, "password": `${password}` });
-        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `company` })
+        //TODO: Cambiar el id por el que devuelve el backend
+        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `company`, "id": 3 })
         setConnected(true)
     };
     useEffect(() => {
+        if (connected) {
+            if (userConnectedData.type === 'company') {
+                navigate("/perfil_empresa")
+            } 
+            if (userConnectedData.type === 'player') {
+                navigate("/perfil_jugador")
+            }
+        }
         if (data) {
             console.log("aca estamos")
-            axios.post(`${config.route}/auth/login`, {
+            axios.post(`${config.route}auth/login`, {
                 email: email,
                 password: password
             })
                 .then(data => {
                     setData(data);
+                    console.log("ESTAMOS ACA")
                     navigate(`/perfil_empresa`);
                 })
                 .catch(error => {
@@ -51,7 +61,7 @@ function LoginCompany() {
 
     return (
         <>
-            <body>
+            <div>
                 <div className="contenedorcompleto">
 
                     <div className="izq">
@@ -93,7 +103,7 @@ function LoginCompany() {
                     </div>
                 </div>
 
-            </body>
+            </div>
         </>
     )
 }

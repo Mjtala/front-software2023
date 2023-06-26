@@ -1,32 +1,30 @@
+import React from 'react'
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import config from '../../config'
-import Cookies from 'js-cookie';
+import { useLocalStorage } from 'usehooks-ts';
 
 
-const CompanyInformationModal = ({ closeModal }) => {
-
+const CompanyInformationModal = () => {
     const [info, setInfo] = useState("")
-    const cookie = Cookies.get()
-
-    const getData = async () => {
-        try {
-            const axiosConfiguration = {
-                headers: {
-                    "cookie": cookie,
-                    withCredentials: true
-                }
-            };
-            const url = `${config.route}/profile/info`
-            const response = await axios.get(url, axiosConfiguration)
-            setInfo(response.data)
-        } catch (error) {
-            console.log(error, "hay error");
-        }
-    }
-
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
     useEffect(() => {
+        async function getData() {
+            try {
+                //obtener la información del back
+                const axiosConfiguration = {
+                    headers: {
+                        "cookie": userConnectedData,
+                        withCredentials: true
+                    }
+                };
+                const url = `${config.route}enclousures/${userConnectedData.id}`
+                const response = await axios.get(url, axiosConfiguration) 
+                setInfo(response.data)
+            } catch (error) {
+                console.log(error, "hay error");
+            }
+        }
         getData()
     }, [])
 
@@ -41,21 +39,20 @@ const CompanyInformationModal = ({ closeModal }) => {
                 <h3 className="">Contraseña</h3>
                 <p className="">{info.password}</p>
                 <h3 className="">Empresa</h3>
-                <p className="">{info.company}</p>
+                <p className="">{info.empresa}</p>
                 <h3 className="">Ubicación</h3>
                 <p className="">{info.place}</p>
             </div>
         )
     }
 
-
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
     }
 
     return (
-        <div className="companyinfomodal">
-            <div className="" onClick={closeModal}>
+        <div className="modalinfoempresa">
+            <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <div>
                         {getInfoCompany()}
@@ -66,8 +63,6 @@ const CompanyInformationModal = ({ closeModal }) => {
     )
 }
 
-CompanyInformationModal.propTypes = {
-    closeModal: PropTypes.func.isRequired
-};
-
+  
 export default CompanyInformationModal
+

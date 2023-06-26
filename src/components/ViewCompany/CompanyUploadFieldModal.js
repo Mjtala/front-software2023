@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import config from '../../config'
-import Cookies from 'js-cookie';
-import PropTypes from 'prop-types';
+import InputField from '../InputField/InputField';
+import { useLocalStorage } from 'usehooks-ts';
 
-const CompanyUploadFieldModal = ({ closeModal }) => {
+const CompanyUploadFieldModal = () => {
 
-    const cookie = Cookies.get()
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
     }
-
     // const [varTxt, setTxt] = useState("Valor Inicial");
     // const [valInput, setValInput] = useState("XXXX");
     const [formData, setFormData] = useState({
@@ -43,11 +42,11 @@ const CompanyUploadFieldModal = ({ closeModal }) => {
         try {
             const configaxios = {
                 headers: {
-                    "cookie": cookie,
+                    "cookie": userConnectedData,
                     withCredentials: true
                 }
             };
-            const url = `${config.route}/profile/info/inex`
+            const url = `${config.route}profile/info/inex`
             const response = await axios.get(url, configaxios) // Link1234
             console.log(response.data, "response.data")
         } catch (error) {
@@ -57,15 +56,12 @@ const CompanyUploadFieldModal = ({ closeModal }) => {
 
     return (
         <div className="companyinfomodal">
-            <div className="" onClick={closeModal}>
+            <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
 
                     <h3 className="newFieldTitle">Subir Cancha </h3>
                     <form className="form" onSubmit={sentToApi}>
-                        <div className="">
-                            <input type="text" name="name" placeholder="Nombre Lugar" value={formData.name} onChange={handleChange}></input>
-                        </div>
-
+                        <InputField name={"name"} placeholder={"Nombre Lugar"} value={formData.name} onChange={handleChange} />
                         <div className="">
                             <input type="text" name="location" placeholder="Dirección" value={formData.location} onChange={handleChange}></input>
                         </div>
@@ -167,8 +163,5 @@ const CompanyUploadFieldModal = ({ closeModal }) => {
     )
 }
 
-CompanyUploadFieldModal.propTypes = {
-    closeModal: PropTypes.func.isRequired
-};
 
 export default CompanyUploadFieldModal

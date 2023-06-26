@@ -34,7 +34,7 @@ function SearchField() {
             <div className="MainDivForm">
                 <div className="DivFormText">
                     <label>
-                        Canchas por pagina:
+                        Canchas por página:
                         <input className="labelinput" type="number" name="fields" value={formData.fields} data-testid="inputfields" onChange={handleChange} />
                     </label>
                 </div>

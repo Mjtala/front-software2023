@@ -9,7 +9,7 @@ function ChooseAccount() {
 
     return (
         <>
-        <body>
+        <div>
             <div className="contenedorcompleto">
 
                 <div className="izqchose">
@@ -37,7 +37,7 @@ function ChooseAccount() {
                 </div>
             </div>
 
-        </body>
+        </div>
         </>
     )
 }

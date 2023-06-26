@@ -10,7 +10,7 @@ function ChooseUser() {
 
     return (
         <>
-            <body>
+            <div>
                 <div className="contenedorcompleto">
 
                     <div className="izqchose">
@@ -38,7 +38,7 @@ function ChooseUser() {
                     </div>
                 </div>
 
-            </body>
+            </div>
         </>
     )
 }

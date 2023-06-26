@@ -2,23 +2,22 @@ import React from 'react'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
-import Cookies from 'js-cookie';
-import PropTypes from 'prop-types';
+import { useLocalStorage } from 'usehooks-ts';
 
-const PlayerProfileInformationModal = ({ closeModal }) => {
+const PlayerProfileInformationModal = () => {
 
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
     const [info, setInfo] = useState("")
-    const cookie = Cookies.get()
-
     const getData = async () => {
         try {
             const axiosConfiguration = {
                 headers: {
-                    "cookie": cookie,
+                    "cookie": userConnectedData,
                     withCredentials: true
                 }
             };
-            const url = `${config.route}/profile/info`
+            console.log( "userConnectedData",userConnectedData);
+            const url = `${config.route}profile/info`
             const response = await axios.get(url, axiosConfiguration)
             setInfo(response.data)
         } catch (error) {
@@ -50,7 +49,7 @@ const PlayerProfileInformationModal = ({ closeModal }) => {
 
     return (
         <div className="modalinfo">
-            <div className="" onClick={closeModal}>
+            <div className="" >
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <div>
                         {getInfoPlayer()}
@@ -61,8 +60,5 @@ const PlayerProfileInformationModal = ({ closeModal }) => {
     )
 }
 
-PlayerProfileInformationModal.propTypes = {
-    closeModal: PropTypes.func.isRequired,
-};
 
 export default PlayerProfileInformationModal

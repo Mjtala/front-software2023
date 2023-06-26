@@ -4,10 +4,9 @@ import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocalStorage } from 'usehooks-ts'
+import config from '../../config'
 
 function SignUpCompany() {
-
-    let route = "https://backend-software-production.up.railway.app"
 
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
@@ -25,7 +24,7 @@ function SignUpCompany() {
         }
 
         console.log("Borrar", userConnectedData),
-        console.log("Borrar", connected)
+            console.log("Borrar", connected)
 
         // el evento recibido es la acción de enviar
         const handleSubmit = (event) => {
@@ -37,29 +36,41 @@ function SignUpCompany() {
                 console.log("Enviando formulario...")
                 setReadyToSendRequest(true)
                 setData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}` })
-                setUserConnectedData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}`, "type": `company` })
+                //TODO: Falta cambiar id (id estatico)
+                setUserConnectedData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}`, "type": `company`, "id": 3 })
                 setConnected(true)
             }
         }
         useEffect(() => {
+            if (connected) {
+                if (userConnectedData.type === 'company') {
+                    navigate("/perfil_empresa")
+                } 
+                if (userConnectedData.type === 'player') {
+                    navigate("/perfil_jugador")
+                }
+            }
             if (readyToSendRequest) {
-                console.log("aca estamos")
-                axios.post(`${route}/auth/signup`, form, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
-                })
-                    .then(data => {
-                        console.log(data);
+                try {
+
+                    console.log("aca estamos")
+                    const response = axios.post(`${config.route}auth/signup`, form, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    if (typeof response !== 'undefined') {
+                        const data = response.data
                         if (data.success === "true") {
                             setForm(initialData);
+                            
                         }
                         navigate(`/perfil_empresa`);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                    }
+                } catch (error) {
+                    console.log(error, "hay error");
+                }
             }
         }, [data, form.name, form.email, form.password, form.phone]);
 
@@ -115,7 +126,7 @@ function SignUpCompany() {
 
     return (
         <>
-            <body>
+            <div>
                 <div className="contenedorcompleto">
 
                     <div className="izq">
@@ -167,7 +178,7 @@ function SignUpCompany() {
                     </div>
                 </div>
 
-            </body>
+            </div>
         </>
     )
 }
