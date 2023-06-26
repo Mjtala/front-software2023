@@ -4,10 +4,9 @@ import './SignUpView.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLocalStorage } from 'usehooks-ts'
+import config from '../../config'
 
 function SignUpCompany() {
-
-    let route = "https://backend-software-production.up.railway.app"
 
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
@@ -46,7 +45,8 @@ function SignUpCompany() {
             if (connected) {
                 if (userConnectedData.type === 'company') {
                     navigate("/perfil_empresa")
-                } if (userConnectedData.type === 'player') {
+                } 
+                if (userConnectedData.type === 'player') {
                     navigate("/perfil_jugador")
                 }
             }
@@ -54,7 +54,7 @@ function SignUpCompany() {
                 try {
 
                     console.log("aca estamos")
-                    const response = axios.post(`${route}/auth/signup`, form, {
+                    const response = axios.post(`${config.route}auth/signup`, form, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Accept': 'application/json'

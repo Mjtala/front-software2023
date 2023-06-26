@@ -44,7 +44,8 @@ function SignUpPlayer() {
             if (connected) {
                 if (userConnectedData.type === 'company') {
                     navigate("/perfil_empresa")
-                } if (userConnectedData.type === 'player') {
+                } 
+                if (userConnectedData.type === 'player') {
                     navigate("/perfil_jugador")
                 }
             }
