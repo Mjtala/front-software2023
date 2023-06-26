@@ -26,7 +26,7 @@ const ModalInfo = (closeModal) => {
                         withCredentials: true
                     }
                 };
-                const url = `${config.route}/profile/info`
+                const url = `${config.route}profile/info`
                 const response = await axios.get(url, configaxios) // Link1234
                 setInfo(response.data)
                 setFormData(response.data);
@@ -51,7 +51,7 @@ const ModalInfo = (closeModal) => {
                 }
             };
             
-            const url = `${config.route}/users/${userConnectedData.id}/update`;
+            const url = `${config.route}users/${userConnectedData.id}/update`;
             await axios.put(url, formData, configaxios);
 
             setIsEditing(false);

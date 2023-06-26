@@ -60,7 +60,7 @@ export default function SearchPlayer() {
                         withCredentials: true
                     }
                 };
-                const url = `${config.route}/users`
+                const url = `${config.route}users`
                 const response = await axios.get(url, axiosConfiguration)
                 setData(response.data)
             } catch (error) {

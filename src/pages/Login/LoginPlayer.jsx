@@ -49,7 +49,7 @@ function LoginPlayer() {
             console.log("aca estamos")
             const fetchData = async () => {
                 try {
-                    const response = await axios.post(`${config.route}/auth/login`, {
+                    const response = await axios.post(`${config.route}auth/login`, {
                         email: email,
                         password: password
                     }, { withCredentials: false });

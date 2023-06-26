@@ -17,7 +17,7 @@ const CompanyFieldsModal = () => {
                 }
             };
             // TODO: Change the url to the correct one todos los fields de solo una empresa
-            const url = `${config.route}/fields`
+            const url = `${config.route}fields`
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             let list = []

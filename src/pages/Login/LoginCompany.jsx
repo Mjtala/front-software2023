@@ -44,7 +44,7 @@ function LoginCompany() {
         }
         if (data) {
             console.log("aca estamos")
-            axios.post(`${config.route}/auth/login`, {
+            axios.post(`${config.route}auth/login`, {
                 email: email,
                 password: password
             })

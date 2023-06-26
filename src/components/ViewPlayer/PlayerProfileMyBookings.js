@@ -16,7 +16,7 @@ const PlayerProfileMyBookings = () => {
                     withCredentials: true
                 }
             };
-            const url = `${config.route}/profile/info`
+            const url = `${config.route}profile/info`
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             let list = []

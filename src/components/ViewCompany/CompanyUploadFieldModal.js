@@ -46,7 +46,7 @@ const CompanyUploadFieldModal = () => {
                     withCredentials: true
                 }
             };
-            const url = `${config.route}/profile/info/inex`
+            const url = `${config.route}profile/info/inex`
             const response = await axios.get(url, configaxios) // Link1234
             console.log(response.data, "response.data")
         } catch (error) {

@@ -18,7 +18,7 @@ const CompanyInformationModal = () => {
                         withCredentials: true
                     }
                 };
-                const url = `${config.route}/enclousures/${userConnectedData.id}`
+                const url = `${config.route}enclousures/${userConnectedData.id}`
                 const response = await axios.get(url, axiosConfiguration) 
                 setInfo(response.data)
             } catch (error) {
