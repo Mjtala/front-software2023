@@ -14,7 +14,7 @@ const CompanyUploadFieldModal = () => {
     // const [varTxt, setTxt] = useState("Valor Inicial");
     // const [valInput, setValInput] = useState("XXXX");
     const [formData, setFormData] = useState({
-        name: "", address: "", district: "", administrator: "", socialmedia: "", email: ""
+        name: "", address: "", district: "", socialmedia: "", email: ""
     })
 
     const handleChange = (event) => {
@@ -60,10 +60,6 @@ const CompanyUploadFieldModal = () => {
 
                         <div className="">
                             <input type="text" name="socialmedia" placeholder="Social media" value={formData.socialmedia} onChange={handleChange}></input>
-                        </div>
-
-                        <div className="">
-                            <input type="text" name="email" placeholder="Precio" value={formData.email} onChange={handleChange}></input>
                         </div>
 
                         <div>
