@@ -1,32 +1,36 @@
-import React, { useState } from 'react';
-import axios from 'axios'
+import  axios  from 'axios'
 import config from '../../config'
-import { useLocalStorage } from 'usehooks-ts';
+import Cookies from 'js-cookie';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CompanyUploadFieldModal = () => {
-
-    const [userConnectedData] = useLocalStorage("UserInfo", null)
-
+const ModalEditField = () => {
+    
+    const cookie = Cookies.get()
+    const navigate = useNavigate();
+    
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
     }
-    // const [varTxt, setTxt] = useState("Valor Inicial");
-    // const [valInput, setValInput] = useState("XXXX");
-    const [formData, setFormData] = useState({
-        name:"", location:"", province:"", max_players:"", administrator:"", 
-        phone:"", price:"", box8:false, box9:false, box10:false, box11:false,
-        box12:false, box13:false, box14:false, box15:false, box16:false, 
-        box17:false, box18:false, box19:false, box20:false, box21:false, box22:false
-    })
-
+    const myfields = () => {
+        navigate("/perfil_empresa")
+    }
+    const [formData, setFormData] = useState({name:"", location:"", province:"", max_players:"", administrator:"", 
+                                            phone:"", price:"", box8:false, box9:false, box10:false, box11:false,
+                                            box12:false, box13:false, box14:false, box15:false, box16:false, 
+                                            box17:false, box18:false, box19:false, box20:false, box21:false, box22:false})
+    
     const handleChange = (event) => {
+        console.log('cambio')
         const { name, value } = event.target;
         console.log(name, value)
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
+        console.log(formData)
     };
+
     const handleChangeBox = (event, check) => {
         console.log('cambio')
         const { name, value} = event.target;
@@ -39,58 +43,58 @@ const CompanyUploadFieldModal = () => {
     };
 
     const sentToApi = async () => {
+        console.log(formData)
         try {
             const configaxios = {
-                headers: {
-                    "Authorization": userConnectedData,
-                    withCredentials: true
+                headers:{
+                  "cookie": cookie,
+                  withCredentials: true
                 }
-            };
-            const url = `${config.route}enclousures` //TODO:
-            const response = await axios.get(url, configaxios)
-            console.log(response.data, "response.data")
+              };
+            const url = `${config.route}/77777777` 
+            const response = await axios.get(url, configaxios) // Link1234
+            console.log(response, "Response");
         } catch (error) {
             console.log(error, "hay error");
         }
     }
 
     return (
-        <div className="companyinfomodal">
-            <div className="">
-                <div className="modal__dialog" onClick={handleModalDialogClick}>
+        <div className="fieldedit">
+            <div className="modal__dialog" onClick={handleModalDialogClick}>
 
-                    <h3 className="newFieldTitle">Subir Cancha </h3>
-                    <form className="form" onSubmit={sentToApi}>
-                    <div  className="">
-                        <input type="text" name="name" placeholder="Nombre Lugar" value={formData.name} onChange={handleChange}></input>
+            <h3 className="titulonuevacancha">Editar Cancha </h3>
+                <form className="formulario" onSubmit={sentToApi}>
+                    <div className="">
+                        <input type="text" name="name" placeholder="Nuevo Nombre" value={formData.name} onChange={handleChange}></input>
                     </div>
 
                     <div className="">
-                        <input type="text" name="location" placeholder="Dirección" value={formData.location} onChange={handleChange}></input>
+                        <input type="text" name="location" placeholder="Nueva Dirección" value={formData.location} onChange={handleChange}></input>
                     </div>
 
                     <div className="">
-                        <input type="text" name="province" placeholder="Comuna" value={formData.province} onChange={handleChange}></input>
+                        <input type="text" name="province" placeholder="Nueva Comuna" value={formData.province} onChange={handleChange}></input>
                     </div>
 
-                    <div  className="">
-                        <input type="text" name="max_players" placeholder="Cantidad de Jugadores" value={formData.max_players} onChange={handleChange}></input>
+                    <div className="">
+                        <input type="text" name="max_players" placeholder="Nueva Cantidad de Jugadores" value={formData.max_players} onChange={handleChange}></input>
                     </div>
 
-                    <div  className="">
-                        <input type="text" name="administrator" placeholder="Encargado/a" value={formData.administrator} onChange={handleChange}></input>
+                    <div className="">
+                        <input type="text" name="administrator" placeholder="Nuevo Encargado/a" value={formData.administrator} onChange={handleChange}></input>
                     </div>
 
-                    <div  className="">
-                        <input type="text" name="phone" placeholder="Télefono Contacto" value={formData.phone} onChange={handleChange}></input>
+                    <div className="">
+                        <input type="text" name="phone" placeholder="Nuevo Télefono Contacto" value={formData.phone} onChange={handleChange}></input>
                     </div>
 
-                    <div  className="">
-                        <input type="text" name="price" placeholder="Precio" value={formData.price} onChange={handleChange}></input>
+                    <div className="">
+                        <input type="text" name="price" placeholder="Nuevo Precio" value={formData.price} onChange={handleChange}></input>
                     </div>
 
-                    <div  className="">
-                        <label>Horarios Disponibles</label>
+                    <div className="">
+                        <label>Actualizar Horarios</label>
                     </div>
 
                     <div>
@@ -154,41 +158,18 @@ const CompanyUploadFieldModal = () => {
                         <label className='horario'>22:00 - 23:00</label>
                     </div>
 
-                        <div>
-                            <button type="submit" className='botonsubmit' onClick={sentToApi}>Subir</button>
-                        </div>
+                    <div>
+                        <button type="submit" className='botonsubmit' onClick={sentToApi}>Aceptar</button>
+                    </div>
+                    <div>
+                        <button type="" className='botonsubmit' onClick={myfields}>Volver</button>
+                    </div>
 
-                    </form>
+                </form>
 
-                </div>
-            </div>
+        </div>
         </div>
     )
 }
 
-
-export default CompanyUploadFieldModal
-
-/* ExUpload
-
-                    <form className="form" onSubmit={sentToApi}>
-                        <InputField name={"name"} placeholder={"Nombre Lugar"} value={formData.name} onChange={handleChange} />
-                        <div className="">
-                            <input type="text" name="location" placeholder="Dirección" value={formData.address} onChange={handleChange}></input>
-                        </div>
-
-                        <div className="">
-                            <input type="text" name="province" placeholder="Comuna" value={formData.district} onChange={handleChange}></input>
-                        </div>
-
-                        <div className="">
-                            <input type="text" name="socialmedia" placeholder="Social media" value={formData.socialmedia} onChange={handleChange}></input>
-                        </div>
-
-                        <div>
-                            <button type="submit" className='botonsubmit' onClick={sentToApi}>Subir</button>
-                        </div>
-
-                    </form>
-
-*/
+export default ModalEditField

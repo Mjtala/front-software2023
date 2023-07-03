@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar'
 import HomeView from "./pages/HomeView/HomeView";
-import PlayerProfile from "./components/ViewPlayer/PlayerProfile"
+import PlayerProfile from "../src/pages/ViewPlayer/PlayerProfile"
 import CompanyProfile from "../src/pages/ViewCompany/CompanyProfile"
 import LoginPlayer from './pages/Login/LoginPlayer';
 import LoginCompany from './pages/Login/LoginCompany';
@@ -14,6 +14,7 @@ import SignUpCompany from './pages/SignUp/SignUpCompany';
 import SearchField from './components/SearchField/SearchField';
 import ParticularField from './components/ParticularField/ParticularField';
 import AdminHomePage from './pages/AdminViews/AdminHomePage';
+import EditField from './components/ViewCompany/EditField';
 
 
 
@@ -29,6 +30,7 @@ function Routing() {
                 <Route path="/perfil_empresa" element={<CompanyProfile />} />
                 <Route path={'/buscar_cancha'} element={<SearchField />} />
                 <Route path={"/canchas/:name"} element={<ParticularField />} />
+                <Route path={"/editar_cancha/:id"} element={<EditField />} />
                 <Route path="/iniciar_sesion_jugador" element={<LoginPlayer />} />
                 <Route path="/iniciar_sesion_empresa" element={<LoginCompany />} />
                 <Route path="/elegir_usuario" element={<ChooseUser />} />
