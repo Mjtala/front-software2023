@@ -31,14 +31,11 @@ function LoginPlayer() {
 
     const handleButtonClick = () => {
         setData({ "email": `${email}`, "password": `${password}` });
-        // TODO: Cambiar el id por el que devuelve el backend
-        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `player`, "userid": 32 })
-        setConnected(true)
     };
-
+    
     useEffect(() => {
         if (connected) {
-            if (userConnectedData.type === 'company') {
+            if (userConnectedData.type === 'owner') {
                 navigate("/perfil_empresa")
             } 
             if (userConnectedData.type === 'player') {
@@ -53,13 +50,17 @@ function LoginPlayer() {
                         email: email,
                         password: password
                     }, { withCredentials: false });
+                    console.log("response es", response);
                     if (response !== null && response !== undefined) {
+                        setUserConnectedData({
+                            email: email,
+                            password: password, 
+                            type: `player`,
+                            id: response.data['cookie']
+                        })
+                        setConnected(true)
                         setData(response.data.data);
-                        console.log("response", response);
-                        const cookieValue = response.headers['set-cookie'][0];
-                        console.log("cookieValue", cookieValue);
                         navigate(`/perfil_jugador`);
-                        console.log("data", data);
                     }
                 } catch (error) {
                     console.error('Error:', error);

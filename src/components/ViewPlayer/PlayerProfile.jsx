@@ -21,7 +21,7 @@ export default function PlayerProfile() {
 
     useEffect(() => {
         if (connected) {
-            if (userConnectedData.type === 'company') {
+            if (userConnectedData.type === 'owner') {
               navigate("/perfil_empresa")
             } 
         } else {

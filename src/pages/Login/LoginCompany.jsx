@@ -29,35 +29,40 @@ function LoginCompany() {
     };
     const handleButtonClick = () => {
         setData({ "email": `${email}`, "password": `${password}` });
-        //TODO: Cambiar el id por el que devuelve el backend
-        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `company`, "id": 3 })
-        setConnected(true)
     };
     useEffect(() => {
-        if (connected) {
-            if (userConnectedData.type === 'company') {
-                navigate("/perfil_empresa")
-            } 
-            if (userConnectedData.type === 'player') {
-                navigate("/perfil_jugador")
+        const fetchData = async () => {
+            if (connected) {
+                if (userConnectedData.type === 'owner') {
+                    navigate("/perfil_empresa");
+                } else if (userConnectedData.type === 'player') {
+                    navigate("/perfil_jugador");
+                }
             }
-        }
-        if (data) {
-            console.log("aca estamos")
-            axios.post(`${config.route}auth/login`, {
-                email: email,
-                password: password
-            })
-                .then(data => {
-                    setData(data);
-                    console.log("ESTAMOS ACA")
+            if (data) {
+                try {
+                    const response = await axios.post(`${config.route}auth/login`, {
+                        email: email,
+                        password: password
+                    });
+                    setData(response.data);
+                    setUserConnectedData({
+                        email: email,
+                        password: password,
+                        type: 'owner',
+                        id: response.data['cookie']
+                    });
+                    setConnected(true)
                     navigate(`/perfil_empresa`);
-                })
-                .catch(error => {
+                } catch (error) {
                     console.error('Error:', error);
-                });
-        }
+                }
+            }
+        };
+    
+        fetchData();
     }, [data, email, password]);
+    
 
     return (
         <>

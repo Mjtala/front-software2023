@@ -12,7 +12,7 @@ const PlayerProfileInformationModal = () => {
         try {
             const axiosConfiguration = {
                 headers: {
-                    "cookie": userConnectedData,
+                    "Authorization": userConnectedData.id,
                     withCredentials: true
                 }
             };
@@ -32,11 +32,13 @@ const PlayerProfileInformationModal = () => {
     function getInfoPlayer() {
         return (
             <div className="">
-                <h1 className="">Información </h1>
+                <h1 className="">Información</h1>
+                <h2 className="">Nombre</h2>
+                <p className="">{info.name}</p>
                 <h2 className="">Correo</h2>
-                <p className="">{info.mail}</p>
+                <p className="">{info.email}</p>
                 <h2 className="">Teléfono</h2>
-                <p className="">{info.phone}</p>
+                <p className="">{parseInt(info.phone)}</p>
                 <h2 className="">Contraseña</h2>
                 <p className="">{info.password}</p>
             </div>
