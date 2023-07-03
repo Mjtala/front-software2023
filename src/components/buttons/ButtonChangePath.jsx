@@ -17,5 +17,6 @@ ButtonChangePath.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.string.isRequired
 };
+console.log("buttons")
 
 export default ButtonChangePath;
