@@ -12,12 +12,11 @@ const CompanyFieldsModal = () => {
         try {
             const axiosConfiguration = {
                 headers: {
-                    "cookie": userConnectedData,
+                    "Authorization": userConnectedData.id,
                     withCredentials: true
                 }
             };
-            // TODO: Change the url to the correct one todos los fields de solo una empresa
-            const url = `${config.route}fields`
+            const url = `${config.route}enclousures`
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             let list = []

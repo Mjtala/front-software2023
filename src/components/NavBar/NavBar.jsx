@@ -5,13 +5,12 @@ import { useLocalStorage } from 'usehooks-ts'
 
 function NavBar() {
 
-  const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
+  const [ setUserConnectedData] = useLocalStorage("UserInfo", null)
   const [connected, setConnected] = useLocalStorage("Connected", false)
   const navigate = useNavigate();
   const handleLogout = async () => {
     setUserConnectedData(null)
     setConnected(false)
-    console.log(userConnectedData)
     navigate(`/`);
   }
 

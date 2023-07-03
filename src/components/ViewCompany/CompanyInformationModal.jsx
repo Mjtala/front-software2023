@@ -11,14 +11,13 @@ const CompanyInformationModal = () => {
     useEffect(() => {
         async function getData() {
             try {
-                //obtener la información del back
                 const axiosConfiguration = {
                     headers: {
-                        "cookie": userConnectedData,
-                        withCredentials: true
+                        "Authorization": userConnectedData.id,
+                        withCredentials: true,
                     }
                 };
-                const url = `${config.route}enclousures/${userConnectedData.id}`
+                const url = `${config.route}profile/info`
                 const response = await axios.get(url, axiosConfiguration) 
                 setInfo(response.data)
             } catch (error) {
@@ -28,20 +27,17 @@ const CompanyInformationModal = () => {
         getData()
     }, [])
 
+    console.log(info, "info")
     function getInfoCompany() {
         return (
             <div className="">
-                <h2 className="">Información </h2>
+                <h2 className="">Información</h2>
                 <h3 className="">Correo</h3>
-                <p className="">{info.mail}</p>
+                <p className="">{info.email}</p>
                 <h3 className="">Teléfono</h3>
                 <p className="">{info.phone}</p>
-                <h3 className="">Contraseña</h3>
-                <p className="">{info.password}</p>
                 <h3 className="">Empresa</h3>
-                <p className="">{info.empresa}</p>
-                <h3 className="">Ubicación</h3>
-                <p className="">{info.place}</p>
+                <p className="">{info.name}</p>
             </div>
         )
     }

@@ -14,7 +14,7 @@ import SignUpCompany from './pages/SignUp/SignUpCompany';
 import SearchField from './components/SearchField/SearchField';
 import ParticularField from './components/ParticularField/ParticularField';
 import AdminHomePage from './pages/AdminViews/AdminHomePage';
-import SearchPlayer from './pages/AdminViews/SearchPlayer';
+
 
 
 
@@ -36,7 +36,6 @@ function Routing() {
                 <Route path="/registrar_jugador" element={<SignUpPlayer />} />
                 <Route path="/registrar_empresa" element={<SignUpCompany />} />
                 <Route path="/perfil_admin" element={<AdminHomePage />} />
-                <Route path="/buscar_jugador" element={<SearchPlayer />} />
             </Routes>
         </BrowserRouter>
     )

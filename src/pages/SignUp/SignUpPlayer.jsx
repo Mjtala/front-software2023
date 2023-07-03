@@ -7,24 +7,21 @@ import { useLocalStorage } from 'usehooks-ts'
 import config from '../../config'
 
 function SignUpPlayer() {
-
+    
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
-
+    const navigate = useNavigate();
+    
     const useForm = (initialData, onValidate) => {
         const [form, setForm] = useState(initialData);
         //const [loading, setLoading] = useState(false);  
         const [errors, setErrors] = useState({});
         const [readyToSendRequest, setReadyToSendRequest] = useState(false);
         const [data, setData] = useState("");
-
         const handleChange = (event) => {
             const { name, value } = event.target
             setForm({ ...form, [name]: value })
         }
-
-        console.log("BorrarEsteConsoloLog//userConnectedData", userConnectedData),
-            console.log("BorrarEsteConsoloLog//Connected?", connected)
 
         // el evento recibido es la acción de enviar
         const handleSubmit = (event) => {
@@ -34,44 +31,50 @@ function SignUpPlayer() {
             console.log(Object.keys(err).length);
             if (Object.keys(err).length === 0) {
                 console.log("Enviando formulario...")
-                setReadyToSendRequest(true)
                 setData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}` })
-                setUserConnectedData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}`, "type": `player`, "id": 32 })
-                setConnected(true)
+                setReadyToSendRequest(true)
             }
         }
         useEffect(() => {
-            if (connected) {
-                if (userConnectedData.type === 'company') {
-                    navigate("/perfil_empresa")
-                } 
-                if (userConnectedData.type === 'player') {
-                    navigate("/perfil_jugador")
-                }
-            }
-            if (readyToSendRequest) {
-                console.log("aca estamos en el signup")
-                axios.post(`${config.route}auth/signup`, form, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+            const sendData = async () => {
+                if (connected) {
+                    if (userConnectedData.type === 'owner') {
+                        navigate("/perfil_empresa");
+                    } else if (userConnectedData.type === 'player') {
+                        navigate("/perfil_jugador");
                     }
-                })
-                    .then(data => {
-                        console.log(data);
-                        console.log(data.body);
-                        if (data.success === "true") {
+                }
+                if (readyToSendRequest) {
+                    try {
+                        console.log("aca estamos en el signup");
+                        const response = await axios.post(`${config.route}auth/signup`, form, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        });
+                        console.log(response.data);
+                        console.log(response.data.body);
+                        if (response.data.message === "Created") {
+                            setUserConnectedData({ 
+                                name: form.name, 
+                                email: form.email, 
+                                password: form.password, 
+                                phone: form.phone, 
+                                type: `player`, 
+                                id: response.data['cookie'] })
+                            setConnected(true)
                             setForm(initialData);
-
                         }
-                        console.log("aca estamos AAAAA")
                         navigate(`/perfil_jugador`);
-                    })
-                    .catch(error => {
+                    } catch (error) {
                         console.error('Error:', error);
-                    });
-            }
-        }, [data, form.name, form.email, form.password, form.phone]);
+                    }
+                }
+            };
+
+            sendData();
+        }, [data,readyToSendRequest, connected, userConnectedData, form, initialData, navigate]);
 
         return { form, errors, handleChange, handleSubmit }
     }
@@ -119,7 +122,6 @@ function SignUpPlayer() {
 
     const { form, errors, handleChange, handleSubmit } = useForm(initialData, onValidate)
 
-    const navigate = useNavigate();
 
     return (
         <>

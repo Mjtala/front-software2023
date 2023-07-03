@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './HomeView.css';
-import ButtonChangePath from '../../components/buttons/ButtonChangePath'
+import ButtonChangePath from '../../components/Buttons/ButtonChangePath'
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from 'usehooks-ts'
 
@@ -17,7 +17,7 @@ function HomeView() {
       if (userConnectedData.type === 'player') {
         navigate("/perfil_jugador")
       }
-      if (userConnectedData.type === 'company') {
+      if (userConnectedData.type === 'owner') {
         navigate("/perfil_empresa")
       } 
     }

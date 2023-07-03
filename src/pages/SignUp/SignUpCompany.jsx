@@ -10,73 +10,75 @@ function SignUpCompany() {
 
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
-
+    const navigate = useNavigate();
     const useForm = (initialData, onValidate) => {
         const [form, setForm] = useState(initialData);
+        const [data, setData] = useState("");
         // const [loading, setLoading] = useState(false);
         const [errors, setErrors] = useState({});
         const [readyToSendRequest, setReadyToSendRequest] = useState(false);
-        const [data, setData] = useState("");
 
         const handleChange = (event) => {
             const { name, value } = event.target
             setForm({ ...form, [name]: value })
         }
-
-        console.log("Borrar", userConnectedData),
-            console.log("Borrar", connected)
-
         // el evento recibido es la acción de enviar
         const handleSubmit = (event) => {
-            event.preventDefault()  //evita que la página se recargue 
+            event.preventDefault()
             const err = onValidate(form)
             setErrors(err)
-            console.log(Object.keys(err).length);
             if (Object.keys(err).length === 0) {
                 console.log("Enviando formulario...")
+                setData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}` })
                 setReadyToSendRequest(true)
-                setData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}` })
-                //TODO: Falta cambiar id (id estatico)
-                setUserConnectedData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}`, "type": `company`, "id": 3 })
-                setConnected(true)
             }
         }
         useEffect(() => {
-            if (connected) {
-                if (userConnectedData.type === 'company') {
-                    navigate("/perfil_empresa")
-                } 
-                if (userConnectedData.type === 'player') {
-                    navigate("/perfil_jugador")
-                }
-            }
-            if (readyToSendRequest) {
-                try {
-
-                    console.log("aca estamos")
-                    const response = axios.post(`${config.route}auth/signup`, form, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        }
-                    })
-                    if (typeof response !== 'undefined') {
-                        const data = response.data
-                        if (data.success === "true") {
-                            setForm(initialData);
-                            
-                        }
-                        navigate(`/perfil_empresa`);
+            const sendRequest = async () => {
+                if (connected) {
+                    if (userConnectedData.type === 'owner') {
+                        navigate("/perfil_empresa");
+                    } else if (userConnectedData.type === 'player') {
+                        navigate("/perfil_jugador");
                     }
-                } catch (error) {
-                    console.log(error, "hay error");
                 }
-            }
+                if (readyToSendRequest) {
+                    try {
+                        const response = await axios.post(`${config.route}auth/signup`, form, {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        });
+                        console.log("response es", response);
+                        if (typeof response !== 'undefined') {
+                            const data_response = response.data;
+                            if (data_response.message === "Created") {
+                                setConnected(true);
+                                setUserConnectedData({
+                                    name: form.name,
+                                    email: form.email,
+                                    password: form.password,
+                                    phone: form.phone,
+                                    type: 'owner',
+                                    id: data_response['cookie']
+                                });
+                                setForm(initialData);
+                            }
+                            navigate(`/perfil_empresa`);
+                        }
+                    } catch (error) {
+                        console.log(error, "hay error");
+                    }
+                }
+            };
+        
+            sendRequest();
         }, [data, form.name, form.email, form.password, form.phone]);
-
         return { form, errors, handleChange, handleSubmit }
         // return { form, errors, loading, handleChange, handleSubmit }
     }
+
 
     const initialData = {
         name: '',
@@ -122,7 +124,7 @@ function SignUpCompany() {
     const { form, errors, handleChange, handleSubmit } = useForm(initialData, onValidate)
     // const { form, errors, loading, handleChange, handleSubmit } = useForm(initialData, onValidate)
 
-    const navigate = useNavigate();
+
 
     return (
         <>
