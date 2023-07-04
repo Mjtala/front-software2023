@@ -39,18 +39,16 @@ const CompanyFieldsModal = () => {
     }, [])
 
     function CreateMyFields(information) {
-        console.log(information)
         return (
-            <div className="">
+            <div key={information.id}>
                 <h2 className="fieldsTitles">{information.name}</h2>
                 <div className="labelinfo">
-                    <p className="">{information.price}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="registedplayer">{information.address}</p>
+                    {!information.price && <p className="registedplayer">Precio: Gratis</p>}
+                    {information.price && <p className="registedplayer">Precio: {information.price}</p>}
+                    <p className="registedplayer">Dirección: {information.address}</p>
                     <Link className='text-link' to={`/canchas/${information.id}`}>Ver cancha</Link>
                 </div>
-                    
+
             </div>
         )
     }

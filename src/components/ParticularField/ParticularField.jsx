@@ -3,18 +3,21 @@ import axios from "axios";
 import HoursTable from "../HoursTable/HoursTable";
 import "./ParticularField.css"
 import { useParams } from 'react-router-dom';
+import config from '../../config'
+import { useLocalStorage } from 'usehooks-ts';
 
 function ParticularField() {
 
     const params = useParams()
     const event_id = params.id
-    console.log(event_id)
+    const [userConnectedData] = useLocalStorage("UserInfo", null)
 
-    const [name, setName] = useState('')
-    const [information, setInformation] = useState('')
-    const [location, setLocation] = useState('')
-    const [price, setPrice] = useState('')
-    const [province, setProvince] = useState('')
+    const [formData, setFormData] = useState({
+        name: "", location: "", price: "", 
+        province: "",day: ''
+    })
+    console.log(formData)
+
     const [viewreservation, setViewReservation] = useState(false);
     const [day, setDay] = useState('')
     const [fields, setFields] = useState([]);
@@ -51,12 +54,15 @@ function ParticularField() {
 
     const getInfo = async () => {
         try {
-            const response = await axios.get(``)
-            setName(response.data.name)
-            setInformation(response.data.information)
-            setLocation(response.data.location)
-            setPrice(response.data.price)
-            setProvince(response.data.province)
+            const configaxios = {
+                headers: {
+                    "Authorization": userConnectedData.id,
+                    withCredentials: true
+                }
+            };
+            const url = `${config.route}enclousures/${event_id}` //TODO:
+            const response = await axios.get(url, configaxios)
+            setFormData(response.data)
         } catch (error) {
             console.log(error, "hay error");
         }
@@ -64,19 +70,19 @@ function ParticularField() {
 
     useEffect(() => {
         getInfo()
-    })
+    },[])
 
     return (
         <div className="MainDivParticularField">
             <div className="DivTitle">
-                <h1>{name}</h1>
+                <h1>{formData.name}</h1>
             </div>
 
             <div className="DivInformation">
-                <h4>Información: {information}</h4>
-                <h4>Dirección: {location}</h4>
-                <h4>Precio: {price}</h4>
-                <h4>Comuna: {province}</h4>
+                <h4>Dirección: {formData.address}</h4>
+                {!formData.price && <h4>Precio: Gratis</h4>}
+                {formData.price && <h4>Precio: {formData.price}</h4>}
+                <h4>Comuna: {formData.district}</h4>
             </div>
 
             <div className="MainDivForm">{formSend}</div>
