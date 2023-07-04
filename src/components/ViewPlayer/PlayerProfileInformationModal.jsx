@@ -19,6 +19,7 @@ const PlayerProfileInformationModal = () => {
             console.log( "userConnectedData",userConnectedData);
             const url = `${config.route}profile/info`
             const response = await axios.get(url, axiosConfiguration)
+            console.log(response.data)
             setInfo(response.data)
         } catch (error) {
             console.log(error, "hay error");
@@ -38,9 +39,7 @@ const PlayerProfileInformationModal = () => {
                 <h2 className="">Correo</h2>
                 <p className="">{info.email}</p>
                 <h2 className="">Teléfono</h2>
-                <p className="">{parseInt(info.phone)}</p>
-                <h2 className="">Contraseña</h2>
-                <p className="">{info.password}</p>
+                <p className="">{info.phonenumber}</p>
             </div>
         )
     }

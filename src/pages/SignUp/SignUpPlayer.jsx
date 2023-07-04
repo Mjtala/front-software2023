@@ -60,7 +60,7 @@ function SignUpPlayer() {
                                 name: form.name, 
                                 email: form.email, 
                                 password: form.password, 
-                                phone: form.phone, 
+                                phone: form.phonenumber, 
                                 type: `player`, 
                                 id: response.data['cookie'] })
                             setConnected(true)
@@ -111,10 +111,10 @@ function SignUpPlayer() {
         } else if (!regexPassword.test(form.password)) {
             errors.password = 'El campo "Contraseña" debe tener como mínimo 8 caracteres, 1 letra, 1 número y 1 caracter especial'
         }
-        if (!form.phone.trim()) {
-            errors.phone = 'El campo "Celular" no puede estar vacío'
-        } else if (!regexPhone.test(form.phone)) {
-            errors.phone = 'El campo "Celular" contiene un formato no válido'
+        if (!form.phonenumber.trim()) {
+            errors.phonenumber = 'El campo "Celular" no puede estar vacío'
+        } else if (!regexPhone.test(form.phonenumber)) {
+            errors.phonenumber = 'El campo "Celular" contiene un formato no válido'
         }
 
         return errors
@@ -150,10 +150,10 @@ function SignUpPlayer() {
                             </div>
                             {errors.password && <div className="error-control">{errors.password}</div>}
                             <div className="">
-                                <input type="phone" className="form-control" value={form.phone} onChange={handleChange}
-                                    placeholder="Celular" name="phone" />
+                                <input type="phonenumber" className="form-control" value={form.phonenumber} onChange={handleChange}
+                                    placeholder="Celular" name="phonenumber" />
                             </div>
-                            {errors.phone && <div className="error-control">{errors.phone}</div>}
+                            {errors.phonenumber && <div className="error-control">{errors.phonenumber}</div>}
 
                             <div className="boton-ingresar2" onClick={handleSubmit}>
                                 <button className="boton-inicio-registro" type="button">Crear Cuenta</button>
