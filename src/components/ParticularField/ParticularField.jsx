@@ -7,9 +7,10 @@ import { useParams } from 'react-router-dom';
 function ParticularField() {
 
     const params = useParams()
-    const event_name = params.name
+    const event_id = params.id
+    console.log(event_id)
 
-    const [name, setName] = useState(event_name)
+    const [name, setName] = useState('')
     const [information, setInformation] = useState('')
     const [location, setLocation] = useState('')
     const [price, setPrice] = useState('')

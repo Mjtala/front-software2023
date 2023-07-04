@@ -29,7 +29,7 @@ function Routing() {
                 <Route path="/perfil_jugador" element={<PlayerProfile />} />
                 <Route path="/perfil_empresa" element={<CompanyProfile />} />
                 <Route path={'/buscar_cancha'} element={<SearchField />} />
-                <Route path={"/canchas/:name"} element={<ParticularField />} />
+                <Route path={"/canchas/:id"} element={<ParticularField />} />
                 <Route path={"/editar_cancha/:id"} element={<EditField />} />
                 <Route path="/iniciar_sesion_jugador" element={<LoginPlayer />} />
                 <Route path="/iniciar_sesion_empresa" element={<LoginCompany />} />

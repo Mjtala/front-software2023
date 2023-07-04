@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import { useLocalStorage } from 'usehooks-ts';
+import { Link } from "react-router-dom";
 
 const CompanyFieldsModal = () => {
     const [userConnectedData] = useLocalStorage("UserInfo", null)
@@ -19,8 +20,9 @@ const CompanyFieldsModal = () => {
             const url = `${config.route}enclousures`
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
+            console.log(data)
             let list = []
-            const myfieldsfromback = data.favorites
+            const myfieldsfromback = response.data
             if (Array.isArray(myfieldsfromback) && myfieldsfromback.length > 0) {
                 for (let i = 0; i < myfieldsfromback.length; i++) {
                     list.push(CreateMyFields(myfieldsfromback[i]))
@@ -36,16 +38,19 @@ const CompanyFieldsModal = () => {
         getData()
     }, [])
 
-    function CreateMyFields(params) {
+    function CreateMyFields(information) {
+        console.log(information)
         return (
             <div className="">
-                <h2 className="fieldsTitles">{params.field_title}</h2>
+                <h2 className="fieldsTitles">{information.name}</h2>
                 <div className="labelinfo">
-                    <p className="">{params.price}</p>
+                    <p className="">{information.price}</p>
                 </div>
                 <div className="labelinfo">
-                    <p className="registedplayer">{params.place}</p>
+                    <p className="registedplayer">{information.address}</p>
+                    <Link className='text-link' to={`/canchas/${information.id}`}>Ver cancha</Link>
                 </div>
+                    
             </div>
         )
     }

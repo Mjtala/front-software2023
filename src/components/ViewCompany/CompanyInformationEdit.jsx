@@ -64,7 +64,7 @@ const CompanyProfileInformationEdit = () => {
                         </div>
 
                         <div>
-                            <button type="submit" className='botonsubmit' onClick={sentToApi}>Aceptar</button>
+                            <button type="submit" className='botonsubmit'>Aceptar</button>
                         </div>
 
                     </form>
