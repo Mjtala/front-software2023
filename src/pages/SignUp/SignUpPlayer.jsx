@@ -31,7 +31,7 @@ function SignUpPlayer() {
             console.log(Object.keys(err).length);
             if (Object.keys(err).length === 0) {
                 console.log("Enviando formulario...")
-                setData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phone": `${form.phone}` })
+                setData({ "name": `${form.name}`, "email": `${form.email}`, "password": `${form.password}`, "phonenumber": `${form.phonenumber}` })
                 setReadyToSendRequest(true)
             }
         }
@@ -60,7 +60,7 @@ function SignUpPlayer() {
                                 name: form.name, 
                                 email: form.email, 
                                 password: form.password, 
-                                phone: form.phone, 
+                                phonenumber: form.phonenumber, 
                                 type: `player`, 
                                 id: response.data['cookie'] })
                             setConnected(true)
@@ -83,7 +83,7 @@ function SignUpPlayer() {
         name: '',
         email: '',
         password: '',
-        phone: '',
+        phonenumber: '',
         type: 'player'
     }
 
@@ -93,7 +93,7 @@ function SignUpPlayer() {
         let regexname = /^[a-zA-Z0-9_-]{4,16}$/;  //letras, numeros, guion y guion bajo
         let regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
         let regexPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;  //Minimum 8 characters, at least 1 letter, 1 number and 1 special character
-        let regexPhone = /(\+56|56|)?(2|9)([0-9]){8}/;
+        let regexphonenumber = /(\+56|56|)?(2|9)([0-9]){8}/;
 
 
         if (!form.name.trim()) {
@@ -111,10 +111,10 @@ function SignUpPlayer() {
         } else if (!regexPassword.test(form.password)) {
             errors.password = 'El campo "Contraseña" debe tener como mínimo 8 caracteres, 1 letra, 1 número y 1 caracter especial'
         }
-        if (!form.phone.trim()) {
-            errors.phone = 'El campo "Celular" no puede estar vacío'
-        } else if (!regexPhone.test(form.phone)) {
-            errors.phone = 'El campo "Celular" contiene un formato no válido'
+        if (!form.phonenumber.trim()) {
+            errors.phonenumber = 'El campo "Celular" no puede estar vacío'
+        } else if (!regexphonenumber.test(form.phonenumber)) {
+            errors.phonenumber = 'El campo "Celular" contiene un formato no válido'
         }
 
         return errors
@@ -150,10 +150,10 @@ function SignUpPlayer() {
                             </div>
                             {errors.password && <div className="error-control">{errors.password}</div>}
                             <div className="">
-                                <input type="phone" className="form-control" value={form.phone} onChange={handleChange}
-                                    placeholder="Celular" name="phone" />
+                                <input type="phonenumber" className="form-control" value={form.phonenumber} onChange={handleChange}
+                                    placeholder="Celular" name="phonenumber" />
                             </div>
-                            {errors.phone && <div className="error-control">{errors.phone}</div>}
+                            {errors.phonenumber && <div className="error-control">{errors.phonenumber}</div>}
 
                             <div className="boton-ingresar2" onClick={handleSubmit}>
                                 <button className="boton-inicio-registro" type="button">Crear Cuenta</button>
