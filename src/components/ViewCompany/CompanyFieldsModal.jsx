@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const CompanyFieldsModal = () => {
     const [userConnectedData] = useLocalStorage("UserInfo", null)
-    const [myFields, setMyFields] = useState([1])
+    const [myFields, setMyFields] = useState([])
 
     const getData = async () => {
         try {
@@ -41,12 +41,18 @@ const CompanyFieldsModal = () => {
     function CreateMyFields(information) {
         return (
             <div key={information.id}>
-                <h2 className="fieldsTitles">{information.name}</h2>
+                <Link className='text-linkname' to={`/canchas/${information.id}`}>{information.name}</Link>
                 <div className="labelinfo">
-                    {!information.price && <p className="registedplayer">Precio: Gratis</p>}
-                    {information.price && <p className="registedplayer">Precio: {information.price}</p>}
-                    <p className="registedplayer">Dirección: {information.address}</p>
-                    <Link className='text-link' to={`/canchas/${information.id}`}>Ver cancha</Link>
+                    {!information.price && <p className="">Precio: Gratis</p>}
+                    {information.price && <p className="">Precio: {information.price}</p>}
+                    {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
+                    {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
+                    <p className="">Comuna: {information.district}</p>
+                    <p className="">Dirección: {information.address}</p>
+                    {!information.manager && <p className="">Encargado: Juan Pérez</p>}
+                    {information.manager && <p className="">Precio: {information.manager}</p>}
+
+                    <Link className='text-edit' to={`/editar_cancha/${information.id}`}>Editar Cancha</Link>
                 </div>
 
             </div>

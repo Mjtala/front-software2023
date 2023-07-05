@@ -32,12 +32,12 @@ const CompanyInformationModal = () => {
         return (
             <div className="">
                 <h2 className="">Información</h2>
+                <h3 className="">Empresa</h3>
+                <p className="">{info.name}</p>
                 <h3 className="">Correo</h3>
                 <p className="">{info.email}</p>
                 <h3 className="">Teléfono</h3>
                 <p className="">{info.phonenumber}</p>
-                <h3 className="">Empresa</h3>
-                <p className="">{info.name}</p>
             </div>
         )
     }

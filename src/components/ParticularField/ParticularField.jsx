@@ -43,7 +43,7 @@ function ParticularField() {
         <div className="MainDivForm">
             <form onSubmit={getHours}>
                 <div className="DivFormText">
-                    <label>
+                    <label className="Divselectday">
                         Seleccionar día:
                         <input className="dates" type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
                     </label>
@@ -79,10 +79,28 @@ function ParticularField() {
             </div>
 
             <div className="DivInformation">
-                <h4>Dirección: {formData.address}</h4>
-                {!formData.price && <h4>Precio: Gratis</h4>}
-                {formData.price && <h4>Precio: {formData.price}</h4>}
-                <h4>Comuna: {formData.district}</h4>
+                <li className="Divrowinformation">
+                    <h4>Dirección: </h4><p className="textinformation">{formData.address}</p>
+                </li>
+                <li className="Divrowinformation">
+                    <h4>Precio: </h4>
+                    {!formData.price && (<p className="textinformation">Gratis</p>)}
+                    {formData.price && (<p className="textinformation">{formData.price}</p>)}
+                </li>
+                <li className="Divrowinformation">
+                    <h4>Comuna: </h4><p className="textinformation">{formData.district}</p>
+                </li>
+                <li className="Divrowinformation">
+                    <h4>Máximo Jugadores: </h4>
+                    {!formData.maxplayers && (<p className="textinformation">10</p>)}
+                    {formData.maxplayers && (<p className="textinformation">{formData.maxplayers}</p>)}
+                </li>
+                <li className="Divrowinformation">
+                    <h4>Télefono de Contacto: </h4><p className="textinformation">{formData.phonenumber}</p>
+                </li>
+                <li className="Divrowinformation2">
+                    <h4>Correo de Contacto: </h4><p className="textinformation">{formData.email}</p>
+                </li>
             </div>
 
             <div className="MainDivForm">{formSend}</div>
