@@ -11,7 +11,7 @@ const PlayerProfileInformationEdit = () => {
         e.stopPropagation();
     }
     const [formData, setFormData] = useState({
-        name: "", lastname: "", email: "", password: "", phone: "", type: "player"
+        name: "", lastname: "", email: "", password: "", phonenumbernumber: "", type: "player"
     })
 
     const handleChange = (event) => {
@@ -65,7 +65,7 @@ const PlayerProfileInformationEdit = () => {
                         </div>
 
                         <div className="">
-                            <input type="text" name="phone" placeholder="Nuevo Celular" value={formData.phone} onChange={handleChange}></input>
+                            <input type="text" name="phonenumber" placeholder="Nuevo Celular" value={formData.phonenumber} onChange={handleChange}></input>
                         </div>
 
                         <div>
