@@ -50,7 +50,7 @@ const CompanyFieldsModal = () => {
                     <p className="">Comuna: {information.district}</p>
                     <p className="">Dirección: {information.address}</p>
                     {!information.manager && <p className="">Encargado: Juan Pérez</p>}
-                    {information.manager && <p className="">Precio: {information.manager}</p>}
+                    {information.manager && <p className="">Encargado: {information.manager}</p>}
 
                     <Link className='text-edit' to={`/editar_cancha/${information.id}`}>Editar Cancha</Link>
                 </div>
@@ -68,7 +68,13 @@ const CompanyFieldsModal = () => {
             <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <h1 className="fieldsTitles">Mis Canchas </h1>
-                    {myFields}
+                    {Array.isArray(myFields) && myFields.length > 0 ? (
+                        myFields
+                    ) : (
+                        <div className="">
+                            <p>No hay canchas creadas</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

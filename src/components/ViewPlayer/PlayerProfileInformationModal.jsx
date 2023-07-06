@@ -39,8 +39,6 @@ const PlayerProfileInformationModal = () => {
                 <p className="">{info.email}</p>
                 <h2 className="">Teléfono</h2>
                 <p className="">{(info.phonenumber)}</p>
-                <h2 className="">Contraseña</h2>
-                <p className="">{info.password}</p>
             </div>
         )
     }

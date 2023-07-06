@@ -31,13 +31,13 @@ const CompanyProfileInformationEdit = () => {
         try {
             const configaxios = {
                 headers: {
-                    "Authorization": userConnectedData,
+                    "Authorization": userConnectedData.id,
                     withCredentials: true
                 }
             };
             const body = formData
             console.log(formData)
-            const url = `${config.route}/profile/update/AjustarCuandoEsteLista` //TODO:
+            const url = `${config.route}profile/update` //TODO:
             console.log(url)
             const response = await axios.post(url, body,  configaxios)
             console.log(response.data, "response.data")

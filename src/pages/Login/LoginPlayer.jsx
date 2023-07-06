@@ -12,6 +12,7 @@ function LoginPlayer() {
 
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
+    const [validation, setValidation] = useState("");
 
     const [data, setData] = useState("");
     const [password, setPassword] = useState("");
@@ -29,7 +30,8 @@ function LoginPlayer() {
         setPassword(event.target.value);
     };
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
+        e.preventDefault();
         setData({ "email": `${email}`, "password": `${password}` });
     };
     
@@ -64,6 +66,7 @@ function LoginPlayer() {
                     }
                 } catch (error) {
                     console.error('Error:', error);
+                    setValidation("Correo/Contraseña Incorrecta")
                 }
             };
 
@@ -81,6 +84,7 @@ function LoginPlayer() {
 
                         <form className="formularioingreso">
                             <p className="tituloizq">Ingresa a tu cuenta Jugador</p>
+                            <div className="validatelogin">{validation}</div>
 
                             <div className="">
                                 <input type="email" className="form-email"

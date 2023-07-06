@@ -3,24 +3,26 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import { useLocalStorage } from 'usehooks-ts';
+import { Link } from "react-router-dom";
 
 const PlayerProfileMyBookings = () => {
     const [userConnectedData] = useLocalStorage("UserInfo", null)
-    const [bookings, setBookings] = useState([1])
+    const [bookings, setBookings] = useState("")
 
     const getData = async () => {
         try {
             const axiosConfiguration = {
                 headers: {
-                    "cookie": userConnectedData,
-                    withCredentials: true
+                    "Authorization": userConnectedData.id,
+                    withCredentials: true,
                 }
             };
-            const url = `${config.route}profile/info`
+            const url = `${config.route}player/getbookings`
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             let list = []
             const bookingsfromback = data.bookings
+            console.log(data)
             if (Array.isArray(bookingsfromback) && bookingsfromback.length > 0) {
                 for (let i = 0; i < bookingsfromback.length; i++) {
                     list.push(CreateMyBookings(bookingsfromback[i]))
@@ -37,29 +39,23 @@ const PlayerProfileMyBookings = () => {
         getData()
     }, [])
 
-    function CreateMyBookings(params) {
+    function CreateMyBookings(information) {
         return (
-            <div className="">
-                <h2 className="">Reserva {params.number}:</h2>
+            <div key={information.id}>
+                <Link className='text-linkname' to={`/canchas/${information.id}`}>{information.name}</Link>
                 <div className="labelinfo">
-                    <p className="">Precio: {params.price}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="">Lugar: {params.place}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="">Día: {params.date}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="">Hora: {params.time}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="registedplayer">Jugadores Inscritos: {params.players}</p>
+                    {!information.price && <p className="">Precio: Gratis</p>}
+                    {information.price && <p className="">Precio: {information.price}</p>}
+                    {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
+                    {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
+                    <p className="">Comuna: {information.district}</p>
+                    <p className="">Dirección: {information.address}</p>
+                    {!information.manager && <p className="">Encargado: Juan Pérez</p>}
+                    {information.manager && <p className="">Encargado: {information.manager}</p>}
                 </div>
             </div>
         )
     }
-
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
@@ -70,9 +66,18 @@ const PlayerProfileMyBookings = () => {
             <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <h1 className="">Reservas </h1>
-                    <div>
-                        {bookings}
-                    </div>
+
+                    <div className="MainDivListFields">
+                    {Array.isArray(bookings) && bookings.length > 0 ? (
+                        bookings
+                    ) : (
+                        <div className="">
+                            <p>No hay canchas reservadas</p>
+                        </div>
+                    )}
+
+            </div>
+
                 </div>
             </div>
         </div>

@@ -6,15 +6,17 @@ import { useLocalStorage } from 'usehooks-ts';
 const PlayerProfileInformationEdit = () => {
 
     const [userConnectedData] = useLocalStorage("UserInfo", null)
+    const [validation, setValidation] = useState("");
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
     }
     const [formData, setFormData] = useState({
-        name: "", lastname: "", email: "", password: "", phonenumbernumber: "", type: "player"
+        name: "", email: "", password: "", phone: "", type: "player"
     })
 
     const handleChange = (event) => {
+        setValidation("")
         const { name, value } = event.target;
         console.log(name, value)
         setFormData((prevData) => ({
@@ -23,20 +25,25 @@ const PlayerProfileInformationEdit = () => {
         }));
     };
 
-    const sentToApi = async () => {
+    const sentToApi = async (event) => {
+        event.preventDefault()
+        setValidation("Cambios realizados correctamente")
         try {
             const configaxios = {
                 headers: {
-                    "Authorization": userConnectedData,
+                    "Authorization": userConnectedData.id,
                     withCredentials: true
                 }
             };
-            const url = `${config.route}/profile/update` //TODO:
-            const response = await axios.get(url, configaxios)
+            const body = formData
+            console.log(formData)
+            const url = `${config.route}profile/update` //TODO:
+            console.log(url)
+            const response = await axios.post(url, body,  configaxios)
             console.log(response.data, "response.data")
         } catch (error) {
             console.log(error, "hay error");
-        }
+        }   
     }
 
     return (
@@ -45,29 +52,21 @@ const PlayerProfileInformationEdit = () => {
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
 
                     <h3 className="newFieldTitle">Editar Perfil</h3>
+                    <div className="ommited-text-perfildata"><p>(Campos vacíos se omitirán)</p></div>
+                    {validation && <div className="validation-control">{validation}</div>}
                     <form className="form" onSubmit={sentToApi}>
-
                         <div className="">
                             <input type="text" name="name" placeholder="Nuevo Nombre" value={formData.name} onChange={handleChange}></input>
                         </div>
-
                         <div className="">
-                            <input type="text" name="lastname" placeholder="Nuevo Apellido" value={formData.lastname} onChange={handleChange}></input>
+                            <input type="text" name="phone" placeholder="Nuevo Celular" value={formData.phonenumber} onChange={handleChange}></input>
                         </div>
-
-
                         <div className="">
-                            <input type="text" name="email" placeholder="Nuevo Email" value={formData.email} onChange={handleChange}></input>
+                            <input type="text" name="email" placeholder="Nuevo Correo" value={formData.email} onChange={handleChange}></input>
                         </div>
-
-                        <div className="">
-                            <input type="text" name="password" placeholder="Nueva Contraseña" value={formData.password} onChange={handleChange}></input>
+                        <div className="passwordtext">
+                            <input type="text" name="password" placeholder="Nuevo Contraseña" value={formData.password} onChange={handleChange}></input>
                         </div>
-
-                        <div className="">
-                            <input type="text" name="phonenumber" placeholder="Nuevo Celular" value={formData.phonenumber} onChange={handleChange}></input>
-                        </div>
-
                         <div>
                             <button type="submit" className='botonsubmit' onClick={sentToApi}>Aceptar</button>
                         </div>
@@ -79,6 +78,7 @@ const PlayerProfileInformationEdit = () => {
         </div>
     )
 }
+
 
 
 export default PlayerProfileInformationEdit

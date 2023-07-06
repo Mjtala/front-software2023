@@ -1,12 +1,19 @@
 import React, {useEffect, useState } from "react";
 import axios from 'axios';
 import "./SearchField.css"
+import { useNavigate } from 'react-router-dom';
 
 function SearchField() {
 
     const [formData, setFormData] = useState({ page: 0, fields: 5 })
     const [errorhook, setError] = useState('')
     const [fields_shown, setFields] = useState([])
+    const navigate = useNavigate();
+
+
+    const myfields = () => {
+        navigate("/")
+    }
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -66,7 +73,6 @@ function SearchField() {
             </div>
 
             {formSend}
-
             <div className="MainDivListFields">
                 {Array.isArray(fields_shown) && fields_shown.length > 0 ? (
                     fields_shown.map(r => {
@@ -81,7 +87,11 @@ function SearchField() {
                         <p>No hay canchas que mostrar</p>
                     </div>
                 )}
+
             </div>
+            <div className="DivTitleBack">
+                <button type="" className='botonsubmit' onClick={myfields}>Volver</button>
+                </div>
         </div>
 
     )
