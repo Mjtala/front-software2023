@@ -39,7 +39,7 @@ const CompanyProfileInformationEdit = () => {
             console.log(formData)
             const url = `${config.route}profile/update` //TODO:
             console.log(url)
-            const response = await axios.post(url, body,  configaxios)
+            const response = await axios.put(url, body,  configaxios)
             console.log(response.data, "response.data")
         } catch (error) {
             console.log(error, "hay error");
