@@ -66,7 +66,8 @@ function LoginPlayer() {
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    setValidation("Correo/Contraseña Incorrecta")
+                    setValidation("Credenciales Inválidas")
+                    setData("")
                 }
             };
 

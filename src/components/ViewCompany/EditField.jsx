@@ -54,6 +54,7 @@ const ModalEditField = () => {
     const handleChange = (event) => {
         const { name, value } = event.target;
         console.log(name, value)
+        setValidation("")
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -61,7 +62,7 @@ const ModalEditField = () => {
     };
     const sentToApi = async (event) => {
         event.preventDefault()
-        setValidation("Cancha creada correctamente")
+        setValidation("Cancha editada correctamente")
         try {
             const configaxios = {
                 headers: {
@@ -112,10 +113,10 @@ const ModalEditField = () => {
                             <input type="text" name="price" placeholder="Precio" value={formData.price} onChange={handleChange}></input>
                         </div>
                         <div>
-                            <button type="submit" className='botonsubmit' onClick={sentToApi}>Subir</button>
+                            <button type="submit" className='botonsubmit' onClick={sentToApi}>Aceptar</button>
                         </div>
                         <div>
-                            <button type="" className='botonsubmit' onClick={myfields}>Volver</button>
+                            <button type="backeditbutton" className='botonsubmit' onClick={myfields}>Volver</button>
                         </div>
 
                 </form>

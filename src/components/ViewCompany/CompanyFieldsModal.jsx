@@ -52,7 +52,7 @@ const CompanyFieldsModal = () => {
                     {!information.manager && <p className="">Encargado: Juan Pérez</p>}
                     {information.manager && <p className="">Encargado: {information.manager}</p>}
 
-                    <Link className='text-edit' to={`/editar_cancha/${information.id}`}>Editar Cancha</Link>
+                    <Link className='text-edit' to={`/editar_cancha/${information.id}`}>Editar Ajustes</Link>
                 </div>
 
             </div>

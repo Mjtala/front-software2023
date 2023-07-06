@@ -47,7 +47,7 @@ const PlayerProfileInformationEdit = () => {
     }
 
     return (
-        <div className="companyinfomodal">
+        <div className="playerinfomodaledit">
             <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
 

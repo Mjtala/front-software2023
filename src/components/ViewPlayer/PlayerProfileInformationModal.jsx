@@ -48,9 +48,9 @@ const PlayerProfileInformationModal = () => {
     }
 
     return (
-        <div className="modalinfo">
+        <div className="playerinfomodal">
             <div className="" >
-                <div className="modal__dialog" onClick={handleModalDialogClick}>
+                <div className="modal__dialogvar" onClick={handleModalDialogClick}>
                     <div>
                         {getInfoPlayer()}
                     </div>

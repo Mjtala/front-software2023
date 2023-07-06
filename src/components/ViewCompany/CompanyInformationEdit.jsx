@@ -47,7 +47,7 @@ const CompanyProfileInformationEdit = () => {
     }
 
     return (
-        <div className="companyinfomodal">
+        <div className="companyinfomodaledit">
             <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
 
@@ -55,16 +55,16 @@ const CompanyProfileInformationEdit = () => {
                     <div className="ommited-text-perfildata"><p>(Campos vacíos se omitirán)</p></div>
                     {validation && <div className="validation-control">{validation}</div>}
                     <form className="form" onSubmit={sentToApi}>
-                        <div className="">
+                        <div className="editlabel">
                             <input type="text" name="name" placeholder="Nuevo Nombre" value={formData.name} onChange={handleChange}></input>
                         </div>
-                        <div className="">
+                        <div className="editlabel">
                             <input type="text" name="phone" placeholder="Nuevo Celular" value={formData.phonenumber} onChange={handleChange}></input>
                         </div>
-                        <div className="">
+                        <div className="editlabel">
                             <input type="text" name="email" placeholder="Nuevo Correo" value={formData.email} onChange={handleChange}></input>
                         </div>
-                        <div className="passwordtext">
+                        <div className="editlabel">
                             <input type="text" name="password" placeholder="Nuevo Contraseña" value={formData.password} onChange={handleChange}></input>
                         </div>
                         <div>
