@@ -17,7 +17,7 @@ const CompanyInformation = () => {
                     withCredentials: true
                 }
             };
-            const url = `${config.route}enclousures`
+            const url = `${config.route}users/companysadmin` //RUTA DEL BACK HECHA A MANO 777
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             console.log(data)
@@ -40,9 +40,14 @@ const CompanyInformation = () => {
 
     function CreateCompanies(information) {
         return (
-            <div key={information.id}>
-
+            <div className='admininfo'>
+                <div key={information.id}>
+                <p className="">Nombre: {information.name}</p>
+                {!information.phonenumber && <p className="">Celular de Contacto: No tiene Número</p>}
+                {information.phonenumber && <p className="">Celular de Contacto: {information.phonenumber}</p>}
+            </div> 
             </div>
+
         )
     }
 
@@ -53,7 +58,7 @@ const CompanyInformation = () => {
     return (
         <div className="favoriteModal">
             <div className="">
-                <div className="modal__dialog" onClick={handleModalDialogClick}>
+                <div className="" onClick={handleModalDialogClick}>
                     <h1 className="fieldsTitles">Empresas en la plataforma </h1>
                     {Array.isArray(Companies) && Companies.length > 0 ? (
                         Companies

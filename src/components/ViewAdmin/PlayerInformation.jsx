@@ -16,7 +16,7 @@ const PlayerInformation = () => {
                     withCredentials: true
                 }
             };
-            const url = `${config.route}//AJUSTAR_RUTA` //RUTA DEL BACK 777
+            const url = `${config.route}users/playersadmin` //RUTA DEL BACK HECHA A MANO 777
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             console.log(data)
@@ -39,9 +39,15 @@ const PlayerInformation = () => {
 
     function CreatePlayers(information) {
         return (
-            <div key={information.id}>
+            <div className='admininfo'>
 
+            
+            <div key={information.id}>
+                    <p className="">Nombre: {information.name}</p>
+                    {!information.phonenumber && <p className="">Celular de Contacto: No tiene Número</p>}
+                    {information.phonenumber && <p className="">Celular de Contacto: {information.phonenumber}</p>}
             </div>
+             </div>
         )
     }
 
@@ -52,7 +58,7 @@ const PlayerInformation = () => {
     return (
         <div className="favoriteModal">
             <div className="">
-                <div className="modal__dialog" onClick={handleModalDialogClick}>
+                <div className="" onClick={handleModalDialogClick}>
                     <h1 className="fieldsTitles">Jugadores en la plataforma </h1>
                     {Array.isArray(Players) && Players.length > 0 ? (
                         Players
