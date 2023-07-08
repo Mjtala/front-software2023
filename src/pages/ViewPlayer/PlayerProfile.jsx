@@ -49,7 +49,7 @@ export default function PlayerProfile() {
     }
 
     return <div>
-        <div className="profiletable">
+        <div className="profileTable">
             <div className="team">
                 <button className='itemprofile' onClick={openPlayerInformationModal}>Mi Información</button>
                 <button className='itemprofile' onClick={openPlayerInformationEdit}>Editar Perfil</button>

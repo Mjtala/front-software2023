@@ -21,7 +21,6 @@ nav {
   font-weight: 800;
   color: rgb(255, 255, 255);
   font-family: monospace;
-
 }
 #navbar {
   display: flex;
@@ -71,4 +70,24 @@ a {
   left: 20px;
   font-family: monospace;
 
+}
+
+.text-link-button{
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(7, 7, 7);
+  transition: 0.3s ease-in-out;
+  font-family: monospace;
+  margin-right: 15%;
+  background: transparent;
+  border: 0px solid #0099CC;
+}
+
+.text-link-button:hover {
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: rgb(255, 255, 255);
+  font-family: monospace;
 }

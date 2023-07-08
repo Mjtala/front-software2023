@@ -11,6 +11,7 @@ function LoginCompany() {
 
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
+    const [validation, setValidation] = useState("");
 
     console.log("Borrar", userConnectedData),
         console.log("BorrarLoginCOmpany", connected)
@@ -22,12 +23,15 @@ function LoginCompany() {
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
+        setValidation("");
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setValidation("");
     };
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
+        e.preventDefault();
         setData({ "email": `${email}`, "password": `${password}` });
     };
     useEffect(() => {
@@ -56,6 +60,8 @@ function LoginCompany() {
                     navigate(`/perfil_empresa`);
                 } catch (error) {
                     console.error('Error:', error);
+                    setValidation("Credenciales Inválidas")
+                    setData("")
                 }
             }
         };
@@ -74,6 +80,8 @@ function LoginCompany() {
 
                         <form className="formularioingreso">
                             <p className="tituloizq">Ingresa a tu cuenta Empresa</p>
+
+                            <div className="validatelogin">{validation}</div>
 
                             <div className="">
                                 <input type="email" className="form-email"

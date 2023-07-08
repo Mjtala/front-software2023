@@ -12,6 +12,7 @@ function LoginPlayer() {
 
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
+    const [validation, setValidation] = useState("");
 
     const [data, setData] = useState("");
     const [password, setPassword] = useState("");
@@ -23,13 +24,16 @@ function LoginPlayer() {
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
+        setValidation("");
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setValidation("");
     };
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
+        e.preventDefault();
         setData({ "email": `${email}`, "password": `${password}` });
     };
     
@@ -64,6 +68,8 @@ function LoginPlayer() {
                     }
                 } catch (error) {
                     console.error('Error:', error);
+                    setValidation("Credenciales Inválidas")
+                    setData("")
                 }
             };
 
@@ -81,6 +87,7 @@ function LoginPlayer() {
 
                         <form className="formularioingreso">
                             <p className="tituloizq">Ingresa a tu cuenta Jugador</p>
+                            <div className="validatelogin">{validation}</div>
 
                             <div className="">
                                 <input type="email" className="form-email"

@@ -38,9 +38,7 @@ const PlayerProfileInformationModal = () => {
                 <h2 className="">Correo</h2>
                 <p className="">{info.email}</p>
                 <h2 className="">Teléfono</h2>
-                <p className="">{parseInt(info.phone)}</p>
-                <h2 className="">Contraseña</h2>
-                <p className="">{info.password}</p>
+                <p className="">{(info.phonenumber)}</p>
             </div>
         )
     }
@@ -50,9 +48,9 @@ const PlayerProfileInformationModal = () => {
     }
 
     return (
-        <div className="modalinfo">
+        <div className="playerinfomodal">
             <div className="" >
-                <div className="modal__dialog" onClick={handleModalDialogClick}>
+                <div className="modal__dialogvar" onClick={handleModalDialogClick}>
                     <div>
                         {getInfoPlayer()}
                     </div>

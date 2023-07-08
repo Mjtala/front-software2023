@@ -3,63 +3,106 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import { useLocalStorage } from 'usehooks-ts';
+import { Link } from "react-router-dom";
+import {bookingsMock} from '../../mocks/booking';
+import Modal from './PlayerProfileRateBookings';
+
 
 const PlayerProfileMyBookings = () => {
-    const [userConnectedData] = useLocalStorage("UserInfo", null)
-    const [bookings, setBookings] = useState([1])
+    const [userConnectedData] = useLocalStorage("UserInfo", null);
+    const [bookings, setBookings] = useState("");
+    const [modal, setModal] = useState(false);
 
     const getData = async () => {
         try {
             const axiosConfiguration = {
                 headers: {
-                    "cookie": userConnectedData,
-                    withCredentials: true
+                    "Authorization": userConnectedData.id,
+                    withCredentials: true,
                 }
             };
-            const url = `${config.route}profile/info`
+            const url = `${config.route}bookings/`
             const response = await axios.get(url, axiosConfiguration)
-            let data = response.data
+            let bookingsfromback = response.data
+            console.log("RESPONSE RESPONSE:", response)
             let list = []
-            const bookingsfromback = data.bookings
+            console.log("BOOKINGFROMBACK:", bookingsfromback.length)
+            console.log("ARRAY:", Array.isArray(bookingsfromback))
             if (Array.isArray(bookingsfromback) && bookingsfromback.length > 0) {
                 for (let i = 0; i < bookingsfromback.length; i++) {
                     list.push(CreateMyBookings(bookingsfromback[i]))
                 }
             }
 
+            for (let i = 0; i < bookingsMock.length; i++) {
+                console.log(bookingsMock[i])
+                list.push(CreateMyBookings(bookingsMock[i]))
+            }
+
             setBookings(list)
+
         } catch (error) {
             console.log(error, "hay error");
         }
     }
 
+
+    const handleCancelBooking = async (id) => {
+        console.log(id)
+
+        try {
+            const axiosConfiguration = {
+                headers: {
+                    "Authorization": userConnectedData.id,
+                    withCredentials: true,
+                }
+            };
+            const url = `${config.route}player/booking/:${id}`
+            const response = await axios.delete(url, axiosConfiguration)
+
+            let data = response.data
+            console.log(data)
+
+            console.log("BOOKING:", bookings)
+
+        } catch (error) {
+            console.log(error, "hay error");
+        }
+    }
+
+
+    useEffect(() => {
+        console.log(modal);
+      }, [modal]);
+
     useEffect(() => {
         getData()
     }, [])
 
-    function CreateMyBookings(params) {
+
+    function CreateMyBookings(information) {
+        console.log("INFO:")
+        console.log(information.date)
         return (
-            <div className="">
-                <h2 className="">Reserva {params.number}:</h2>
+            <div key={information.id}>
                 <div className="labelinfo">
-                    <p className="">Precio: {params.price}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="">Lugar: {params.place}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="">Día: {params.date}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="">Hora: {params.time}</p>
-                </div>
-                <div className="labelinfo">
-                    <p className="registedplayer">Jugadores Inscritos: {params.players}</p>
+                    <p className="">Nombre: {information.name}</p>
+                    <p className="">Comuna: {information.district}</p>
+                    <p className="">Dirección: {information.address}</p>
+                    {!information.manager && <p className="">Encargado: Juan Pérez</p>}
+                    {information.manager && <p className="">Encargado: {information.manager}</p>}
+                    {!information.price && <p className="">Precio: Gratis</p>}
+                    {information.price && <p className="">Precio: {information.price}</p>}
+                    {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
+                    {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
+                    <button onClick={() => handleCancelBooking(information.id)}> Eliminar reserva </button>
+                    <div>
+                        <button onClick={() => setModal(true)}> Calificar </button>
+                    </div>      
                 </div>
             </div>
         )
     }
-
 
     const handleModalDialogClick = (e) => {
         e.stopPropagation();
@@ -70,9 +113,19 @@ const PlayerProfileMyBookings = () => {
             <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
                     <h1 className="">Reservas </h1>
-                    <div>
-                        {bookings}
-                    </div>
+
+                    <div className="MainDivListFields">
+                    {modal===true&&(<Modal setModal={setModal}> </Modal>)}
+                    {Array.isArray(bookings) && bookings.length > 0 ? (
+                        bookings
+                    ) : (
+                        <div className="">
+                            <p>No hay canchas reservadas</p>
+                        </div>
+                    )}
+
+            </div>
+
                 </div>
             </div>
         </div>

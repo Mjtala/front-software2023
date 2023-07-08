@@ -22,8 +22,8 @@ function NavBar() {
           <ul id="navbar">
             {!connected && <Link className='text-link' to="/elegir_usuario">LogIn</Link>}
             {!connected && <Link className='text-link' to="/elegir_cuenta">SignUp</Link>}
-            {connected && <Link className='text-link' to="/perfil_jugador">Mi perfil</Link>}
-            {connected && <button className='text-link' onClick={handleLogout}>Logout</button>}
+            {connected && <Link className='text-link' to="/">Mi perfil</Link>}
+            {connected && <button className='text-link-button' onClick={handleLogout}>Logout</button>}
           </ul>
         </div>
 
