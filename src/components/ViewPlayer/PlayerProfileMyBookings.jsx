@@ -3,10 +3,15 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import { useLocalStorage } from 'usehooks-ts';
+import { Link } from "react-router-dom";
+import {bookingsMock} from '../../mocks/booking';
+import Modal from './PlayerProfileRateBookings';
+
 
 const PlayerProfileMyBookings = () => {
-    const [userConnectedData] = useLocalStorage("UserInfo", null)
-    const [bookings, setBookings] = useState("")
+    const [userConnectedData] = useLocalStorage("UserInfo", null);
+    const [bookings, setBookings] = useState("");
+    const [modal, setModal] = useState(false);
 
     const getData = async () => {
         try {
@@ -29,16 +34,51 @@ const PlayerProfileMyBookings = () => {
                 }
             }
 
+            for (let i = 0; i < bookingsMock.length; i++) {
+                console.log(bookingsMock[i])
+                list.push(CreateMyBookings(bookingsMock[i]))
+            }
+
             setBookings(list)
-            console.log("BOOKING:", bookings)
+
         } catch (error) {
             console.log(error, "hay error");
         }
     }
 
+
+    const handleCancelBooking = async (id) => {
+        console.log(id)
+
+        try {
+            const axiosConfiguration = {
+                headers: {
+                    "Authorization": userConnectedData.id,
+                    withCredentials: true,
+                }
+            };
+            const url = `${config.route}player/booking/:${id}`
+            const response = await axios.delete(url, axiosConfiguration)
+
+            let data = response.data
+            console.log(data)
+
+            console.log("BOOKING:", bookings)
+
+        } catch (error) {
+            console.log(error, "hay error");
+        }
+    }
+
+
+    useEffect(() => {
+        console.log(modal);
+      }, [modal]);
+
     useEffect(() => {
         getData()
     }, [])
+
 
     function CreateMyBookings(information) {
         console.log("INFO:")
@@ -55,7 +95,10 @@ const PlayerProfileMyBookings = () => {
                     {information.price && <p className="">Precio: {information.price}</p>}
                     {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
                     {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
-
+                    <button onClick={() => handleCancelBooking(information.id)}> Eliminar reserva </button>
+                    <div>
+                        <button onClick={() => setModal(true)}> Calificar </button>
+                    </div>      
                 </div>
             </div>
         )
@@ -72,6 +115,7 @@ const PlayerProfileMyBookings = () => {
                     <h1 className="">Reservas </h1>
 
                     <div className="MainDivListFields">
+                    {modal===true&&(<Modal setModal={setModal}> </Modal>)}
                     {Array.isArray(bookings) && bookings.length > 0 ? (
                         bookings
                     ) : (
