@@ -24,10 +24,12 @@ function LoginPlayer() {
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
+        setValidation("");
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setValidation("");
     };
 
     const handleButtonClick = (e) => {
@@ -66,7 +68,8 @@ function LoginPlayer() {
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    setValidation("Correo/Contraseña Incorrecta")
+                    setValidation("Credenciales Inválidas")
+                    setData("")
                 }
             };
 

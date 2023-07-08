@@ -9,6 +9,9 @@ const ModalEditField = () => {
     const params = useParams()
     const event_id = params.id
     const [userConnectedData] = useLocalStorage("UserInfo", null)
+    const [errors, setErrors] = useState({name: "", address: "", district: "", maxplayers: "", manager: "",
+    phonenumber: "", price: ""
+    });
     const [validation, setValidation] = useState("");
     const navigate = useNavigate();
     
@@ -54,6 +57,7 @@ const ModalEditField = () => {
     const handleChange = (event) => {
         const { name, value } = event.target;
         console.log(name, value)
+        setValidation("")
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -61,24 +65,56 @@ const ModalEditField = () => {
     };
     const sentToApi = async (event) => {
         event.preventDefault()
-        setValidation("Cancha creada correctamente")
-        try {
-            const configaxios = {
-                headers: {
-                    "Authorization": userConnectedData.id,
-                    withCredentials: true
-                }
-            };
-            const body = formData
-            console.log(formData)
-            const url = `${config.route}enclousures/update` //TODO:
-            console.log(url)
-            const response = await axios.post(url, body,  configaxios)
-            console.log(response.data, "response.data")
-        } catch (error) {
-            console.log(error, "hay error");
-        }  
+        const err = onValidate(formData)
+        setErrors(err)
+        setValidation("")
+        if (Object.keys(err).length === 0) {
+            setValidation("Cancha editada correctamente")
+            try {
+                const configaxios = {
+                    headers: {
+                        "Authorization": userConnectedData.id,
+                        withCredentials: true
+                    }
+                };
+                const body = formData
+                console.log(formData)
+                const url = `${config.route}enclousures/${event_id}` //TODO:
+                console.log(url)
+                const response = await axios.put(url, body,  configaxios)
+                console.log(response.data, "response.data")
+            } catch (error) {
+                console.log(error, "hay error");
+            }  
     }
+    }
+
+    const onValidate = (form) => {
+        // que los campos no vengan vacíos
+        let errors = {}
+        //let regexprice = /(\([0-9])/;
+        //let regexmaxplayers = /(\([0-9])/;
+        let regexphonenumber = /(\+56|56|)?(2|9)([0-9]){8}/;
+
+        if (form.price) {
+            if (isNaN(form.price)) {
+                errors.price = 'El campo "Precio" debe ser un número'
+            } 
+        }
+        if (form.maxplayers) {
+            if (isNaN(form.maxplayers)) {
+                errors.maxplayers = 'El campo "Cantidad de Jugadores" debe ser un número'
+            }            
+        }
+        if (form.phonenumber) {
+            if (!regexphonenumber.test(form.phonenumber)) {
+                errors.phonenumber = 'El campo "Celular" contiene un formato no válido'
+            }            
+        }
+
+        return errors
+    }
+
 
     return (
         <div className="fieldedit">
@@ -99,23 +135,26 @@ const ModalEditField = () => {
                         <div className="">
                             <input type="text" name="district" placeholder="Comuna" value={formData.district} onChange={handleChange}></input>
                         </div>
+                        {errors.maxplayers && <div className="error-control">{errors.maxplayers}</div>}
                         <div className="">
                             <input type="text" name="maxplayers" placeholder="Cantidad de Jugadores" value={formData.maxplayers} onChange={handleChange}></input>
                         </div>
                         <div className="">
                             <input type="text" name="manager" placeholder="Encargado/a" value={formData.manager} onChange={handleChange}></input>
                         </div>
+                        {errors.phonenumber && <div className="error-control">{errors.phonenumber}</div>}
                         <div className="">
                             <input type="text" name="phonenumber" placeholder="Télefono Contacto" value={formData.phonenumber} onChange={handleChange}></input>
                         </div>
+                        {errors.price && <div className="error-control">{errors.price}</div>}
                         <div className="">
                             <input type="text" name="price" placeholder="Precio" value={formData.price} onChange={handleChange}></input>
                         </div>
                         <div>
-                            <button type="submit" className='botonsubmit' onClick={sentToApi}>Subir</button>
+                            <button type="submit" className='botonsubmit' onClick={sentToApi}>Aceptar</button>
                         </div>
                         <div>
-                            <button type="" className='botonsubmit' onClick={myfields}>Volver</button>
+                            <button type="backeditbutton" className='botonsubmit' onClick={myfields}>Volver</button>
                         </div>
 
                 </form>

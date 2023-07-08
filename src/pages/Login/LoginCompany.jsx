@@ -23,10 +23,12 @@ function LoginCompany() {
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
+        setValidation("");
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setValidation("");
     };
     const handleButtonClick = (e) => {
         e.preventDefault();
@@ -58,7 +60,8 @@ function LoginCompany() {
                     navigate(`/perfil_empresa`);
                 } catch (error) {
                     console.error('Error:', error);
-                    setValidation("Correo/Contraseña Incorrecta")
+                    setValidation("Credenciales Inválidas")
+                    setData("")
                 }
             }
         };

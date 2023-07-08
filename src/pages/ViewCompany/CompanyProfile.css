@@ -9,7 +9,7 @@
     border-radius: 25px;
 
     margin: 100px;
-    margin-top: 150px;
+    margin-top: 110px;
     margin-right: 500px;
     margin-left: 500px;
 
@@ -78,7 +78,39 @@
     padding-right: 75px;
     margin: 40px;
     height: 400px;
-    width: 200px;
+    width: 300px;
+    overflow-y: auto;
+}
+
+.companyinfomodaledit {
+    background-color: rgb(225,225,225);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(225,225,225);
+
+    border-radius: 50px;
+    padding: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin: 40px;
+    height: 400px;
+    width: 300px;
+    overflow-y: auto;
+}
+
+.companyuploadfieldmodal {
+    background-color: rgb(225,225,225);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(225,225,225);
+
+    border-radius: 50px;
+    padding: 20px;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin: 40px;
+    height: 400px;
+    width: 300px;
     overflow-y: auto;
 }
 
@@ -94,9 +126,30 @@
     padding-right: 75px;
     margin: 40px;
     height: 400px;
-    width: 200px;
+    width: 300px;
     overflow-y: auto;
 }
+
+.fieldedit {
+    background-color: rgb(225,225,225);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(225,225,225);
+
+    border-radius: 50px;
+    padding: 20px;
+    padding-left: 95px;
+    padding-right: 95px;
+    padding-bottom: 50px;
+    margin-top: 60px;
+    margin-right: 500px;
+    margin-left: 670px;
+
+    height: 550px;
+    width: 300px;
+    overflow-y: auto;
+}
+
 
 .fieldsTitles {
     font-size: 18px;
@@ -132,10 +185,16 @@
 .form{
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 20px;
-    height: 400px;
+    height: 300px;
     width: 200px;
+    text-align: center;
+}
+
+.modal__dialog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .botonsubmit{
@@ -207,7 +266,7 @@
 .text-edit{
     text-decoration: none;
     font-size: large;
-    color: black;
+    color: rgb(55, 55, 55);
     transition: 0.3s ease-in-out;
     font-family: monospace;
     margin-right: 15%;
@@ -230,4 +289,10 @@
 .ommited-text-perfildata{
     text-align: center;
     font-size: small;
+    margin-top: -15px;
+    margin-bottom: 10px;
+}
+
+.editlabel {
+    margin-bottom: 10px;
 }

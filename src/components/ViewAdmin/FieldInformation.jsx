@@ -3,9 +3,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import { useLocalStorage } from 'usehooks-ts';
-import { Link } from "react-router-dom";
 
-const CompanyFieldsModal = () => {
+const FieldInformation = () => {
     const [userConnectedData] = useLocalStorage("UserInfo", null)
     const [myFields, setMyFields] = useState([])
 
@@ -17,7 +16,7 @@ const CompanyFieldsModal = () => {
                     withCredentials: true
                 }
             };
-            const url = `${config.route}enclousures`
+            const url = `${config.route}users/fieldsadmin` ////RUTA DEL BACK HECHA A MANO 777
             const response = await axios.get(url, axiosConfiguration)
             let data = response.data
             console.log(data)
@@ -40,21 +39,16 @@ const CompanyFieldsModal = () => {
 
     function CreateMyFields(information) {
         return (
+            <div className='admininfo'>
+
             <div key={information.id}>
-                <Link className='text-linkname' to={`/canchas/${information.id}`}>{information.name}</Link>
-                <div className="labelinfo">
-                    <p className="">Comuna: {information.district}</p>
-                    <p className="">Dirección: {information.address}</p>
-                    {!information.manager && <p className="">Encargado: Juan Pérez</p>}
-                    {information.manager && <p className="">Encargado: {information.manager}</p>}
-                    {!information.price && <p className="">Precio: Gratis</p>}
-                    {information.price && <p className="">Precio: {information.price}</p>}
-                    {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
-                    {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
+                <p className="">Nombre: {information.name}</p>
+                {!information.manager && <p className="">Encargado: Juan Pérez</p>}
+                {information.manager && <p className="">Encargado: {information.manager}</p>}
 
-                    <Link className='text-edit' to={`/editar_cancha/${information.id}`}>Editar Ajustes</Link>
-                </div>
-
+                {!information.phonenumber && <p className="">Contacto: No tiene Número</p>}
+                {information.phonenumber && <p className="">Télefono de Contacto: {information.phonenumber}</p>}
+            </div>
             </div>
         )
     }
@@ -66,13 +60,14 @@ const CompanyFieldsModal = () => {
     return (
         <div className="favoriteModal">
             <div className="">
-                <div className="modal__dialog" onClick={handleModalDialogClick}>
-                    <h1 className="fieldsTitles">Mis Canchas </h1>
+                <div className="" onClick={handleModalDialogClick}>
+                    <h1 className="fieldsTitles">Canchas en la plataforma </h1>
                     {Array.isArray(myFields) && myFields.length > 0 ? (
                         myFields
                     ) : (
                         <div className="">
-                            <p>No hay canchas creadas</p>
+                            <p>No existen canchas</p>
+                            <p>RECORDATORIO: NO EXISTE RUTA EN EL BACK</p>
                         </div>
                     )}
                 </div>
@@ -81,4 +76,4 @@ const CompanyFieldsModal = () => {
     )
 }
 
-export default CompanyFieldsModal
+export default FieldInformation

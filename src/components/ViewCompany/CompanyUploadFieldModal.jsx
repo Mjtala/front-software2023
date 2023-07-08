@@ -86,7 +86,7 @@ const CompanyUploadFieldModal = () => {
 
 
     return (
-        <div className="companyinfomodal">
+        <div className="companyuploadfieldmodal">
             <div className="">
                 <div className="modal__dialog" onClick={handleModalDialogClick}>
 
