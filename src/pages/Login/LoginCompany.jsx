@@ -23,10 +23,12 @@ function LoginCompany() {
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
+        setValidation("");
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setValidation("");
     };
     const handleButtonClick = (e) => {
         e.preventDefault();

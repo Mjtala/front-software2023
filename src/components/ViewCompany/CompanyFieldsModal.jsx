@@ -43,14 +43,14 @@ const CompanyFieldsModal = () => {
             <div key={information.id}>
                 <Link className='text-linkname' to={`/canchas/${information.id}`}>{information.name}</Link>
                 <div className="labelinfo">
-                    {!information.price && <p className="">Precio: Gratis</p>}
-                    {information.price && <p className="">Precio: {information.price}</p>}
-                    {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
-                    {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
                     <p className="">Comuna: {information.district}</p>
                     <p className="">Dirección: {information.address}</p>
                     {!information.manager && <p className="">Encargado: Juan Pérez</p>}
                     {information.manager && <p className="">Encargado: {information.manager}</p>}
+                    {!information.price && <p className="">Precio: Gratis</p>}
+                    {information.price && <p className="">Precio: {information.price}</p>}
+                    {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
+                    {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
 
                     <Link className='text-edit' to={`/editar_cancha/${information.id}`}>Editar Ajustes</Link>
                 </div>
