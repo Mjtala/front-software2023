@@ -42,6 +42,9 @@ function LoginCompany() {
                 } else if (userConnectedData.type === 'player') {
                     navigate("/perfil_jugador");
                 }
+                if (userConnectedData.type === 'admin') {
+                    navigate("/perfil_admin")
+                } 
             }
             if (data) {
                 try {

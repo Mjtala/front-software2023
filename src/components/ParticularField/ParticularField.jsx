@@ -22,9 +22,25 @@ function ParticularField() {
     const [day, setDay] = useState('')
     const [fields, setFields] = useState([]);
 
-    const handleViewHours = () => {
-        setViewReservation(true);
+    const handleViewHours = async (day) => {
+        console.log(day)
+        try {
+            const configaxios = {
+                headers: {
+                    "Authorization": userConnectedData.id,
+                    withCredentials: true
+                }
+            };
+            const url = `${config.route}player/datesinfo/${event_id}/${day}` //TODO:
+            const response = await axios.get(url, configaxios)
+            setFormData(response.data)
+            setViewReservation(true);
+            console.log("RESPONSE: ", response)
+        } catch (error) {
+            console.log(error, "hay error");
+        }
     };
+
     const handleNotViewHours = () => {
         setViewReservation(false);
     };
@@ -68,6 +84,24 @@ function ParticularField() {
         }
     }
 
+    /*
+    const getHoursTime = async () => {
+        try {
+            const date = "08-07-2023"
+            const configaxios = {
+                headers: {
+                    "Authorization": userConnectedData.id,
+                    withCredentials: true
+                }
+            };
+            const url = `${config.route}enclousures/${event_id}/${date}` //TODO:
+            const response = await axios.get(url, configaxios)
+            setFormData(response.data)
+        } catch (error) {
+            console.log(error, "hay error");
+        }
+    }
+    */
     useEffect(() => {
         getInfo()
     },[])
@@ -112,7 +146,7 @@ function ParticularField() {
                     </div>
                 ) : (
                     <div className="DivSeeHours">
-                        <button className="botonnohour" onClick={handleViewHours}>Ver horas</button>
+                        <button className="botonnohour" onClick={() => handleViewHours(day)}>Ver horas</button>
                     </div>
                 )}
             </div>
