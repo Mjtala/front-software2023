@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import config from '../../config'
 import { useLocalStorage } from 'usehooks-ts';
-import { Link } from "react-router-dom";
 
 const PlayerProfileMyBookings = () => {
     const [userConnectedData] = useLocalStorage("UserInfo", null)
@@ -17,12 +16,13 @@ const PlayerProfileMyBookings = () => {
                     withCredentials: true,
                 }
             };
-            const url = `${config.route}player/getbookings`
+            const url = `${config.route}bookings/`
             const response = await axios.get(url, axiosConfiguration)
-            let data = response.data
+            let bookingsfromback = response.data
+            console.log("RESPONSE RESPONSE:", response)
             let list = []
-            const bookingsfromback = data.bookings
-            console.log(data)
+            console.log("BOOKINGFROMBACK:", bookingsfromback.length)
+            console.log("ARRAY:", Array.isArray(bookingsfromback))
             if (Array.isArray(bookingsfromback) && bookingsfromback.length > 0) {
                 for (let i = 0; i < bookingsfromback.length; i++) {
                     list.push(CreateMyBookings(bookingsfromback[i]))
@@ -30,6 +30,7 @@ const PlayerProfileMyBookings = () => {
             }
 
             setBookings(list)
+            console.log("BOOKING:", bookings)
         } catch (error) {
             console.log(error, "hay error");
         }
@@ -40,18 +41,21 @@ const PlayerProfileMyBookings = () => {
     }, [])
 
     function CreateMyBookings(information) {
+        console.log("INFO:")
+        console.log(information.date)
         return (
             <div key={information.id}>
-                <Link className='text-linkname' to={`/canchas/${information.id}`}>{information.name}</Link>
                 <div className="labelinfo">
-                    {!information.price && <p className="">Precio: Gratis</p>}
-                    {information.price && <p className="">Precio: {information.price}</p>}
-                    {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
-                    {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
+                    <p className="">Nombre: {information.name}</p>
                     <p className="">Comuna: {information.district}</p>
                     <p className="">Dirección: {information.address}</p>
                     {!information.manager && <p className="">Encargado: Juan Pérez</p>}
                     {information.manager && <p className="">Encargado: {information.manager}</p>}
+                    {!information.price && <p className="">Precio: Gratis</p>}
+                    {information.price && <p className="">Precio: {information.price}</p>}
+                    {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
+                    {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
+
                 </div>
             </div>
         )
