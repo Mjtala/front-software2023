@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import './LoginView.css';
 import config from "../../config";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useLocalStorage } from 'usehooks-ts'
 
@@ -103,7 +103,6 @@ function LoginPlayer() {
                             <div className="boton-ingresar">
                                 <button onClick={handleButtonClick} className="boton-inicio-registro" type="button">Ingresar</button>
                             </div>
-                            <Link className="linkcontrasena">¿Olvidaste tu contraseña?</Link>
 
                             <div className="">
                                 <p className="">¿No tienes una cuenta?</p>
@@ -118,9 +117,9 @@ function LoginPlayer() {
 
                         <img src={require("../../assets/player.png")} className="futbolista" alt="logo"></img>
                         <h4 className="tituloder">¿Quieres encontrar canchas y jugar?</h4>
-                        <p className="parafder">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className="parafder">TeamUp te ofrece la oportunidad de encontrar equipos para jugar fútbol sin 
+                        necesidad de tener un grupo pre-armado. Inicia sesión y sigue conociendo nuevas personas, formando nuevos
+                        equipos y descubriendo nuevas formas de jugar tu deporte favorito.</p>
 
                     </div>
                 </div>

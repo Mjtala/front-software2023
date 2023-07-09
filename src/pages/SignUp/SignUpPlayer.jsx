@@ -170,9 +170,9 @@ function SignUpPlayer() {
 
                         <img src={require("../../assets/player.png")} className="futbolista" alt="logo"></img>
                         <h4 className="tituloder">¿Quieres encontrar canchas y jugar?</h4>
-                        <p className="parafder">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className="parafder">TeamUp te ofrece la oportunidad de encontrar equipos para jugar fútbol sin necesidad de
+                    tener un grupo pre-armado. Regístrate y comienza a descubrir la nueva experiencia de solo elegir una cancha e inscribirte para jugar,
+                    sin necesidad de conocer a los demás jugadores. Podrás conocer más canchas y formas nuevos equipos.</p>
 
                     </div>
                 </div>
