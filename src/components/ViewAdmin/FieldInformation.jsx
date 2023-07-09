@@ -66,8 +66,7 @@ const FieldInformation = () => {
                         myFields
                     ) : (
                         <div className="">
-                            <p>No existen canchas</p>
-                            <p>RECORDATORIO: NO EXISTE RUTA EN EL BACK</p>
+                            <p>Acceso Inválido</p>
                         </div>
                     )}
                 </div>

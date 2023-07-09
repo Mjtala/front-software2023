@@ -2,15 +2,28 @@ import axios from "axios";
 import React from "react";
 import "./HoursTable.css"
 import PropTypes from 'prop-types';
+import { useLocalStorage } from 'usehooks-ts';
+import config from '../../config'
 
-function HoursTable({ fields }) {
+function HoursTable( field) {
+
+	const [userConnectedData] = useLocalStorage("UserInfo", null)
 
 	const allHours = Array.from({ length: 16 }, (_, index) => index + 8);
 
-	const handleReservarCupo = async (fieldId, hour) => {
+	const handleReservarCupo = async (field, hour) => {
 		try {
-			const data = { 'field': fieldId, 'hour': hour }
-			const response = await axios.post(``)
+			const configaxios = {
+				headers: {
+					"Authorization": userConnectedData.id,
+					withCredentials: true
+				}
+			};
+			console.log(configaxios)
+			const url = `${config.route}player/booking` //TODO:
+			const data = { 'enclousureid': field['id'], 'hour': hour , 'date':field.day}
+			console.log(data)
+			const response = await axios.post(url, data, configaxios)
 			console.log(response.data, "response.data")
 			console.log(data, "data")
 		} catch (error) {
@@ -18,37 +31,29 @@ function HoursTable({ fields }) {
 		}
 	};
 
+	const field_modified = field.field
 	return (
 		<div className="DivHours">
-			{Array.isArray(fields) && fields.length > 0 ? (
-				<table>
-					<thead>
-						<tr>
-							<th>Cancha</th>
+			{field_modified ? (
+				<div>
+					<h4>Horarios</h4>
+					<div className="">
+
+						<div key={field_modified.id}>
 							{allHours.map((particularhour) => (
-								<th key={particularhour}>{particularhour}:00</th>
+								<div key={particularhour}>
+									<p>{particularhour}:00 - {particularhour + 1}:00</p>
+									{field_modified && field_modified.playerperhour && field_modified.playerperhour[particularhour] === field_modified.maxplayers ? (
+										<button className="botonHoursTableNo" disabled>Cancha llena</button>
+									) : (
+										<button className="botonHoursTableYes" onClick={() => handleReservarCupo(field_modified, particularhour)}>Registrarse</button>
+									)}
+								</div>
 							))}
-						</tr>
-					</thead>
-					<tdiv>
-						{fields.map((field) => (
-							<tr key={field.id}>
-								<td>{field.name}</td>
-								{allHours.map((particularhour) => (
-									<td key={particularhour}>
-										{field.unavailablehours.includes(particularhour) ? (
-											<button className="botonHoursTableNo" disabled>Cancha no disponible</button>
-										) : field.playerperhour[particularhour] === field.maxplayers ? (
-											<button className="botonHoursTableNo" disabled>Cancha llena</button>
-										) : (
-											<button className="botonHoursTableYes" onClick={() => handleReservarCupo(field.id, particularhour)}>Registrarse</button>
-										)}
-									</td>
-								))}
-							</tr>
-						))}
-					</tdiv>
-				</table>) : (
+						</div>
+
+					</div>
+				</div>) : (
 				<div className="DivNoFields">
 					<p>No hay canchas ni horarios que mostrar</p>
 				</div>
@@ -58,7 +63,7 @@ function HoursTable({ fields }) {
 }
 
 HoursTable.propTypes = {
-    fields: PropTypes.func.isRequired,
+	field: PropTypes.object.isRequired,
 };
 
 export default HoursTable;

@@ -20,11 +20,11 @@ export default function PlayerProfile() {
 
     useEffect(() => {
         if (connected) {
-            if (userConnectedData.type === 'player') {
-              navigate("/perfil_jugador")
+            if (userConnectedData.type === 'owner') {
+              navigate("/perfil_empresa")
             } 
         } else {
-            navigate("/perfil_jugador")
+            navigate("/")
         }
         getData()
     }, [])

@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import HoursTable from "../HoursTable/HoursTable";
 import "./ParticularField.css"
@@ -11,46 +11,93 @@ function ParticularField() {
     const params = useParams()
     const event_id = params.id
     const [userConnectedData] = useLocalStorage("UserInfo", null)
+    const [error, setError] = useState("")
 
     const [formData, setFormData] = useState({
-        name: "", location: "", price: "", 
-        province: "",day: ''
+        name: "", location: "", price: "",
+        province: "", day: ''
     })
-    console.log(formData)
+
 
     const [viewreservation, setViewReservation] = useState(false);
     const [day, setDay] = useState('')
-    const [fields, setFields] = useState([]);
+    const [fields, setFields] = useState();
+    const [playerperhour] = useState({});
 
-    const handleViewHours = () => {
-        setViewReservation(true);
+    const handleViewHours = async (day) => {
+        console.log("Día", day)
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Agrega un 0 inicial si el mes es menor a 10
+        const day2 = String(currentDate.getDate()).padStart(2, '0'); // Agrega un 0 inicial si el día es menor a 10
+
+        const formattedDate = `${year}-${month}-${day2}`;
+        console.log(formattedDate);
+        try {
+            if (day && (day >= formattedDate)) {
+                const configaxios = {
+                    headers: {
+                        "Authorization": userConnectedData.id,
+                        withCredentials: true
+                    }
+                };
+                const url = `${config.route}player/datesinfo/${event_id}/${day}` //TODO:
+                const response = await axios.get(url, configaxios)
+                console.log("Respuesta:", response)
+                Object.keys(response.data).forEach(key => {
+                    console.log("Key", key)
+                    ViewHours(response.data[key])
+                });
+                console.log(playerperhour)
+                const checkdata = {
+                    'id': event_id,
+                    'name': formData.name,
+                    'maxplayers': formData.maxplayers,
+                    'playerperhour': playerperhour,
+                    'day':day
+                }
+                console.log(checkdata)
+                setFields(checkdata)
+                console.log(fields)
+                setViewReservation(true);
+                setError("")
+            } else {
+                setViewReservation(false)
+                setError("Debe seleccionar un día que sea posterior a la fecha actual")
+            }
+        } catch (error) {
+            console.log(error, "hay error");
+        }
     };
+
     const handleNotViewHours = () => {
         setViewReservation(false);
     };
 
-    const getHours = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.get(``) // Link1234
-            setFields(response.data)
-        } catch (error) {
-            console.log(error, "hay error");
-        }
-    }
+    const ViewHours = (information) => {
+        playerperhour[information.hour] = information.quantity_bookings
+        console.log("player hour", information.hour, playerperhour[information.hour])
+    };
 
     const formSend = (
         <div className="MainDivForm">
-            <form onSubmit={getHours}>
+            <form>
                 <div className="DivFormText">
                     <label className="Divselectday">
                         Seleccionar día:
-                        <input className="dates" type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
+                        <input className="dates" type="date" name="day" value={day} onChange={(e) => changesetday(e)} />
                     </label>
                 </div>
             </form>
         </div>
     )
+
+    const changesetday = async (event) => {
+        setDay(event.target.value)
+        if (viewreservation) {
+            await handleViewHours(day)
+        }
+    }
 
     const getInfo = async () => {
         try {
@@ -70,7 +117,7 @@ function ParticularField() {
 
     useEffect(() => {
         getInfo()
-    },[])
+    }, [])
 
     return (
         <div className="MainDivParticularField">
@@ -95,24 +142,22 @@ function ParticularField() {
                     {!formData.maxplayers && (<p className="textinformation">10</p>)}
                     {formData.maxplayers && (<p className="textinformation">{formData.maxplayers}</p>)}
                 </li>
-                <li className="Divrowinformation">
-                    <h4>Télefono de Contacto: </h4><p className="textinformation">{formData.phonenumber}</p>
-                </li>
                 <li className="Divrowinformation2">
-                    <h4>Correo de Contacto: </h4><p className="textinformation">{formData.email}</p>
+                    <h4>Télefono de Contacto: </h4><p className="textinformation">{formData.phonenumber}</p>
                 </li>
             </div>
 
             <div className="MainDivForm">{formSend}</div>
+            {error && <div className="error-control2">{error}</div>}
             <div className="DivMainHours">
                 {viewreservation ? (
                     <div className="DivNoHours">
-                        <HoursTable fields={fields} />
+                        <HoursTable field={fields} />
                         <button className="botonnohour" onClick={handleNotViewHours}>Cerrar horas</button>
                     </div>
                 ) : (
                     <div className="DivSeeHours">
-                        <button className="botonnohour" onClick={handleViewHours}>Ver horas</button>
+                        <button className="botonnohour" onClick={() => handleViewHours(day)}>Ver horas</button>
                     </div>
                 )}
             </div>

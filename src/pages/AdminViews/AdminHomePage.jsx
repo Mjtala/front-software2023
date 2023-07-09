@@ -30,7 +30,7 @@ export default function AdminHomePage() {
             navigate("/perfil_admin")
           } 
       } else {
-          navigate("/perfil_admin")
+          navigate("/")
       }
       getData()
   }, [])
