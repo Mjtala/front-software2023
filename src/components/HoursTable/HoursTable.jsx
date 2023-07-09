@@ -21,21 +21,14 @@ function HoursTable({ fields }) {
 	return (
 		<div className="DivHours">
 			{Array.isArray(fields) && fields.length > 0 ? (
-				<table>
-					<thead>
-						<tr>
-							<th>Cancha</th>
-							{allHours.map((particularhour) => (
-								<th key={particularhour}>{particularhour}:00</th>
-							))}
-						</tr>
-					</thead>
-					<tdiv>
+				<div>
+					<h4>Horarios</h4>
+					<div className="">
 						{fields.map((field) => (
-							<tr key={field.id}>
-								<td>{field.name}</td>
+							<div key={field.id}>
 								{allHours.map((particularhour) => (
-									<td key={particularhour}>
+									<div key={particularhour}>
+										<p>{particularhour}:00 - {particularhour+1}:00</p>
 										{field.unavailablehours.includes(particularhour) ? (
 											<button className="botonHoursTableNo" disabled>Cancha no disponible</button>
 										) : field.playerperhour[particularhour] === field.maxplayers ? (
@@ -43,14 +36,14 @@ function HoursTable({ fields }) {
 										) : (
 											<button className="botonHoursTableYes" onClick={() => handleReservarCupo(field.id, particularhour)}>Registrarse</button>
 										)}
-									</td>
+									</div>
 								))}
-							</tr>
+							</div>
 						))}
-					</tdiv>
-				</table>) : (
+					</div>
+				</div>) : (
 				<div className="DivNoFields">
-					<p>No hay canchas ni horarios que mostrar</p>
+					<p>No hay canchas ni horarios que mostrar 2</p>
 				</div>
 			)}
 		</div>

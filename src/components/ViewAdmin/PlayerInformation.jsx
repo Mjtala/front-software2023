@@ -64,8 +64,7 @@ const PlayerInformation = () => {
                         Players
                     ) : (
                         <div className="">
-                            <p>No existen jugadores</p>
-                            <p>RECORDATORIO: NO EXISTE RUTA EN EL BACK</p>
+                            <p>Acceso Inválido</p>
                         </div>
                     )}
                 </div>

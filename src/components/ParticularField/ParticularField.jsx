@@ -11,19 +11,20 @@ function ParticularField() {
     const params = useParams()
     const event_id = params.id
     const [userConnectedData] = useLocalStorage("UserInfo", null)
+    const [error, setError] = useState("");
 
     const [formData, setFormData] = useState({
         name: "", location: "", price: "", 
         province: "",day: ''
     })
-    console.log(formData)
+    
 
     const [viewreservation, setViewReservation] = useState(false);
     const [day, setDay] = useState('')
-    const [fields, setFields] = useState([]);
+    const [fields, setFields] = useState();
+    const [playerperhour, setPlayerperhour] = useState({});
 
     const handleViewHours = async (day) => {
-        console.log(day)
         try {
             const configaxios = {
                 headers: {
@@ -33,9 +34,31 @@ function ParticularField() {
             };
             const url = `${config.route}player/datesinfo/${event_id}/${day}` //TODO:
             const response = await axios.get(url, configaxios)
-            setFormData(response.data)
-            setViewReservation(true);
-            console.log("RESPONSE: ", response)
+
+            Object.keys(response.data).forEach(key => {
+                ViewHours(response.data[key])
+              });
+
+            let list = []
+            let diccionario = {}
+            diccionario.id = event_id
+            diccionario.name = formData.name
+            diccionario.maxplayers = formData.maxplayers
+            diccionario.unavailablehours = []
+            diccionario.playerperhour = playerperhour
+            list.push(diccionario)
+            setFields(list)
+            console.log("FIELDS",fields)
+              
+            if (day) {
+                setViewReservation(true);
+                setError("")
+            }
+            else{
+                setError("Debe seleccionar un día")
+            }
+            //console.log("DAY:", day)
+            //setViewReservation(true);
         } catch (error) {
             console.log(error, "hay error");
         }
@@ -45,19 +68,22 @@ function ParticularField() {
         setViewReservation(false);
     };
 
-    const getHours = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.get(``) // Link1234
-            setFields(response.data)
-        } catch (error) {
-            console.log(error, "hay error");
-        }
+    const appendValue = (hour, booking) => {
+        setPlayerperhour(playerperhour => {
+          const newState = { ...playerperhour };
+          newState[hour] = booking;
+          return newState;
+        });
+      };
+
+    function ViewHours(information) {
+        appendValue(information.hour, information.quantity_bookings)
     }
+
 
     const formSend = (
         <div className="MainDivForm">
-            <form onSubmit={getHours}>
+            <form>
                 <div className="DivFormText">
                     <label className="Divselectday">
                         Seleccionar día:
@@ -84,24 +110,6 @@ function ParticularField() {
         }
     }
 
-    /*
-    const getHoursTime = async () => {
-        try {
-            const date = "08-07-2023"
-            const configaxios = {
-                headers: {
-                    "Authorization": userConnectedData.id,
-                    withCredentials: true
-                }
-            };
-            const url = `${config.route}enclousures/${event_id}/${date}` //TODO:
-            const response = await axios.get(url, configaxios)
-            setFormData(response.data)
-        } catch (error) {
-            console.log(error, "hay error");
-        }
-    }
-    */
     useEffect(() => {
         getInfo()
     },[])
@@ -129,19 +137,17 @@ function ParticularField() {
                     {!formData.maxplayers && (<p className="textinformation">10</p>)}
                     {formData.maxplayers && (<p className="textinformation">{formData.maxplayers}</p>)}
                 </li>
-                <li className="Divrowinformation">
-                    <h4>Télefono de Contacto: </h4><p className="textinformation">{formData.phonenumber}</p>
-                </li>
                 <li className="Divrowinformation2">
-                    <h4>Correo de Contacto: </h4><p className="textinformation">{formData.email}</p>
+                    <h4>Télefono de Contacto: </h4><p className="textinformation">{formData.phonenumber}</p>
                 </li>
             </div>
 
             <div className="MainDivForm">{formSend}</div>
+            {error && <div className="error-control2">{error}</div>}
             <div className="DivMainHours">
                 {viewreservation ? (
                     <div className="DivNoHours">
-                        <HoursTable fields={fields} />
+                         <HoursTable fields={fields} />
                         <button className="botonnohour" onClick={handleNotViewHours}>Cerrar horas</button>
                     </div>
                 ) : (

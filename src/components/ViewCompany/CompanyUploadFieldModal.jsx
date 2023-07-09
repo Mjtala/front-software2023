@@ -47,7 +47,7 @@ const CompanyUploadFieldModal = () => {
                 };
                 const body = formData
                 console.log(formData)
-                const url = `${config.route}enclousures/create` //TODO:
+                const url = `${config.route}enclousures/` //TODO:
                 console.log(url)
                 const response = await axios.post(url, body,  configaxios)
                 console.log(response.data, "response.data")
