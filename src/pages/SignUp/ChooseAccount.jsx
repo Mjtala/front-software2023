@@ -16,9 +16,9 @@ function ChooseAccount() {
 
                     <img src={require("../../assets/player.png")} className="futbolista" alt="logo"></img>
                     <h4 className="tituloderchose">¿Quieres comenzar a jugar?</h4>
-                    <p className="parafderchose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p className="parafderchose">TeamUp te ofrece la oportunidad de encontrar equipos para jugar fútbol sin necesidad de
+                    tener un grupo pre-armado. Regístrate y comienza a descubrir la nueva experiencia de solo elegir una cancha e inscribirte para jugar,
+                    sin necesidad de conocer a los demás jugadores. Podrás conocer más canchas y formas nuevos equipos.</p>
                     <button className="botonchose" type="button"
                     onClick={()=>navigate("/registrar_jugador")}>Registrarme como Jugador</button>
 
@@ -28,9 +28,9 @@ function ChooseAccount() {
 
                     <img src={require("../../assets/cancha-icon.png")} className="futbolista" alt="logo"></img>
                     <h4 className="tituloder">¿Quieres visibilizar tus canchas?</h4>
-                    <p className="parafder">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p className="parafder">TeamUp es una plataforma que a ti como arrendador te entrega un espacio para que puedas mostrar
+                    tus canchas, ofrecerlas a más gente y aumentar así tus ingresos. Regístrate y no pierdas ningún cliente más,
+                    únete a la comunidad y potencia tu recinto deportivo.</p>
                     <button className="botonchose" type="button"
                     onClick={()=>navigate("/registrar_empresa")}>Registrarme como Empresa</button>
 

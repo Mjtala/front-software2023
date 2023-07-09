@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import './LoginView.css';
 import config from "../../config";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useLocalStorage } from 'usehooks-ts'
 
@@ -97,7 +97,6 @@ function LoginCompany() {
                             <div className="boton-ingresar">
                                 <button onClick={handleButtonClick} className="boton-inicio-registro" type="button">Ingresar</button>
                             </div>
-                            <Link className="linkcontrasena">¿Olvidaste tu contraseña?</Link>
 
                             <div className="">
                                 <p className="">¿No tienes una cuenta?</p>
@@ -112,9 +111,9 @@ function LoginCompany() {
 
                         <img src={require("../../assets/cancha-icon.png")} className="futbolista" alt="logo"></img>
                         <h4 className="tituloder">¿Quieres seguir arrendando tu cancha?</h4>
-                        <p className="parafder">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className="parafder">TeamUp es una plataforma que a ti como arrendador te entrega un espacio para que
+                        puedas mostrar tus canchas, ofrecerlas a más gente y aumentar así tus ingresos. Inicia sesión y descubre
+                        nuevos jugadores interesados, añade más canchas y visualiza el estado actual de tus ofertas.</p>
 
                     </div>
                 </div>

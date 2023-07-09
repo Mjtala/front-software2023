@@ -17,9 +17,9 @@ function ChooseUser() {
 
                         <img src={require("../../assets/player.png")} className="futbolista" alt="logo"></img>
                         <h4 className="tituloderchose">¿Quieres encontrar canchas y jugar?</h4>
-                        <p className="parafderchose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className="parafderchose">TeamUp te ofrece la oportunidad de encontrar equipos para jugar fútbol sin 
+                        necesidad de tener un grupo pre-armado. Inicia sesión y sigue conociendo nuevas personas, formando nuevos
+                        equipos y descubriendo nuevas formas de jugar tu deporte favorito.</p>
                         <button className="botonchose" type="button"
                             onClick={() => navigate("/iniciar_sesion_jugador")}>Ir a Sesión Jugador</button>
 
@@ -29,9 +29,9 @@ function ChooseUser() {
 
                         <img src={require("../../assets/cancha-icon.png")} className="futbolista" alt="logo"></img>
                         <h4 className="tituloder">¿Quieres seguir arrendando tu cancha?</h4>
-                        <p className="parafder">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className="parafder">TeamUp es una plataforma que a ti como arrendador te entrega un espacio para que puedas
+                        mostrar tus canchas, ofrecerlas a más gente y aumentar así tus ingresos. Inicia sesión y descubre nuevos jugadores
+                        interesados, añade más canchas y visualiza el estado actual de tus ofertas.</p>
                         <button className="botonchose" type="button"
                             onClick={() => navigate("/iniciar_sesion_empresa")}>Ir a Sesión Empresa</button>
 
