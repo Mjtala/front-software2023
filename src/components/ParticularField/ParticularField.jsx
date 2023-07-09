@@ -26,8 +26,15 @@ function ParticularField() {
 
     const handleViewHours = async (day) => {
         console.log("Día", day)
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Agrega un 0 inicial si el mes es menor a 10
+        const day2 = String(currentDate.getDate()).padStart(2, '0'); // Agrega un 0 inicial si el día es menor a 10
+
+        const formattedDate = `${year}-${month}-${day2}`;
+        console.log(formattedDate);
         try {
-            if (day) {
+            if (day && (day >= formattedDate)) {
                 const configaxios = {
                     headers: {
                         "Authorization": userConnectedData.id,
@@ -55,7 +62,8 @@ function ParticularField() {
                 setViewReservation(true);
                 setError("")
             } else {
-                setError("Debe seleccionar un día")
+                setViewReservation(false)
+                setError("Debe seleccionar un día que sea posterior a la fecha actual")
             }
         } catch (error) {
             console.log(error, "hay error");
@@ -77,12 +85,19 @@ function ParticularField() {
                 <div className="DivFormText">
                     <label className="Divselectday">
                         Seleccionar día:
-                        <input className="dates" type="date" name="day" value={day} onChange={(e) => setDay(e.target.value)} />
+                        <input className="dates" type="date" name="day" value={day} onChange={(e) => changesetday(e)} />
                     </label>
                 </div>
             </form>
         </div>
     )
+
+    const changesetday = async (event) => {
+        setDay(event.target.value)
+        if (viewreservation) {
+            await handleViewHours(day)
+        }
+    }
 
     const getInfo = async () => {
         try {

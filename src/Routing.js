@@ -15,6 +15,7 @@ import SearchField from './components/SearchField/SearchField';
 import ParticularField from './components/ParticularField/ParticularField';
 import AdminHomePage from './pages/AdminViews/AdminHomePage';
 import EditField from './components/ViewCompany/EditField';
+import NotFoundpage from './pages/NotFound/NotFoundpage';
 
 
 
@@ -38,6 +39,7 @@ function Routing() {
                 <Route path="/registrar_jugador" element={<SignUpPlayer />} />
                 <Route path="/registrar_empresa" element={<SignUpCompany />} />
                 <Route path="/perfil_admin" element={<AdminHomePage />} />
+                <Route path="*" element={<NotFoundpage />} />
             </Routes>
         </BrowserRouter>
     )

@@ -61,7 +61,7 @@ const PlayerProfileMyBookings = () => {
 
     useEffect(() => {
         getData()
-      }, [modal, bookings]);
+      }, [modal]);
 
 
     function ViewMyBookings(information, idbooking) {
