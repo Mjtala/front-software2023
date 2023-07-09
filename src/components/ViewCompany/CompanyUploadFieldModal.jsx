@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import config from '../../config' 
 import { useLocalStorage } from 'usehooks-ts'; 
+import { useNavigate } from "react-router-dom";
 
 const CompanyUploadFieldModal = () => {
+
+    const navigate = useNavigate();
 
     const [userConnectedData] = useLocalStorage("UserInfo", null)
     const [errors, setErrors] = useState({name: "", address: "", district: "", maxplayers: "", manager: "",
@@ -51,6 +54,7 @@ const CompanyUploadFieldModal = () => {
                 console.log(url)
                 const response = await axios.post(url, body,  configaxios)
                 console.log(response.data, "response.data")
+                navigate("/perfil_empresa");
             } catch (error) {
                 console.log(error, "hay error");
             } 
