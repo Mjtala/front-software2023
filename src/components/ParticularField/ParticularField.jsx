@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import HoursTable from "../HoursTable/HoursTable";
 import "./ParticularField.css"
@@ -14,10 +14,10 @@ function ParticularField() {
     const [error, setError] = useState("");
 
     const [formData, setFormData] = useState({
-        name: "", location: "", price: "", 
-        province: "",day: ''
+        name: "", location: "", price: "",
+        province: "", day: ''
     })
-    
+
 
     const [viewreservation, setViewReservation] = useState(false);
     const [day, setDay] = useState('')
@@ -25,6 +25,7 @@ function ParticularField() {
     const [playerperhour, setPlayerperhour] = useState({});
 
     const handleViewHours = async (day) => {
+        console.log("Día", day)
         try {
             const configaxios = {
                 headers: {
@@ -34,11 +35,15 @@ function ParticularField() {
             };
             const url = `${config.route}player/datesinfo/${event_id}/${day}` //TODO:
             const response = await axios.get(url, configaxios)
+            console.log("Respuesta:", response)
 
             Object.keys(response.data).forEach(key => {
+                console.log("Key", key)
                 ViewHours(response.data[key])
-              });
+            });
 
+            //La información se debe guardar en una lista que contiene a un diccionario.
+            //El formato: 
             let list = []
             let diccionario = {}
             diccionario.id = event_id
@@ -48,17 +53,15 @@ function ParticularField() {
             diccionario.playerperhour = playerperhour
             list.push(diccionario)
             setFields(list)
-            console.log("FIELDS",fields)
-              
+            console.log("FIELDS", fields)
+
             if (day) {
                 setViewReservation(true);
                 setError("")
             }
-            else{
+            else {
                 setError("Debe seleccionar un día")
             }
-            //console.log("DAY:", day)
-            //setViewReservation(true);
         } catch (error) {
             console.log(error, "hay error");
         }
@@ -68,18 +71,13 @@ function ParticularField() {
         setViewReservation(false);
     };
 
-    const appendValue = (hour, booking) => {
-        setPlayerperhour(playerperhour => {
-          const newState = { ...playerperhour };
-          newState[hour] = booking;
-          return newState;
-        });
-      };
-
     function ViewHours(information) {
-        appendValue(information.hour, information.quantity_bookings)
+        setPlayerperhour(playerperhour => {
+            const newState = { ...playerperhour };
+            newState[information.hour] = information.quantity_bookings;
+            return newState;
+        });
     }
-
 
     const formSend = (
         <div className="MainDivForm">
@@ -112,7 +110,7 @@ function ParticularField() {
 
     useEffect(() => {
         getInfo()
-    },[])
+    }, [])
 
     return (
         <div className="MainDivParticularField">
@@ -147,7 +145,7 @@ function ParticularField() {
             <div className="DivMainHours">
                 {viewreservation ? (
                     <div className="DivNoHours">
-                         <HoursTable fields={fields} />
+                        <HoursTable fields={fields} />
                         <button className="botonnohour" onClick={handleNotViewHours}>Cerrar horas</button>
                     </div>
                 ) : (
