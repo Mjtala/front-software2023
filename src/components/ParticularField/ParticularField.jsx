@@ -11,7 +11,7 @@ function ParticularField() {
     const params = useParams()
     const event_id = params.id
     const [userConnectedData] = useLocalStorage("UserInfo", null)
-    const [error, setError] = useState("");
+    const [error, setError] = useState("")
 
     const [formData, setFormData] = useState({
         name: "", location: "", price: "",
@@ -22,44 +22,39 @@ function ParticularField() {
     const [viewreservation, setViewReservation] = useState(false);
     const [day, setDay] = useState('')
     const [fields, setFields] = useState();
-    const [playerperhour, setPlayerperhour] = useState({});
+    const [playerperhour] = useState({});
 
     const handleViewHours = async (day) => {
         console.log("Día", day)
         try {
-            const configaxios = {
-                headers: {
-                    "Authorization": userConnectedData.id,
-                    withCredentials: true
-                }
-            };
-            const url = `${config.route}player/datesinfo/${event_id}/${day}` //TODO:
-            const response = await axios.get(url, configaxios)
-            console.log("Respuesta:", response)
-
-            Object.keys(response.data).forEach(key => {
-                console.log("Key", key)
-                ViewHours(response.data[key])
-            });
-
-            //La información se debe guardar en una lista que contiene a un diccionario.
-            //El formato: 
-            let list = []
-            let diccionario = {}
-            diccionario.id = event_id
-            diccionario.name = formData.name
-            diccionario.maxplayers = formData.maxplayers
-            diccionario.unavailablehours = []
-            diccionario.playerperhour = playerperhour
-            list.push(diccionario)
-            setFields(list)
-            console.log("FIELDS", fields)
-
             if (day) {
+                const configaxios = {
+                    headers: {
+                        "Authorization": userConnectedData.id,
+                        withCredentials: true
+                    }
+                };
+                const url = `${config.route}player/datesinfo/${event_id}/${day}` //TODO:
+                const response = await axios.get(url, configaxios)
+                console.log("Respuesta:", response)
+                Object.keys(response.data).forEach(key => {
+                    console.log("Key", key)
+                    ViewHours(response.data[key])
+                });
+                console.log(playerperhour)
+                const checkdata = {
+                    'id': event_id,
+                    'name': formData.name,
+                    'maxplayers': formData.maxplayers,
+                    'playerperhour': playerperhour,
+                    'day':day
+                }
+                console.log(checkdata)
+                setFields(checkdata)
+                console.log(fields)
                 setViewReservation(true);
                 setError("")
-            }
-            else {
+            } else {
                 setError("Debe seleccionar un día")
             }
         } catch (error) {
@@ -71,13 +66,10 @@ function ParticularField() {
         setViewReservation(false);
     };
 
-    function ViewHours(information) {
-        setPlayerperhour(playerperhour => {
-            const newState = { ...playerperhour };
-            newState[information.hour] = information.quantity_bookings;
-            return newState;
-        });
-    }
+    const ViewHours = (information) => {
+        playerperhour[information.hour] = information.quantity_bookings
+        console.log("player hour", information.hour, playerperhour[information.hour])
+    };
 
     const formSend = (
         <div className="MainDivForm">
@@ -145,7 +137,7 @@ function ParticularField() {
             <div className="DivMainHours">
                 {viewreservation ? (
                     <div className="DivNoHours">
-                        <HoursTable fields={fields} />
+                        <HoursTable field={fields} />
                         <button className="botonnohour" onClick={handleNotViewHours}>Cerrar horas</button>
                     </div>
                 ) : (
