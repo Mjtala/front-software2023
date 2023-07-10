@@ -40,14 +40,12 @@ const PlayerInformation = () => {
     function CreatePlayers(information) {
         return (
             <div className='admininfo'>
-
-            
-            <div key={information.id}>
+                <div key={information.id}>
                     <p className="">Nombre: {information.name}</p>
                     {!information.phonenumber && <p className="">Celular de Contacto: No tiene Número</p>}
                     {information.phonenumber && <p className="">Celular de Contacto: {information.phonenumber}</p>}
+                </div>
             </div>
-             </div>
         )
     }
 

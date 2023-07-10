@@ -59,6 +59,7 @@ const PlayerProfileMyBookings = () => {
             console.log("ID BOOKING", id);
             const url = `${config.route}player/booking/${id}`
             await axios.delete(url, axiosConfiguration)
+            await getData()
 
 
         } catch (error) {
@@ -79,7 +80,7 @@ const PlayerProfileMyBookings = () => {
 
 
     function ViewMyBookings(information, booking) {
-        const isDateBeforeCurrent = booking.date > formattedDate
+        const isDateBeforeCurrent = booking.date < formattedDate
         console.log(formattedDate)
         console.log(isDateBeforeCurrent)
         console.log(booking.date)

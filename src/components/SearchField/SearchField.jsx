@@ -27,7 +27,9 @@ function SearchField() {
                 }
             };
             const url = `${config.route}enclousures/all` //TODO:
+            console.log(url)
             const response = await axios.get(url, configaxios)
+            console.log(response)
             setFields(response.data)
         } catch (error) {
             console.log(error, "hay error");

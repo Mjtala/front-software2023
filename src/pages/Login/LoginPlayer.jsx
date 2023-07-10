@@ -62,12 +62,16 @@ function LoginPlayer() {
                         setUserConnectedData({
                             email: email,
                             password: password, 
-                            type: `player`,
+                            type: response.data['type'],
                             id: response.data['cookie']
                         })
                         setConnected(true)
                         setData(response.data.data);
-                        navigate(`/perfil_jugador`);
+                        if (response.data['type'] === "admin") {
+                            navigate(`/perfil_admin`);
+                        } else {
+                            navigate(`/perfil_jugador`);
+                        }
                     }
                 } catch (error) {
                     console.error('Error:', error);
