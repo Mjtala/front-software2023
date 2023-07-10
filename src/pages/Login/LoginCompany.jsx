@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import './LoginView.css';
 import config from "../../config";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useLocalStorage } from 'usehooks-ts'
 
@@ -11,9 +11,10 @@ function LoginCompany() {
 
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
+    const [validation, setValidation] = useState("");
 
     console.log("Borrar", userConnectedData),
-    console.log("Borrar", connected)
+        console.log("BorrarLoginCOmpany", connected)
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
@@ -22,36 +23,63 @@ function LoginCompany() {
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
+        setValidation("");
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setValidation("");
     };
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
+        e.preventDefault();
         setData({ "email": `${email}`, "password": `${password}` });
-        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `company` })
-        setConnected(true)
     };
     useEffect(() => {
-        if (data) {
-            console.log("aca estamos")
-            axios.post(`${config.route}/auth/login`, {
-                email: email,
-                password: password
-            })
-                .then(data => {
-                    setData(data);
-                    navigate(`/perfil_empresa`);
-                })
-                .catch(error => {
+        const fetchData = async () => {
+            if (connected) {
+                if (userConnectedData.type === 'owner') {
+                    navigate("/perfil_empresa");
+                } else if (userConnectedData.type === 'player') {
+                    navigate("/perfil_jugador");
+                }
+                if (userConnectedData.type === 'admin') {
+                    navigate("/perfil_admin")
+                } 
+            }
+            if (data) {
+                try {
+                    const response = await axios.post(`${config.route}auth/login`, {
+                        email: email,
+                        password: password
+                    });
+                    setData(response.data);
+                    setUserConnectedData({
+                        email: email,
+                        password: password,
+                        type: response.data['type'],
+                        id: response.data['cookie']
+                    });
+                    setConnected(true)
+                    if (response.data['type'] === "admin") {
+                        navigate(`/perfil_admin`);
+                    } else {
+                        navigate(`/perfil_empresa`);
+                    }
+                } catch (error) {
                     console.error('Error:', error);
-                });
-        }
+                    setValidation("Credenciales Inválidas")
+                    setData("")
+                }
+            }
+        };
+    
+        fetchData();
     }, [data, email, password]);
+    
 
     return (
         <>
-            <body>
+            <div>
                 <div className="contenedorcompleto">
 
                     <div className="izq">
@@ -59,6 +87,8 @@ function LoginCompany() {
 
                         <form className="formularioingreso">
                             <p className="tituloizq">Ingresa a tu cuenta Empresa</p>
+
+                            <div className="validatelogin">{validation}</div>
 
                             <div className="">
                                 <input type="email" className="form-email"
@@ -71,7 +101,6 @@ function LoginCompany() {
                             <div className="boton-ingresar">
                                 <button onClick={handleButtonClick} className="boton-inicio-registro" type="button">Ingresar</button>
                             </div>
-                            <Link className="linkcontrasena">¿Olvidaste tu contraseña?</Link>
 
                             <div className="">
                                 <p className="">¿No tienes una cuenta?</p>
@@ -86,14 +115,14 @@ function LoginCompany() {
 
                         <img src={require("../../assets/cancha-icon.png")} className="futbolista" alt="logo"></img>
                         <h4 className="tituloder">¿Quieres seguir arrendando tu cancha?</h4>
-                        <p className="parafder">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className="parafder">TeamUp es una plataforma que a ti como arrendador te entrega un espacio para que
+                        puedas mostrar tus canchas, ofrecerlas a más gente y aumentar así tus ingresos. Inicia sesión y descubre
+                        nuevos jugadores interesados, añade más canchas y visualiza el estado actual de tus ofertas.</p>
 
                     </div>
                 </div>
 
-            </body>
+            </div>
         </>
     )
 }

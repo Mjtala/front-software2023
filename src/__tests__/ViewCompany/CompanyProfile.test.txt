@@ -1,0 +1,36 @@
+/*
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+
+
+
+jest.mock('axios', () => ({
+    get: jest.fn(() => Promise.resolve({ 
+        data: {
+           
+        },
+    })),
+}));
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
+}));
+
+import CompanyProfile from '../../pages/ViewCompany/CompanyProfile';
+
+
+
+describe('CompanyProfile', () => {
+  test('renders profile items', () => {
+    useNavigate.mockReturnValue(jest.fn());
+    render(< CompanyProfile />);
+
+    expect(screen.getByText('Mi Información')).toBeInTheDocument();
+    expect(screen.getByText('Editar Perfil')).toBeInTheDocument();
+    expect(screen.getByText('Mis Canchas')).toBeInTheDocument();
+    expect(screen.getByText('Subir Cancha')).toBeInTheDocument();
+  });
+});
+
+*/

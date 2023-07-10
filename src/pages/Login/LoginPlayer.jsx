@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import './LoginView.css';
 import config from "../../config";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useLocalStorage } from 'usehooks-ts'
 
@@ -12,6 +12,7 @@ function LoginPlayer() {
 
     const [userConnectedData, setUserConnectedData] = useLocalStorage("UserInfo", null)
     const [connected, setConnected] = useLocalStorage("Connected", false)
+    const [validation, setValidation] = useState("");
 
     const [data, setData] = useState("");
     const [password, setPassword] = useState("");
@@ -19,42 +20,73 @@ function LoginPlayer() {
     const navigate = useNavigate();
 
     console.log("Borrar", userConnectedData),
-    console.log("Borrar", connected)
+        console.log("Borrar", connected)
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
+        setValidation("");
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setValidation("");
     };
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
+        e.preventDefault();
         setData({ "email": `${email}`, "password": `${password}` });
-        setUserConnectedData({ "email": `${email}`, "password": `${password}`, "type": `player` })
-        setConnected(true)
     };
-
+    
     useEffect(() => {
+        if (connected) {
+            if (userConnectedData.type === 'owner') {
+                navigate("/perfil_empresa")
+            } 
+            if (userConnectedData.type === 'player') {
+                navigate("/perfil_jugador")
+            }
+            if (userConnectedData.type === 'admin') {
+                navigate("/perfil_admin")
+            } 
+        }
         if (data) {
             console.log("aca estamos")
-            axios.post(`${config.route}/auth/login`, {
-                email: email,
-                password: password
-            })
-                .then(data => {
-                    setData(data);
-                    navigate(`/perfil_jugador`);
-                })
-                .catch(error => {
+            const fetchData = async () => {
+                try {
+                    const response = await axios.post(`${config.route}auth/login`, {
+                        email: email,
+                        password: password
+                    }, { withCredentials: false });
+                    console.log("response es", response);
+                    if (response !== null && response !== undefined) {
+                        setUserConnectedData({
+                            email: email,
+                            password: password, 
+                            type: response.data['type'],
+                            id: response.data['cookie']
+                        })
+                        setConnected(true)
+                        setData(response.data.data);
+                        if (response.data['type'] === "admin") {
+                            navigate(`/perfil_admin`);
+                        } else {
+                            navigate(`/perfil_jugador`);
+                        }
+                    }
+                } catch (error) {
                     console.error('Error:', error);
-                });
+                    setValidation("Credenciales Inválidas")
+                    setData("")
+                }
+            };
+
+            fetchData();
         }
     }, [data, email, password]);
 
     return (
         <>
-            <body>
+            <div>
                 <div className="contenedorcompleto">
 
                     <div className="izq">
@@ -62,6 +94,7 @@ function LoginPlayer() {
 
                         <form className="formularioingreso">
                             <p className="tituloizq">Ingresa a tu cuenta Jugador</p>
+                            <div className="validatelogin">{validation}</div>
 
                             <div className="">
                                 <input type="email" className="form-email"
@@ -74,7 +107,6 @@ function LoginPlayer() {
                             <div className="boton-ingresar">
                                 <button onClick={handleButtonClick} className="boton-inicio-registro" type="button">Ingresar</button>
                             </div>
-                            <Link className="linkcontrasena">¿Olvidaste tu contraseña?</Link>
 
                             <div className="">
                                 <p className="">¿No tienes una cuenta?</p>
@@ -89,14 +121,14 @@ function LoginPlayer() {
 
                         <img src={require("../../assets/player.png")} className="futbolista" alt="logo"></img>
                         <h4 className="tituloder">¿Quieres encontrar canchas y jugar?</h4>
-                        <p className="parafder">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p className="parafder">TeamUp te ofrece la oportunidad de encontrar equipos para jugar fútbol sin 
+                        necesidad de tener un grupo pre-armado. Inicia sesión y sigue conociendo nuevas personas, formando nuevos
+                        equipos y descubriendo nuevas formas de jugar tu deporte favorito.</p>
 
                     </div>
                 </div>
 
-            </body>
+            </div>
         </>
     )
 }
