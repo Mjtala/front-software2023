@@ -63,12 +63,16 @@ function SignUpPlayer() {
                                 email: form.email, 
                                 password: form.password, 
                                 phonenumber: form.phonenumber, 
-                                type: `player`, 
+                                type: response.data['type'],
                                 id: response.data['cookie'] })
                             setConnected(true)
                             setForm(initialData);
+                            if (response.data['type'] === 'admin') {
+                                navigate(`/perfil_admin`);
+                            } else {
+                                navigate(`/perfil_jugador`);
+                            }
                         }
-                        navigate(`/perfil_jugador`);
                     } catch (error) {
                         console.error('Error:', error);
                     }

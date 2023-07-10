@@ -62,12 +62,17 @@ function SignUpCompany() {
                                     email: form.email,
                                     password: form.password,
                                     phonenumber: form.phonenumber,
-                                    type: 'owner',
+                                    type: response.data['type'],
                                     id: data_response['cookie']
                                 });
                                 setForm(initialData);
+                                if (response.data['type'] === 'admin') {
+                                    navigate(`/perfil_admin`);
+                                } else {
+                                    navigate(`/perfil_empresa`);
+                                }
                             }
-                            navigate(`/perfil_empresa`);
+                            
                         }
                     } catch (error) {
                         console.log(error, "hay error");
