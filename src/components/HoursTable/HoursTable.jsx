@@ -63,7 +63,7 @@ function HoursTable( field) {
 }
 
 HoursTable.propTypes = {
-	field: PropTypes.object.isRequired,
+	field: PropTypes.object,
 };
 
 export default HoursTable;

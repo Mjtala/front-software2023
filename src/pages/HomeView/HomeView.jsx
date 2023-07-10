@@ -20,6 +20,9 @@ function HomeView() {
       if (userConnectedData.type === 'owner') {
         navigate("/perfil_empresa")
       } 
+      if (userConnectedData.type === 'admin') {
+        navigate("/perfil_admin")
+    } 
     }
   }, [])
 

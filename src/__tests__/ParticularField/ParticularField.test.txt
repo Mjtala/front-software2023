@@ -1,0 +1,46 @@
+/*
+import React from "react";
+import axios from 'axios';
+import { render, waitFor } from "@testing-library/react";
+import { useNavigate } from 'react-router-dom';
+import SearchField from "../../components/SearchField/SearchField";
+
+jest.mock('axios', () => ({
+    get: jest.fn(() => Promise.resolve({ 
+        data: {
+            name: "cancha1",
+            address: "Dirección",
+            price: 5000,
+            district: "Comuna",
+            maxplayers: 10,
+            phonenumber: "123456789",
+        },
+    })),
+}));
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
+}));
+
+
+describe("SearchField", () => {
+    test("renders without error and fetches data", async () => {
+        useNavigate.mockReturnValue(jest.fn());
+
+        const { getByText } = render(<SearchField />);
+
+        await waitFor(() => {
+            expect(axios.get).toHaveBeenCalled();
+        });
+
+        expect(getByText("cancha1")).toBeInTheDocument();
+        expect(getByText("Comuna: Comuna")).toBeInTheDocument();
+        expect(getByText("Dirección: Dirección")).toBeInTheDocument();
+        expect(getByText("Precio: 5000")).toBeInTheDocument();
+        expect(getByText("Teléfono: 123456789")).toBeInTheDocument();
+        expect(getByText("Jugadores Máx: 10")).toBeInTheDocument();
+    });
+});
+
+*/

@@ -42,7 +42,9 @@ function SignUpPlayer() {
                         navigate("/perfil_empresa");
                     } else if (userConnectedData.type === 'player') {
                         navigate("/perfil_jugador");
-                    }
+                    } else if (userConnectedData.type === 'admin') {
+                        navigate("/perfil_admin")
+                    } 
                 }
                 if (readyToSendRequest) {
                     try {
