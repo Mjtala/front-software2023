@@ -28,7 +28,9 @@ export default function AdminHomePage() {
       if (connected) {
           if (userConnectedData.type === 'admin') {
             navigate("/perfil_admin")
-          } 
+          } else {
+            navigate("/")
+        }
       } else {
           navigate("/")
       }

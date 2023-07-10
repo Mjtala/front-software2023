@@ -40,15 +40,14 @@ const FieldInformation = () => {
     function CreateMyFields(information) {
         return (
             <div className='admininfo'>
+                <div key={information.id}>
+                    <p className="">Nombre: {information.name}</p>
+                    {!information.manager && <p className="">Encargado: Juan Pérez</p>}
+                    {information.manager && <p className="">Encargado: {information.manager}</p>}
 
-            <div key={information.id}>
-                <p className="">Nombre: {information.name}</p>
-                {!information.manager && <p className="">Encargado: Juan Pérez</p>}
-                {information.manager && <p className="">Encargado: {information.manager}</p>}
-
-                {!information.phonenumber && <p className="">Contacto: No tiene Número</p>}
-                {information.phonenumber && <p className="">Télefono de Contacto: {information.phonenumber}</p>}
-            </div>
+                    {!information.phonenumber && <p className="">Contacto: No tiene Número</p>}
+                    {information.phonenumber && <p className="">Télefono de Contacto: {information.phonenumber}</p>}
+                </div>
             </div>
         )
     }

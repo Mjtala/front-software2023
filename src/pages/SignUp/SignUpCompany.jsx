@@ -93,7 +93,6 @@ function SignUpCompany() {
     const onValidate = (form) => {
         // que los campos no vengan vacíos
         let errors = {}
-        let regexname = /^[a-zA-Z0-9_-]{4,16}$/;  //letras, numeros, guion y guion bajo
         let regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
         let regexPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;  //Minimum 8 characters, at least 1 letter, 1 number and 1 special character
         let regexphonenumber = /(\+56|56|)?(2|9)([0-9]){8}/;
@@ -101,9 +100,7 @@ function SignUpCompany() {
 
         if (!form.name.trim()) {
             errors.name = 'El campo "Nombre de usuario" no puede estar vacío'
-        } else if (!regexname.test(form.name)) {
-            errors.name = 'El campo "Nombre de usuario" solo acepta letras, números, guión y guión bajo'
-        }
+        } 
         if (!form.email.trim()) {
             errors.email = 'El campo "Email" no puede estar vacío'
         } else if (!regexEmail.test(form.email)) {

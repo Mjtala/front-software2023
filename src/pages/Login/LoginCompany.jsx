@@ -56,11 +56,15 @@ function LoginCompany() {
                     setUserConnectedData({
                         email: email,
                         password: password,
-                        type: 'owner',
+                        type: response.data['type'],
                         id: response.data['cookie']
                     });
                     setConnected(true)
-                    navigate(`/perfil_empresa`);
+                    if (response.data['type'] === "admin") {
+                        navigate(`/perfil_admin`);
+                    } else {
+                        navigate(`/perfil_empresa`);
+                    }
                 } catch (error) {
                     console.error('Error:', error);
                     setValidation("Credenciales Inválidas")
