@@ -95,22 +95,18 @@ const ModalEditField = () => {
         //let regexprice = /(\([0-9])/;
         //let regexmaxplayers = /(\([0-9])/;
         let regexphonenumber = /(\+56|56|)?(2|9)([0-9]){8}/;
-        let regexprice = /(\([0-9])/;
-        let regexmaxplayers = /(\([0-9])/;
+        //let regexprice = /(\([0-9])/;
+        //let regexmaxplayers = /(\([0-9])/;
 
         if (form.price) {
             if (isNaN(form.price)) {
                 errors.price = 'El campo "Precio" debe ser un número'
-            } else if (!regexprice.test(form.price)) {
-                errors.price = 'El campo "Precio" debe ser positivo'
-            }
+            } 
         }
         if (form.maxplayers) {
             if (isNaN(form.maxplayers)) {
                 errors.maxplayers = 'El campo "Cantidad de Jugadores" debe ser un número'
-            }     else if (!regexmaxplayers.test(form.regexmaxplayers)) {
-                errors.maxplayers = 'El campo "Cantidad de Jugadores" debe ser positivo'
-            }       
+            }          
         }
         if (form.phonenumber) {
             if (!regexphonenumber.test(form.phonenumber)) {
