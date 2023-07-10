@@ -59,7 +59,7 @@ function SearchField() {
                                 <p className="labelspecific">Teléfono: {r.phonenumber}</p>
                                 <p className="labelspecific">Jugadores Máx: {r.maxplayers}</p>
                                 
-                                <a href={`/canchas/${r.id}`}><button className="botonsubmit2">Ver cancha</button></a>
+                                <a href={`canchas/${r.id}`}><button className="botonsubmit2">Ver cancha</button></a>
                             </div>
 
                         )
