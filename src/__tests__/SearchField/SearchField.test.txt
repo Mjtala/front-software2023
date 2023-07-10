@@ -1,0 +1,63 @@
+/*
+import React from "react";
+import axios from 'axios';
+import { render, waitFor } from "@testing-library/react";
+import { useNavigate } from 'react-router-dom';
+import SearchField from "../../components/SearchField/SearchField";
+import MockAdapter from 'axios-mock-adapter';
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
+}));
+
+describe("SearchField", () => {
+    test("renders without error and fetches data", async () => {
+        const mock = new MockAdapter(axios);
+        const mockedResponse = {
+            data: [
+                {
+                    id: 1,
+                    name: "cancha1",
+                    district: "Comuna1",
+                    address: "Dirección1",
+                    price: 5000,
+                    phonenumber: "123456789",
+                    maxplayers: 10
+                },
+                {
+                    id: 2,
+                    name: "cancha2",
+                    district: "Comuna2",
+                    address: "Dirección2",
+                    price: null,
+                    phonenumber: "987654321",
+                    maxplayers: 5
+                }
+            ]
+        };
+        mock.onGet('http://api.example.com/enclousures/all').reply(200, mockedResponse);
+        useNavigate.mockReturnValueOnce(jest.fn());
+
+        const { getByText } = render(<SearchField />);
+
+        await waitFor(() => {
+            expect(mock.history.get.length).toBe(1);
+        });
+
+        expect(getByText("cancha1")).toBeInTheDocument();
+        expect(getByText("Comuna1")).toBeInTheDocument();
+        expect(getByText("Dirección1")).toBeInTheDocument();
+        expect(getByText("Precio: 5000")).toBeInTheDocument();
+        expect(getByText("Teléfono: 123456789")).toBeInTheDocument();
+        expect(getByText("Jugadores Máx: 10")).toBeInTheDocument();
+        expect(getByText("cancha2")).toBeInTheDocument();
+        expect(getByText("Comuna2")).toBeInTheDocument();
+        expect(getByText("Dirección2")).toBeInTheDocument();
+        expect(getByText("Precio: Gratis")).toBeInTheDocument();
+        expect(getByText("Teléfono: 987654321")).toBeInTheDocument();
+        expect(getByText("Jugadores Máx: 5")).toBeInTheDocument();
+    });
+});
+
+*/

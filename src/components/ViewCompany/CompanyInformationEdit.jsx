@@ -14,7 +14,7 @@ const CompanyProfileInformationEdit = () => {
         e.stopPropagation();
     }
     const [formData, setFormData] = useState({
-        name: "", email: "", password: "", phonenumber: "", type: "company"
+        name: "", email: "", password: "", phonenumber: "", type: "owner"
     })
 
     const handleChange = (event) => {
