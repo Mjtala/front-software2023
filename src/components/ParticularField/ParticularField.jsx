@@ -4,11 +4,13 @@ import HoursTable from "../HoursTable/HoursTable";
 import "./ParticularField.css"
 import { useParams } from 'react-router-dom';
 import config from '../../config'
+import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from 'usehooks-ts';
 
 function ParticularField() {
 
     const params = useParams()
+    const navigate = useNavigate();
     const event_id = params.id
     const [userConnectedData] = useLocalStorage("UserInfo", null)
     const [error, setError] = useState("")
@@ -110,8 +112,9 @@ function ParticularField() {
             const url = `${config.route}enclousures/${event_id}` //TODO:
             const response = await axios.get(url, configaxios)
             setFormData(response.data)
+            
         } catch (error) {
-            console.log(error, "hay error");
+            navigate("/")
         }
     }
 
