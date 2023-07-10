@@ -10,6 +10,14 @@ const PlayerProfileMyBookings = () => {
     const [userConnectedData] = useLocalStorage("UserInfo", null);
     const [bookings, setBookings] = useState("");
     const [modal, setModal] = useState(false);
+    const [currentreservation, setCurrentReservation] = useState("");
+
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Agrega un 0 inicial si el mes es menor a 10
+    const day2 = String(currentDate.getDate()).padStart(2, '0'); // Agrega un 0 inicial si el día es menor a 10
+
+    const formattedDate = `${year}-${month}-${day2}`;
 
     const getData = async () => {
         try {
@@ -63,8 +71,18 @@ const PlayerProfileMyBookings = () => {
         getData()
       }, [modal]);
 
+    
+    const handlereview = async(event) => {
+        setCurrentReservation(event)
+        setModal(true)
+    }
 
-    function ViewMyBookings(information, idbooking) {
+
+    function ViewMyBookings(information, booking) {
+        const isDateBeforeCurrent = booking.date > formattedDate
+        console.log(formattedDate)
+        console.log(isDateBeforeCurrent)
+        console.log(booking.date)
         return (
             <div key={information.id}>
                 <div className="labelinfo">
@@ -77,13 +95,22 @@ const PlayerProfileMyBookings = () => {
                     {information.price && <p className="">Precio: {information.price}</p>}
                     {!information.maxplayers && <p className="">Máx Jugadores: 10</p>}
                     {information.maxplayers && <p className="">Máx Jugadores: {information.maxplayers}</p>}
-                    {!information.hour && <p className="">Hora: 10:00 - 11:00</p>}
-                    {information.hour && <p className="">Hora: {information.hour}</p>}
+                    {!booking.hour && <p className="">Hora: No disponible</p>}
+                    {booking.hour && <p className="">Hora: {booking.hour}:00 - {parseInt(booking.hour) + 1}:00</p>}
                     
-                    <button className='buttondeletebooking' onClick={() => handleCancelBooking(idbooking)}> Eliminar reserva </button>
+                    <button className='buttondeletebooking' onClick={() => handleCancelBooking(booking.id)}> Eliminar reserva </button>
+                    
+                    {isDateBeforeCurrent && 
                     <div>
-                        <button className='buttondeletebooking' onClick={() => setModal(true)}> Calificar </button>
+                        <button className='buttondeletebooking'  onClick={() => handlereview(information)}> Calificar </button>
                     </div>      
+                    } 
+                    {!isDateBeforeCurrent && 
+                    <div>
+                        <button className='buttondeletebooking'  onClick={() => handlereview(information)} disabled> Es muy temprano para calificar</button>
+                    </div>      
+                    }
+
                 </div>
             </div>
         )
@@ -100,7 +127,7 @@ const PlayerProfileMyBookings = () => {
                     <h1 className="">Reservas </h1>
 
                     <div className="MainDivListFields">
-                    {modal===true&&(<Modal setModal={setModal}> </Modal>)}
+                    {modal===true&&(<Modal setModal={setModal} fieldid={currentreservation.id} fieldname={currentreservation.name} > </Modal>)}
                     {Array.isArray(bookings) && bookings.length > 0 ? (
                         bookings
                     ) : (
